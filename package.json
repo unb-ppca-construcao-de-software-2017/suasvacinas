@@ -1,8 +1,13 @@
 {
-  "name": "suasvacinas-ion",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "name": "suasvacinas",
+  "version": "1.0.0",
+  "description": "Suas Vacinas",
+  "homepage": "https://github.com/unb-ppca-construcao-de-software-2017/suasvacinas",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unb-ppca-construcao-de-software-2017/suasvacinas.git"
+  },
+  "license": "GPL-3.0",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
@@ -54,5 +59,34 @@
     "ts-node": "^3.0.2",
     "typescript": "2.3.3"
   },
-  "description": "An Ionic project"
+  "contributors": [
+    {
+      "name": "Antônio C. Jr.",
+      "email": "acdcjunior em gmail.com"
+    },
+    {
+      "name": "Alexandre Vinhadelli Papadópolis",
+      "email": "alex em sbpi.com.br"
+    },
+    {
+      "name": "Anderson Jefferson Cerqueira",
+      "email": "andersonjcdf em gmail.com"
+    },
+    {
+      "name": "Ademar Peixoto",
+      "email": "bigua.kun em gmail.com"
+    },
+    {
+      "name": "Heloise Acco Tives Leão",
+      "email": "heloise.acco em gmail.com"
+    },
+    {
+      "name": "Márcia Myuki Takenaka Fujimoto",
+      "email": "marciamyuki em gmail.com"
+    },
+    {
+      "name": "Welder Luz",
+      "email": "wweellddeerr em gmail.com"
+    }
+  ]
 }
