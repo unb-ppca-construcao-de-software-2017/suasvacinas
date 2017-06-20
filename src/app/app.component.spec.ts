@@ -4,22 +4,22 @@ import { IonicModule, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { MyApp } from './app.component';
+import { SuasVacinasAppComponent } from './app.component';
 import {
   PlatformMock,
   StatusBarMock,
   SplashScreenMock
 } from '../../test-config/mocks-ionic';
 
-describe('MyApp Component', () => {
+describe('SuasVacinasAppComponent Component', () => {
   let fixture;
   let component;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MyApp],
+      declarations: [SuasVacinasAppComponent],
       imports: [
-        IonicModule.forRoot(MyApp)
+        IonicModule.forRoot(SuasVacinasAppComponent)
       ],
       providers: [
         { provide: StatusBar, useClass: StatusBarMock },
@@ -30,12 +30,12 @@ describe('MyApp Component', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyApp);
+    fixture = TestBed.createComponent(SuasVacinasAppComponent);
     component = fixture.componentInstance;
   });
 
   it('should be created', () => {
-    expect(component instanceof MyApp).toBe(true);
+    expect(component instanceof SuasVacinasAppComponent).toBe(true);
   });
 
   it('should have two pages', () => {
