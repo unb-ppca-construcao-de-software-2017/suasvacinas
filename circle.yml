@@ -1,0 +1,9 @@
+machine:
+  services:
+    - docker
+test:
+  override:
+    # figure out how to run tests before
+    # npm run test
+    # npm run e2e
+    - docker run -it --rm --name suasvacinas-cd -v $(pwd):/project -w /project node:8.1.2 npm install && npm run deploy-ci
