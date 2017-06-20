@@ -1,7 +1,6 @@
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { promise } from "selenium-webdriver";
-import Promise = promise.Promise;
+declare const Promise;
 
 export class PlatformMock {
   public ready(): Promise<{String}> {
@@ -35,7 +34,7 @@ export class PlatformMock {
       paddingLeft: '10',
       paddingTop: '10',
       paddingRight: '10',
-      paddingBottom: '10',
+      paddingBottom: '10'
     };
   }
 
