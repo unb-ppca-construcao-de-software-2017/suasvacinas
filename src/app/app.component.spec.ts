@@ -26,7 +26,7 @@ describe('MyApp Component', () => {
         { provide: SplashScreen, useClass: SplashScreenMock },
         { provide: Platform, useClass: PlatformMock }
       ]
-    })
+    });
   }));
 
   beforeEach(() => {

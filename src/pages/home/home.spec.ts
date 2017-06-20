@@ -22,7 +22,7 @@ describe('HomePage', () => {
         NavController,
         { provide: Platform, useClass: PlatformMock},
         { provide: StatusBar, useClass: StatusBarMock },
-        { provide: SplashScreen, useClass: SplashScreenMock },
+        { provide: SplashScreen, useClass: SplashScreenMock }
       ]
     });
   }));
