@@ -16,6 +16,9 @@ Ambiente inicial (outros podem funcionar, apenas este foi o que usamos inicialme
   - Para instalar/atualizar, vá a https://nodejs.org/
 - **NPM 5.0.3**
   - A mais atual no instante em que isto foi escrito - `npm i -g npm` para atualizar o seu.
+- **Ionic Framework**
+  - npm i -g ionic
+
 
 #### Comandos:
 
