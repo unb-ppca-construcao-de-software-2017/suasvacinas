@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseListObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class FirebaseProvider {
 
   constructor(public afd: AngularFireDatabase) { }
 
-  getVacinas(): FirebaseListObservable<any[]> {
+  getVacinas(): Observable<any[]> {
     return this.afd.list('/vacinas/');
   }
 

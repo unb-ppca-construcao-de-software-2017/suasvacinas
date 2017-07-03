@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import {FirebaseListObservable} from "angularfire2/database";
 import {FirebaseProvider} from "../../providers/firebase/firebase";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'page-home',
@@ -58,7 +58,7 @@ import {FirebaseProvider} from "../../providers/firebase/firebase";
 })
 export class HomePage {
 
-  vacinas: FirebaseListObservable<any[]>;
+  vacinas: Observable<any[]>;
   novaVacina = '';
 
   //noinspection JSUnusedGlobalSymbols
