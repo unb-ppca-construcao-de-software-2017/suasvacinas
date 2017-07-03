@@ -2,10 +2,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { HomePage } from "./home";
-import { IonicModule, Platform, NavController} from 'ionic-angular/index';
+import { IonicModule, Platform, NavController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PlatformMock, StatusBarMock, SplashScreenMock } from '../../../test-config/mocks-ionic';
+import { FirebaseProvider } from "../../providers/firebase/firebase";
+import { Observable } from "rxjs/Observable";
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import "rxjs/add/observable/from";
 
 describe('HomePage', () => {
   let de: DebugElement;
@@ -20,6 +24,7 @@ describe('HomePage', () => {
       ],
       providers: [
         NavController,
+        { provide: FirebaseProvider, useClass: FirebaseProviderMock},
         { provide: Platform, useClass: PlatformMock},
         { provide: StatusBar, useClass: StatusBarMock },
         { provide: SplashScreen, useClass: SplashScreenMock }
@@ -41,4 +46,22 @@ describe('HomePage', () => {
     expect(h3.innerText).toMatch(/ionic/i,
       '<h3> should say something about "Ionic"');
   });
+
 });
+
+class FirebaseProviderMock extends FirebaseProvider {
+
+  private vacinas: BehaviorSubject<any>;
+
+  getVacinas(): Observable<any[]> {
+    return this.vacinas;
+  }
+
+  addVacina(name: string): void {
+    this.vacinas.next(name);
+  }
+
+  removeVacina(id: string): void {
+    // nada
+  }
+}
