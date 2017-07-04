@@ -7,12 +7,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PlatformMock, StatusBarMock, SplashScreenMock } from '../../../test-config/mocks-ionic';
 import { FirebaseProvider } from "../../providers/firebase/firebase";
-import { Observable } from "rxjs/Observable";
-import { BehaviorSubject } from "rxjs/BehaviorSubject";
 import "rxjs/add/observable/from";
+import {FirebaseProviderMock} from "../../providers/firebase/firebase.testhelper";
 
 describe('HomePage', () => {
-  let de: DebugElement;
+  let titleDebugElement: DebugElement;
   let comp: HomePage;
   let fixture: ComponentFixture<HomePage>;
 
@@ -35,33 +34,15 @@ describe('HomePage', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HomePage);
     comp = fixture.componentInstance;
-    de = fixture.debugElement.query(By.css('h3'));
+    titleDebugElement = fixture.debugElement.query(By.css('.cell:not(.logo-img)'));
   });
 
-  it('should create component', () => expect(comp).toBeDefined());
+  it('deve criar component', () => expect(comp).toBeDefined());
 
-  it('should have expected <h3> text', () => {
+  it('deve ter titulo suas vacinas', () => {
     fixture.detectChanges();
-    const h3 = de.nativeElement;
-    expect(h3.innerText).toMatch(/ionic/i,
-      '<h3> should say something about "Ionic"');
+    const titleElement = titleDebugElement.nativeElement;
+    expect(titleElement.innerText).toBe("Suas Vacinas");
   });
 
 });
-
-class FirebaseProviderMock extends FirebaseProvider {
-
-  private vacinas: BehaviorSubject<any>;
-
-  getVacinas(): Observable<any[]> {
-    return this.vacinas;
-  }
-
-  addVacina(name: string): void {
-    this.vacinas.next(name);
-  }
-
-  removeVacina(id: string): void {
-    // nada
-  }
-}
