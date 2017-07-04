@@ -13,6 +13,6 @@
     </button>
   </ion-list>
   <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
+    Você chegou aqui por <b>{{selectedItem.title || selectedItem}}</b>
   </div>
 </ion-content>
