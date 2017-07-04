@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By }           from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { HomePage } from "./home";
+import { ExemploCrudPage } from "./exemplo-crud";
 import { IonicModule, Platform, NavController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -10,16 +10,17 @@ import { FirebaseProvider } from "../../providers/firebase/firebase";
 import "rxjs/add/observable/from";
 import {FirebaseProviderMock} from "../../providers/firebase/firebase.testhelper";
 
-describe('HomePage', () => {
+describe('ExemploCrudPage', () => {
+
   let titleDebugElement: DebugElement;
-  let comp: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+  let comp: ExemploCrudPage;
+  let fixture: ComponentFixture<ExemploCrudPage>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [HomePage],
+      declarations: [ExemploCrudPage],
       imports: [
-        IonicModule.forRoot(HomePage)
+        IonicModule.forRoot(ExemploCrudPage)
       ],
       providers: [
         NavController,
@@ -32,7 +33,7 @@ describe('HomePage', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomePage);
+    fixture = TestBed.createComponent(ExemploCrudPage);
     comp = fixture.componentInstance;
     titleDebugElement = fixture.debugElement.query(By.css('.cell:not(.logo-img)'));
   });

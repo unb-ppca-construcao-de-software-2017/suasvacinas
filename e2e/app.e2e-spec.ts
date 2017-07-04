@@ -12,10 +12,10 @@ describe('App', () => {
       page.navigateTo('/');
     });
 
-    it('should have a title saying Home', () => {
+    it('deve ter um titulo dizendo Suas Vacinas', () => {
       page.getTitle().then(title => {
-        expect(title).toEqual('Home');
+        expect(title).toEqual('Suas Vacinas');
       });
     });
-  })
+  });
 });

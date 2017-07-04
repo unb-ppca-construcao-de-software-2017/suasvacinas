@@ -4,7 +4,7 @@ import {FirebaseProvider} from "../../providers/firebase/firebase";
 import {Observable} from "rxjs/Observable";
 
 @Component({
-  selector: 'page-home',
+  selector: 'page-exemplo-crud',
   styles: [`
     span.row {
       display:table-row;
@@ -56,7 +56,7 @@ import {Observable} from "rxjs/Observable";
     </ion-content>
   `
 })
-export class HomePage {
+export class ExemploCrudPage {
 
   vacinas: Observable<any[]>;
   novaVacina = '';

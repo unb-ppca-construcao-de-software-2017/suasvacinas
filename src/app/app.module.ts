@@ -3,7 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { SuasVacinasAppComponent } from './app.component';
-import { HomePage } from '../pages/home/home';
+import { ExemploCrudPage } from '../pages/exemplo-crud/exemplo-crud';
 import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -14,7 +14,7 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
 @NgModule({
   declarations: [
     SuasVacinasAppComponent,
-    HomePage,
+    ExemploCrudPage,
     ListPage
   ],
   imports: [
@@ -25,7 +25,7 @@ import { FirebaseProvider } from '../providers/firebase/firebase';
   bootstrap: [IonicApp],
   entryComponents: [
     SuasVacinasAppComponent,
-    HomePage,
+    ExemploCrudPage,
     ListPage
   ],
   providers: [
