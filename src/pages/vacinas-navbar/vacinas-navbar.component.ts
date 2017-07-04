@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
       <ion-title>
         <span class="row">
           <span class="cell logo-img"><img alt="logo" height="40" src="assets/icon/vaccine.png"></span>
-          <span class="cell">Suas Vacinas?</span>
+          <span class="cell">Suas Vacinas</span>
         </span>
       </ion-title>
     </ion-navbar>
