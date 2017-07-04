@@ -11,13 +11,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { FirebaseModule } from "../firebase/firebase.module";
 import { FirebaseProvider } from '../providers/firebase/firebase';
 import { HomeBotoesPage } from "../pages/home-botoes/home-botoes";
+import {VacinasNavbarComponent} from "../pages/vacinas-navbar/vacinas-navbar.component";
 
 @NgModule({
   declarations: [
     HomeBotoesPage,
     SuasVacinasAppComponent,
     ExemploCrudPage,
-    ListPage
+    ListPage,
+    VacinasNavbarComponent
   ],
   imports: [
     BrowserModule,

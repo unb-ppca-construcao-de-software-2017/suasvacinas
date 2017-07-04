@@ -9,6 +9,7 @@ import { PlatformMock, StatusBarMock, SplashScreenMock } from '../../../test-con
 import { FirebaseProvider } from "../../providers/firebase/firebase";
 import "rxjs/add/observable/from";
 import {FirebaseProviderMock} from "../../providers/firebase/firebase.testhelper";
+import {VacinasNavbarComponent} from "../vacinas-navbar/vacinas-navbar.component";
 
 describe('ExemploCrudPage', () => {
 
@@ -18,7 +19,7 @@ describe('ExemploCrudPage', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ExemploCrudPage],
+      declarations: [ExemploCrudPage, VacinasNavbarComponent],
       imports: [
         IonicModule.forRoot(ExemploCrudPage)
       ],

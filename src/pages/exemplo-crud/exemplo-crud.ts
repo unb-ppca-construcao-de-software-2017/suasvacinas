@@ -18,17 +18,7 @@ import {Observable} from "rxjs/Observable";
   `],
   template: `
     <ion-header>
-      <ion-navbar color="primary">
-        <button ion-button menuToggle>
-          <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>
-          <span class="row">
-            <span class="cell logo-img"><img alt="logo" height="40" src="assets/icon/vaccine.png"></span>
-            <span class="cell">Suas Vacinas</span>
-          </span>
-        </ion-title>
-      </ion-navbar>
+      <vacinas-navbar></vacinas-navbar>
     </ion-header>
 
     <ion-content>
