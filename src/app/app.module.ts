@@ -12,6 +12,8 @@ import { FirebaseModule } from "../firebase/firebase.module";
 import { FirebaseProvider } from '../providers/firebase/firebase';
 import { HomeBotoesPage } from "../pages/home-botoes/home-botoes";
 import {VacinasNavbarComponent} from "../pages/vacinas-navbar/vacinas-navbar.component";
+import {VacinasLogInComponent} from "../pages/vacinas-login.component";
+import {VacinasAuthService} from "../firebase/vacinas-auth.service";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {VacinasNavbarComponent} from "../pages/vacinas-navbar/vacinas-navbar.com
     SuasVacinasAppComponent,
     ExemploCrudPage,
     ListPage,
-    VacinasNavbarComponent
+    VacinasNavbarComponent,
+    VacinasLogInComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import {VacinasNavbarComponent} from "../pages/vacinas-navbar/vacinas-navbar.com
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    FirebaseProvider
+    FirebaseProvider,
+    VacinasAuthService
   ]
 })
 export class AppModule {}
