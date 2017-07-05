@@ -12,6 +12,7 @@ export class Opcao {
   subOpcoes: SubOpcao[];
 }
 export class SubOpcao {
+  tipo: string;
   titulo: string;
   chave: string;
 }
