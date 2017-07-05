@@ -1,9 +1,19 @@
 machine:
   services:
     - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker pull node:8.1.2
+
 test:
   override:
     # figure out how to run tests before
     # npm run test
     # npm run e2e
-    - docker run -it --rm --name suasvacinas-cd -v $(pwd):/project -w /project node:8.1.2 npm install && npm run deploy-ci
+    - docker run -it --rm --name suasvacinas-cd -v $(pwd):/project -w /project node:8.1.2 npm install && npm run build:prod
+
+deployment:
+  override:
+    - docker run -it --rm --name suasvacinas-cd -v $(pwd):/project -w /project --env FIREBASE_TOKEN=$FIREBASE_TOKEN node:8.1.2 npm run deploy-firebase
