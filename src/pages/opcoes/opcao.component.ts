@@ -16,12 +16,11 @@ import {OpcoesComponent} from "./opcoes";
 export class OpcaoComponent implements AfterViewInit {
 
   @Input() chave: string;
-  @Output() clique: EventEmitter<string>;
 
   descricao: Observable<string>;
   subOpcoes: Observable<SubOpcao[]>;
 
-  constructor(public vacinasRepository: VacinasRepository) { }
+  constructor(public navCtrl: NavController, public vacinasRepository: VacinasRepository) { }
 
   ngAfterViewInit(): void {
     let opcao = this.vacinasRepository.getOpcao(this.chave);
@@ -30,7 +29,7 @@ export class OpcaoComponent implements AfterViewInit {
   }
 
   abrirOpcao(chaveSubOpcao: string) {
-    this.clique.emit(chaveSubOpcao);
+    this.navCtrl.push(OpcoesComponent, {chave: chaveSubOpcao});
   }
 
 }

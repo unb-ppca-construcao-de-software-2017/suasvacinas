@@ -24,6 +24,7 @@ import {OpcaoComponent} from "../pages/opcoes/opcao.component";
     ExemploCrudPage,
     ListPage,
     OpcaoComponent,
+    OpcoesComponent,
     VacinasNavbarComponent,
     VacinasLogInComponent
   ],
@@ -38,7 +39,8 @@ import {OpcaoComponent} from "../pages/opcoes/opcao.component";
     HomeBotoesPage,
     ExemploCrudPage,
     ListPage,
-    OpcaoComponent
+    OpcaoComponent,
+    OpcoesComponent
   ],
   providers: [
     StatusBar,
