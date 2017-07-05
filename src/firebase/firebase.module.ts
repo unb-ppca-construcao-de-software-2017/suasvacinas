@@ -4,6 +4,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { FirebaseProvider } from '../providers/firebase/firebase';
+import {VacinasRepository} from "../providers/firebase/vacinas.repository";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC5Y8D-BlICHOwdPGJIR6bxXdmdMFC93uM",
@@ -22,7 +23,8 @@ const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig, 'suasvacinas')
   ],
   providers: [
-    FirebaseProvider
+    FirebaseProvider,
+    VacinasRepository
   ]
 })
 export class FirebaseModule {}
