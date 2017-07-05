@@ -33,7 +33,9 @@ import {DosesComponent} from "../pages/doses/doses.component";
   imports: [
     BrowserModule,
     FirebaseModule,
-    IonicModule.forRoot(SuasVacinasAppComponent)
+    IonicModule.forRoot(SuasVacinasAppComponent,{
+      backButtonText: 'Voltar'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
