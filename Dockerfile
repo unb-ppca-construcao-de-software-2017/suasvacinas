@@ -1,4 +1,4 @@
-FROM node:8.1.3
+FROM node:6
 
 MAINTAINER acdcjunior
 
