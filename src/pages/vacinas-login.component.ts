@@ -12,11 +12,11 @@ import {VacinasAuthService} from "../firebase/vacinas-auth.service";
   `],
   template: `
     <div class="login">
-      <h1>Ou cadastre as vacinas do seu filho, filha ou familiar</h1>
+      <h1>Cadastre as vacinas do seu filho, filha ou familiar</h1>
       <button ion-button outline item-end icon-left (click)="signInWithGoogle()"><ion-icon name="logo-google"></ion-icon>Google</button>
       <button ion-button outline item-end icon-left (click)="signInWithTwitter()"><ion-icon name="logo-twitter"></ion-icon>Twitter</button>
       <button ion-button outline item-end icon-left (click)="signInWithFacebook()"><ion-icon name="logo-facebook"></ion-icon>Facebook</button>
-      <h1 style="margin-top: 0.5em;">e administre seu histórico automaticamente</h1>
+      <h1 style="margin-top: 0.5em;">e administre seu histórico automaticamente.</h1>
     </div>
   `
 })
