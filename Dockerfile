@@ -2,6 +2,11 @@ FROM node:8.1.2
 
 MAINTAINER acdcjunior
 
+RUN whoami
+
+USER root
+
+RUN whoami
 RUN rm -rf /app
 RUN mkdir -p /app
 WORKDIR /app
