@@ -23,6 +23,9 @@ import {DescricaoVacina, VacinaIdadeDoseFonte, VacinasRepository} from "../provi
     ion-card-header {
       font-weight: bold;
     }
+    span.quebra-linha {
+      white-space: pre-line;
+    }
   `],
   template: `
     <ion-header>

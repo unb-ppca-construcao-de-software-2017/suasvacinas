@@ -7,6 +7,15 @@ import {DosesComponent} from "../doses/doses.component";
 
 @Component({
   selector: 'vacina-opcao',
+  styles: [`
+    h1.pergunta {
+      white-space: pre-line;
+      text-align: center;
+    }
+    .botao-pessoa {
+      margin-bottom: 15px;
+    }
+  `],
   template: `
     <h1 class="pergunta">{{ descricao | async }}</h1>
     <div *ngFor="let subOpcao of subOpcoes | async">
