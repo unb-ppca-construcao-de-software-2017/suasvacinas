@@ -48,7 +48,7 @@ export class VacinasRepository {
   constructor(public afd: AngularFireDatabase) { }
 
   getOpcoes(): Observable<Opcao[]> {
-    return this.afd.list('/opcoes/');
+    return this.afd.list('/base/opcoes/');
   }
 
   getOpcao(chave: string): Observable<Opcao> {
@@ -56,7 +56,7 @@ export class VacinasRepository {
   }
 
   getAllDoses(): Observable<IdadeDose[]> {
-    return this.afd.list('/doses/');
+    return this.afd.list('/base/doses/');
   }
 
   getDosesAtehMeses(meses: number): Observable<IdadeDose[]> {
@@ -64,7 +64,7 @@ export class VacinasRepository {
   }
 
   getDescricaoVacina(nomevacina: string): Observable<DescricaoVacina> {
-    return this.afd.list('/descricoes-vacinas/').concatMap((dvs: DescricaoVacina[]) => dvs).filter((dv: DescricaoVacina) => dv.nomevacina === nomevacina).first();
+    return this.afd.list('/base/descricoes-vacinas/').concatMap((dvs: DescricaoVacina[]) => dvs).filter((dv: DescricaoVacina) => dv.nomevacina === nomevacina).first();
   }
 
   getDosesVacina(chaveVacina: string): Observable<VacinaIdadeDoseFonte[]> {
