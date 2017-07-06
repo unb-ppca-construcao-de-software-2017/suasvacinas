@@ -6,16 +6,11 @@ dependencies:
   override:
     - docker info
     - docker pull node:8.1.2
-    - rm -rf node_modules
-    - rm -rf build
+    - docker build -t suasvacinas-ci .
 
 test:
   override:
     # figure out how to run tests before
     # npm run test
     # npm run e2e
-    - docker run -it -v $(pwd):/project -w /project node:8.1.2 npm install && npm run build:prod
-
-deployment:
-  override:
-    - docker run -it -v $(pwd):/project -w /project --env FIREBASE_TOKEN=$FIREBASE_TOKEN node:8.1.2 npm run deploy-firebase
+    - docker run -it --env FIREBASE_TOKEN=$FIREBASE_TOKEN suasvacinas-ci npm run deploy-firebase
