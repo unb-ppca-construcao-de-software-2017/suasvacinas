@@ -17,6 +17,7 @@ import {VacinasAuthService} from "../firebase/vacinas-auth.service";
 import {OpcoesComponent} from "../pages/opcoes/opcoes";
 import {OpcaoComponent} from "../pages/opcoes/opcao.component";
 import {DosesComponent} from "../pages/doses/doses.component";
+import {DescricaoVacinaComponent} from "../pages/descricao-vacina.component";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import {DosesComponent} from "../pages/doses/doses.component";
     OpcaoComponent,
     OpcoesComponent,
     DosesComponent,
+    DescricaoVacinaComponent,
     VacinasNavbarComponent,
     VacinasLogInComponent
   ],
@@ -43,6 +45,7 @@ import {DosesComponent} from "../pages/doses/doses.component";
     HomeBotoesPage,
     ExemploCrudPage,
     ListPage,
+    DescricaoVacinaComponent,
     OpcaoComponent,
     OpcoesComponent,
     DosesComponent

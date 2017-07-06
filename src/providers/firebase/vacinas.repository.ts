@@ -28,6 +28,20 @@ export class Dose {
   dose: string;
   fonte: string;
 }
+export class DescricaoVacina {
+  nomevacina: string;
+  descricao: TextoFonte;
+  redepublica: TextoFonte;
+  variacao: TextoFonte;
+  comentarios: TextoFonte;
+}
+export class TextoFonte {
+  texto: string;
+  fonte: string;
+}
+export class VacinaIdadeDoseFonte {
+  constructor(public nomevacina: string, public idade: string, public dose: string, public fonte: string) { }
+}
 @Injectable()
 export class VacinasRepository {
 
@@ -46,11 +60,26 @@ export class VacinasRepository {
   }
 
   getDosesAtehMeses(meses: number): Observable<IdadeDose[]> {
-    console.log('getting doses ateh meses', meses);
-    return this.getAllDoses().map((idadeDoses: IdadeDose[]) => {
-      console.log('during map', idadeDoses.length);
-      return idadeDoses.filter((idadeDose: IdadeDose) => idadeDose.meses <= meses);
-    });
+    return this.getAllDoses().map((idadeDoses: IdadeDose[]) => idadeDoses.filter((idadeDose: IdadeDose) => idadeDose.meses <= meses));
   }
 
+  getDescricaoVacina(nomevacina: string): Observable<DescricaoVacina> {
+    return this.afd.list('/descricoes-vacinas/').concatMap((dvs: DescricaoVacina[]) => dvs).filter((dv: DescricaoVacina) => dv.nomevacina === nomevacina).first();
+  }
+
+  getDosesVacina(chaveVacina: string): Observable<VacinaIdadeDoseFonte[]> {
+    return this.getAllDoses().map((idadeDoses: IdadeDose[]) => this.idadeDosesToVacinaIdadeDoseFontes(idadeDoses, chaveVacina));
+  }
+
+  private static flatMap<T, S>(xs: T[], f: (x: T) => S[]): S[] {
+    return [].concat(...xs.map(f));
+  }
+
+  private idadeDosesToVacinaIdadeDoseFontes(idadeDoses: IdadeDose[], chaveVacina: string): VacinaIdadeDoseFonte[] {
+    return VacinasRepository.flatMap<IdadeDose, VacinaIdadeDoseFonte>(idadeDoses, (idadeDose: IdadeDose) => {
+      let doses: Dose[] = idadeDose.doses;
+      let vidfs: VacinaIdadeDoseFonte[] = doses.map((dose: Dose) => new VacinaIdadeDoseFonte(dose.nome, idadeDose.idadeDose, dose.dose, dose.fonte));
+      return vidfs.filter(vidf => vidf.nomevacina === chaveVacina);
+    });
+  }
 }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {IdadeDose, VacinasRepository} from "../../providers/firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
+import {DescricaoVacinaComponent} from "../descricao-vacina.component";
 
 @Component({
   selector: 'vacinas-dose',
@@ -46,7 +47,7 @@ import {Observable} from "rxjs/Observable";
                   <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
                 </ion-fab-list>
               </ion-fab>
-              <button ion-item class="botao-dose" (click)="itemTapped($event, item)">
+              <button ion-item class="botao-dose" (click)="abrirVacina(dose.nome)">
                 {{ dose.nome }}
                 <p>{{ dose.dose }}</p>
                 <p class="item-note" item-right>{{ dose.fonte }}</p>
@@ -61,37 +62,16 @@ import {Observable} from "rxjs/Observable";
 export class DosesComponent {
 
   meses: number;
-  origem: string;
 
-  idadeDose: Observable<string>;
   idadeDoses: Observable<IdadeDose[]>;
 
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
-
   constructor(public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
-
     this.meses = navParams.get('meses');
-    this.origem = navParams.get('origem');
 
     this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
-
-    this.items = [];
-    this.idadeDoses.subscribe((idadeDoses: IdadeDose[]) => {
-      console.log('idade doses', idadeDoses);
-      idadeDoses.forEach((idadeDose: IdadeDose) => {
-        idadeDose.doses.forEach((dose) => {
-          this.items.push({
-            title: idadeDose.idadeDose,
-            note: dose.nome + ":" + dose.dose + ":" + dose.fonte,
-            icon: 'flask'
-          });
-        });
-      });
-    });
   }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(DosesComponent, { chave: item });
+  abrirVacina(nomevacina: string) {
+    this.navCtrl.push(DescricaoVacinaComponent, { nomevacina: nomevacina });
   }
 }
