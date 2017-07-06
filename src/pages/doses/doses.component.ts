@@ -41,10 +41,10 @@ import {DescricaoVacinaComponent} from "../descricao-vacina.component";
               <ion-fab class="fab-dose">
                 <button ion-fab color="light" mini><ion-icon name="ios-log-in"></ion-icon></button>
                 <ion-fab-list side="right">
-                  <button ion-fab color="secondary"><ion-icon name="checkmark"></ion-icon></button>
-                  <button ion-fab color="danger"><ion-icon name="information"></ion-icon></button>
-                  <button ion-fab color="default"><ion-icon name="logo-facebook"></ion-icon></button>
-                  <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+                  <button ion-fab (click)="marcarVacina()" color="secondary"><ion-icon name="checkmark"></ion-icon></button>
+                  <button ion-fab (click)="abrirVacina(dose.nome)" color="danger"><ion-icon name="information"></ion-icon></button>
+                  <button ion-fab (click)="shareTwitter()" color="default"><ion-icon name="logo-facebook"></ion-icon></button>
+                  <button ion-fab (click)="shareTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
                 </ion-fab-list>
               </ion-fab>
               <button ion-item class="botao-dose" (click)="abrirVacina(dose.nome)">
@@ -74,4 +74,15 @@ export class DosesComponent {
   abrirVacina(nomevacina: string) {
     this.navCtrl.push(DescricaoVacinaComponent, { nomevacina: nomevacina });
   }
+
+  marcarVacina() {
+    // fazendo
+  }
+
+  shareTwitter() {
+    // abrir "https://twitter.com/intent/tweet?text={{ base_path }}{{ page.url }}"
+    // "https://www.facebook.com/sharer/sharer.php?u={{ base_path }}{{ page.url }}"
+    // "https://plus.google.com/share?url={{ base_path }}{{ page.url }}"
+  }
+
 }
