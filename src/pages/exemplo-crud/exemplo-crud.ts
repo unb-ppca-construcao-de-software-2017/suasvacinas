@@ -5,17 +5,6 @@ import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'page-exemplo-crud',
-  styles: [`
-    span.row {
-      display:table-row;
-    }
-    span.cell {
-      display: table-cell; vertical-align: middle;
-    }
-    span.logo-img {
-      padding-right: 6%;
-    }
-  `],
   template: `
     <ion-header>
       <vacinas-navbar></vacinas-navbar>
