@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input} from "@angular/core";
 import {NavController} from "ionic-angular";
-import {Opcao, SubOpcao, VacinasRepository} from "../../providers/firebase/vacinas.repository";
+import {SubOpcao, VacinasRepository} from "../../providers/firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {OpcoesComponent} from "./opcoes";
 import {DosesComponent} from "../doses/doses.component";
@@ -26,14 +26,14 @@ export class OpcaoComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     let opcao = this.vacinasRepository.getOpcao(this.chave);
     this.descricao = opcao.pluck('descricao');
-    this.subOpcoes = opcao.map((x: Opcao) => x.subOpcoes);
+    this.subOpcoes = opcao.pluck('subOpcoes');
   }
 
   abrirOpcao(subOpcao: SubOpcao) {
     if (subOpcao.tipo === "dose") {
-      this.navCtrl.push(DosesComponent, {chave: subOpcao.chave, origem: this.chave});
+      this.navCtrl.push(DosesComponent, {meses: subOpcao.meses, origem: this.chave});
     } else {
-      this.navCtrl.push(OpcoesComponent, {chave:  subOpcao.chave});
+      this.navCtrl.push(OpcoesComponent, {chave: subOpcao.chave});
     }
   }
 

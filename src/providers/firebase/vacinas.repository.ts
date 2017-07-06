@@ -14,15 +14,19 @@ export class Opcao {
 export class SubOpcao {
   tipo: string;
   titulo: string;
-  chave: string;
+  chave?: string;
+  meses?: number;
 }
 export class IdadeDose {
-  idadeDose: string[];
-    doses: Dose[];
+  chave: string;
+  meses: number;
+  idadeDose: string;
+  doses: Dose[];
 }
 export class Dose {
   nome: string;
   dose: string;
+  fonte: string;
 }
 @Injectable()
 export class VacinasRepository {
@@ -37,8 +41,16 @@ export class VacinasRepository {
     return this.getOpcoes().concatMap((x: Opcao[]) => x).filter((x: Opcao) => x.chave === chave).first();
   }
 
-  getDoses(): Observable<IdadeDose[]> {
+  getAllDoses(): Observable<IdadeDose[]> {
     return this.afd.list('/doses/');
+  }
+
+  getDosesAtehMeses(meses: number): Observable<IdadeDose[]> {
+    console.log('getting doses ateh meses', meses);
+    return this.getAllDoses().map((idadeDoses: IdadeDose[]) => {
+      console.log('during map', idadeDoses.length);
+      return idadeDoses.filter((idadeDose: IdadeDose) => idadeDose.meses <= meses);
+    });
   }
 
 }
