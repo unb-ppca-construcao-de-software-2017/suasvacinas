@@ -2,6 +2,7 @@ FROM node:8.1.2
 
 MAINTAINER acdcjunior
 
+RUN rm -rf /app
 RUN mkdir -p /app
 WORKDIR /app
 
