@@ -6,6 +6,8 @@ dependencies:
   override:
     - docker info
     - docker pull node:8.1.2
+    - rm -rf node_modules
+    - rm -rf build
     - docker build -t suasvacinas-ci .
 
 test:
