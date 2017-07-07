@@ -6,6 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ExemploCrudPage } from '../pages/exemplo-crud/exemplo-crud';
 import { ListPage } from '../pages/list/list';
 import {HomeBotoesPage} from "../pages/home-botoes/home-botoes";
+import {VacinasExtraSUSPage} from "../pages/extra-sus/extra-sus";
 
 @Component({
   templateUrl: 'app.html'
@@ -23,7 +24,8 @@ export class SuasVacinasAppComponent {
     this.pages = [
       { title: 'Início', component: HomeBotoesPage },
       { title: 'Exemplo Crud', component: ExemploCrudPage },
-      { title: 'Lista', component: ListPage }
+      { title: 'Lista', component: ListPage },
+      { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage}
     ];
 
   }
