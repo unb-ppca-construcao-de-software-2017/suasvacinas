@@ -21,6 +21,7 @@ import {DescricaoVacinaComponent} from "../pages/descricao-vacina.component";
 import {LoadingDropComponent} from "../pages/loading-drop.component";
 import {VacinasFooterComponent} from "../pages/vacinas-navbar/vacinas-footer.component";
 import {VacinasExtraSUSPage} from "../pages/extra-sus/extra-sus";
+import {WelderComponent} from "../welder/welder.component";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {VacinasExtraSUSPage} from "../pages/extra-sus/extra-sus";
     ListPage,
     OpcaoComponent,
     OpcoesComponent,
+    WelderComponent,
     DosesComponent,
     DescricaoVacinaComponent,
     VacinasNavbarComponent,
@@ -54,6 +56,7 @@ import {VacinasExtraSUSPage} from "../pages/extra-sus/extra-sus";
     DescricaoVacinaComponent,
     OpcaoComponent,
     OpcoesComponent,
+    WelderComponent,
     DosesComponent,
     VacinasExtraSUSPage
   ],

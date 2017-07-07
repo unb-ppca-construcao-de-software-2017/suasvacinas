@@ -7,6 +7,7 @@ import { ExemploCrudPage } from '../pages/exemplo-crud/exemplo-crud';
 import { ListPage } from '../pages/list/list';
 import {HomeBotoesPage} from "../pages/home-botoes/home-botoes";
 import {VacinasExtraSUSPage} from "../pages/extra-sus/extra-sus";
+import {WelderComponent} from "../welder/welder.component";
 
 @Component({
   template: `
@@ -45,7 +46,8 @@ export class SuasVacinasAppComponent {
       { title: 'Início', component: HomeBotoesPage },
       { title: 'Exemplo Crud', component: ExemploCrudPage },
       { title: 'Lista', component: ListPage },
-      { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage}
+      { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage},
+      { title: 'Componente do Welder', component: WelderComponent}
     ];
 
   }
