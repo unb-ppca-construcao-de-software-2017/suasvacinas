@@ -12,15 +12,13 @@ App de SuasVacinas.com.br
 
 Ambiente inicial (outros podem funcionar, apenas este foi o que usamos inicialmente):
 
-- **Node v8.1.0**
-  - Para instalar/atualizar, vá a https://nodejs.org/
-- **NPM 5.0.3**
-  - A mais atual no instante em que isto foi escrito - `npm i -g npm` para atualizar o seu.
-- **Ionic Framework**
-  - `npm i -g ionic`
+- **Node v8.1.0** e **NPM 5.0.3**
+  - Deve funcionar em Node 6.x e NPM 4.x.
+- **Ionic Framework** e **para interagir com o firebase**
+  - `npm i -g ionic cordova firebase-tools`
 
 
-#### Comandos:
+#### Como rodar o projeto:
 
 ```shell
 # Subir o servidor/app
@@ -37,29 +35,12 @@ ionic serve
 npm run e2e
 ```
 
-
-
-#### Historico:
-
-```shell
-# Instalar Ionic
-npm install -g cordova ionic
-# Criar versao inicial do projeto
-ionic start suasvacinas sidemenu
-
-# neste ponto, adicionei os arquivos de testes de unidade e e2e
-# vide http://blog.ionic.io/basic-unit-testing-in-ionic/ 
-# e https://github.com/driftyco/ionic-unit-testing-example
-# e fiz as adaptacoes necessarias, porque o ionic ainda nao cria testes por padrao
- 
-# Adicionar firebase
-# https://github.com/angular/angularfire2
-npm install firebase angularfire2 --save
-
-
-```
-
-
 ## Protótipo próxima versão
 
 ![x](_docs/proto-v0.png)
+
+# Outros
+
+Adicionei os arquivos de testes de unidade e e2e vide http://blog.ionic.io/basic-unit-testing-in-ionic/
+ e https://github.com/driftyco/ionic-unit-testing-example.
+Também foram feitas as adaptacoes necessarias, porque o CLI ionic ainda nao cria testes por padrao.
