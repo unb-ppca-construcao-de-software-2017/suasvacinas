@@ -10,13 +10,10 @@ import {Component, Input} from "@angular/core";
     }
   `],
   template: `
-    <div *ngIf="exibir">
+    <div>
       <img class="drop" src="assets/icon/loading-drop.gif" alt="">
     </div>
   `
 })
 export class LoadingDropComponent {
-
-  @Input() exibir: boolean;
-
 }
