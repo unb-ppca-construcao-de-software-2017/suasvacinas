@@ -18,6 +18,7 @@ import {OpcoesComponent} from "../pages/opcoes/opcoes";
 import {OpcaoComponent} from "../pages/opcoes/opcao.component";
 import {DosesComponent} from "../pages/doses/doses.component";
 import {DescricaoVacinaComponent} from "../pages/descricao-vacina.component";
+import {LoadingDropComponent} from "../pages/loading-drop.component";
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {DescricaoVacinaComponent} from "../pages/descricao-vacina.component";
     DosesComponent,
     DescricaoVacinaComponent,
     VacinasNavbarComponent,
-    VacinasLogInComponent
+    VacinasLogInComponent,
+    LoadingDropComponent
   ],
   imports: [
     BrowserModule,
