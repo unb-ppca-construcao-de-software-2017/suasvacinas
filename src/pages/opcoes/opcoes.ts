@@ -11,6 +11,10 @@ import {NavParams} from "ionic-angular";
     <ion-content padding>
       <vacina-opcao [chave]="selectedChave"></vacina-opcao>
     </ion-content>
+
+    <ion-footer>
+      <vacinas-footer></vacinas-footer>
+    </ion-footer>
   `
 })
 export class OpcoesComponent {

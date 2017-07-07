@@ -14,6 +14,10 @@ import "rxjs/add/operator/map";
       <vacina-opcao [chave]="chaveHome"></vacina-opcao>
       <vacinas-login></vacinas-login>
     </ion-content>
+
+    <ion-footer>
+      <vacinas-footer></vacinas-footer>
+    </ion-footer>
   `
 })
 export class HomeBotoesPage {

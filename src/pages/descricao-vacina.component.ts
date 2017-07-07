@@ -70,6 +70,10 @@ import {DescricaoVacina, VacinaIdadeDoseFonte, VacinasRepository} from "../provi
       <ion-card *ngIf="(vacina|async)?.variacao.texto !== '-'"><ion-card-header>Variação</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.variacao.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.variacao.fonte }}</p></ion-card-content></ion-card>
       <ion-card *ngIf="(vacina|async)?.comentarios.texto !== '-'"><ion-card-header>Outros dados</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.comentarios.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.comentarios.fonte }}</p></ion-card-content></ion-card>
     </ion-content>
+
+    <ion-footer>
+      <vacinas-footer></vacinas-footer>
+    </ion-footer>
   `
 })
 export class DescricaoVacinaComponent {
