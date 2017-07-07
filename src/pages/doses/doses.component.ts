@@ -24,6 +24,13 @@ import {DescricaoVacinaComponent} from "../descricao-vacina.component";
       border-bottom: 1px solid #f4f4f7;
       border-top: 1px solid #f4f4f7;
     }
+    ._e_ {
+      padding: 0;
+      margin-right: -15px;
+    }
+    .idade-escolhida {
+      color: #488aff;
+    }
   `],
   template: `
     <ion-header>
@@ -31,6 +38,27 @@ import {DescricaoVacinaComponent} from "../descricao-vacina.component";
     </ion-header>
 
     <ion-content class="bg-style">
+      <ion-grid>
+        <ion-row>
+          <ion-col col-12>
+            <div style="text-align: center">
+            Abaixo as doses recomendadas até <span class="idade-escolhida">{{ idadeEscolhida }}</span>.<br>
+            Conheça detalhes e <b>marque as que já tomou</b>.<br>
+
+              <button ion-button outline small>
+                Crie uma caderneta
+                &nbsp;&nbsp;<ion-icon name="logo-facebook"></ion-icon>
+                &nbsp;<ion-icon name="logo-google"></ion-icon>
+                &nbsp;<ion-icon name="logo-twitter"></ion-icon></button>
+              <div ion-button clear small class="_e_" color="dark">e</div>
+              <br>
+              
+              cadastre as idades de seus familiares.<br>
+              Nós te ajudaremos a acompanhar!
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
       <ion-card *ngFor="let idadeDose of idadeDoses | async">
         <ion-card-header>
           {{ idadeDose.idadeDose }}
@@ -57,16 +85,22 @@ import {DescricaoVacinaComponent} from "../descricao-vacina.component";
         </ion-card-content>
       </ion-card>
     </ion-content>
+
+    <ion-footer>
+      <vacinas-footer></vacinas-footer>
+    </ion-footer>
   `
 })
 export class DosesComponent {
 
   meses: number;
+  idadeEscolhida: string;
 
   idadeDoses: Observable<IdadeDose[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
     this.meses = navParams.get('meses');
+    this.idadeEscolhida = navParams.get('idadeEscolhida').toLowerCase();
 
     this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
   }

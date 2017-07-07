@@ -42,7 +42,7 @@ export class OpcaoComponent implements AfterViewInit {
 
   abrirOpcao(subOpcao: SubOpcao) {
     if (subOpcao.tipo === "dose") {
-      this.navCtrl.push(DosesComponent, {meses: subOpcao.meses, origem: this.chave});
+      this.navCtrl.push(DosesComponent, {meses: subOpcao.meses, origem: this.chave, idadeEscolhida: subOpcao.titulo});
     } else {
       this.navCtrl.push(OpcoesComponent, {chave: subOpcao.chave});
     }
