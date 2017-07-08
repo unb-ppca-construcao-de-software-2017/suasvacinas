@@ -18,7 +18,7 @@ import {OpcoesComponent} from "../componentes/opcoes/opcoes";
 import {OpcaoComponent} from "../componentes/opcoes/opcao.component";
 import {DosesComponent} from "../componentes/doses/doses.component";
 import {DescricaoVacinaComponent} from "../componentes/descricao-vacina.component";
-import {LoadingDropComponent} from "../componentes/tema/loading-drop.component";
+import {LoadingDropComponent} from "../componentes/tema/vacinas-loading.component";
 import {VacinasFooterComponent} from "../componentes/tema/vacinas-footer.component";
 import {VacinasExtraSUSPage} from "../componentes/extra-sus/extra-sus";
 import {WelderComponent} from "../componentes/welder/welder.component";

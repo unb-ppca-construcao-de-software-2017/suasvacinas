@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component({
-  selector: 'loading-drop',
+  selector: 'vacinas-loading',
   styles: [`
     img.drop {
       margin-left: auto;
@@ -11,7 +11,7 @@ import {Component} from "@angular/core";
   `],
   template: `
     <div>
-      <img class="drop" src="assets/icon/loading-drop.gif" alt="">
+      <img class="drop" src="assets/icon/loading.gif" alt="">
     </div>
   `
 })

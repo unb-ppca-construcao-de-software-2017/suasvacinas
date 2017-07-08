@@ -17,8 +17,8 @@ import {DosesComponent} from "../doses/doses.component";
     }
   `],
   template: `
-    <loading-drop *ngIf="!(descricao | async)"></loading-drop>
-    
+    <vacinas-loading *ngIf="!(descricao | async)"></vacinas-loading>
+
     <h1 class="pergunta">{{ descricao | async }}</h1>
     <div *ngFor="let subOpcao of subOpcoes | async">
       <button ion-button large block class="botao-pessoa" (click)="abrirOpcao(subOpcao)">{{ subOpcao.titulo }}</button>
