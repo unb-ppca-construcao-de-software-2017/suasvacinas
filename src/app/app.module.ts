@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FirebaseModule } from "../firebase/firebase.module";
 import { FirebaseProvider } from '../firebase/firebase';
-import { HomeBotoesPage } from "../componentes/inicial/home-botoes";
+import { InicialComponent } from "../componentes/inicial/inicial.component";
 import {VacinasNavbarComponent} from "../componentes/tema/vacinas-navbar.component";
 import {VacinasLogInComponent} from "../componentes/tema/vacinas-login.component";
 import {VacinasAuthService} from "../firebase/vacinas-auth.service";
@@ -25,7 +25,7 @@ import {WelderComponent} from "../componentes/welder/welder.component";
 
 @NgModule({
   declarations: [
-    HomeBotoesPage,
+    InicialComponent,
     SuasVacinasAppComponent,
     ExemploCrudPage,
     ListPage,
@@ -52,7 +52,7 @@ import {WelderComponent} from "../componentes/welder/welder.component";
   bootstrap: [IonicApp],
   entryComponents: [
     SuasVacinasAppComponent,
-    HomeBotoesPage,
+    InicialComponent,
     ExemploCrudPage,
     ListPage,
     DescricaoVacinaComponent,

@@ -4,7 +4,7 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
 
 @Component({
-  selector: 'page-home-botoes',
+  selector: 'vacinas-inicial',
   template: `
     <ion-header>
       <vacinas-navbar></vacinas-navbar>
@@ -20,7 +20,7 @@ import "rxjs/add/operator/map";
     </ion-footer>
   `
 })
-export class HomeBotoesPage {
+export class InicialComponent {
 
   chaveHome: string = "home";
 
