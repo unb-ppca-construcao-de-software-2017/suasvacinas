@@ -23,6 +23,7 @@ import {VacinasFooterComponent} from "../componentes/tema/vacinas-footer.compone
 import {VacinasExtraSUSPage} from "../componentes/extra-sus/extra-sus";
 import {WelderComponent} from "../componentes/welder/welder.component";
 import {OpcoesFixasRepository} from "../firebase/opcoesfixas.service";
+import {BannerCadastreSeComponent} from "../componentes/banner-cadastre-se/banner-cadastre-se.component";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {OpcoesFixasRepository} from "../firebase/opcoesfixas.service";
     VacinasFooterComponent,
     VacinasLogInComponent,
     LoadingDropComponent,
+    BannerCadastreSeComponent,
     VacinasExtraSUSPage
   ],
   imports: [
@@ -60,6 +62,7 @@ import {OpcoesFixasRepository} from "../firebase/opcoesfixas.service";
     OpcaoComponent,
     OpcoesComponent,
     WelderComponent,
+    BannerCadastreSeComponent,
     DosesComponent,
     VacinasExtraSUSPage
   ],

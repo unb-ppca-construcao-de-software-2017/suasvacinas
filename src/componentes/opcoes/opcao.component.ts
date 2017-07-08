@@ -4,6 +4,7 @@ import {SubOpcao, VacinasRepository} from "../../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {OpcoesComponent} from "./opcoes";
 import {DosesComponent} from "../doses/doses.component";
+import {BaseFixaPageComponentArgs, OpcoesFixasRepository} from "../../firebase/opcoesfixas.service";
 
 @Component({
   selector: 'vacina-opcao',
@@ -32,7 +33,7 @@ export class OpcaoComponent implements AfterViewInit {
   descricao: Observable<string>;
   subOpcoes: Observable<SubOpcao[]>;
 
-  constructor(public navCtrl: NavController, public vacinasRepository: VacinasRepository) { }
+  constructor(public navCtrl: NavController, public vacinasRepository: VacinasRepository, public opcoesFixasRepository: OpcoesFixasRepository) { }
 
   ngAfterViewInit(): void {
     let opcao = this.vacinasRepository.getOpcao(this.chave);
@@ -44,7 +45,13 @@ export class OpcaoComponent implements AfterViewInit {
     if (subOpcao.tipo === "dose") {
       this.navCtrl.push(DosesComponent, {meses: subOpcao.meses, origem: this.chave, idadeEscolhida: subOpcao.titulo});
     } else {
-      this.navCtrl.push(OpcoesComponent, {chave: subOpcao.chave});
+      let baseFixaPageComponentArgs: BaseFixaPageComponentArgs = this.opcoesFixasRepository.getOpcaoFixaPage(subOpcao.chave);
+      if (baseFixaPageComponentArgs) {
+        this.navCtrl.push(baseFixaPageComponentArgs.component, {args: baseFixaPageComponentArgs.args});
+        return;
+      } else {
+        this.navCtrl.push(OpcoesComponent, {chave: subOpcao.chave});
+      }
     }
   }
 
