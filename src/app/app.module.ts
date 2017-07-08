@@ -44,7 +44,9 @@ import {WelderComponent} from "../welder/welder.component";
     BrowserModule,
     FirebaseModule,
     IonicModule.forRoot(SuasVacinasAppComponent,{
-      backButtonText: 'Voltar'
+      backButtonText: 'Voltar',
+      iconMode: 'ios',
+      mode: 'ios'
     })
   ],
   bootstrap: [IonicApp],
