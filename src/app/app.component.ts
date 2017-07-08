@@ -7,7 +7,7 @@ import { ExemploCrudPage } from '../pages/exemplo-crud/exemplo-crud';
 import { ListPage } from '../pages/list/list';
 import {HomeBotoesPage} from "../pages/home-botoes/home-botoes";
 import {VacinasExtraSUSPage} from "../pages/extra-sus/extra-sus";
-import {WelderComponent} from "../welder/welder.component";
+import {WelderComponent} from "../componentes/welder/welder.component";
 
 @Component({
   template: `

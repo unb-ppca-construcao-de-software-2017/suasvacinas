@@ -3,25 +3,25 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { SuasVacinasAppComponent } from './app.component';
-import { ExemploCrudPage } from '../pages/exemplo-crud/exemplo-crud';
-import { ListPage } from '../pages/list/list';
+import { ExemploCrudPage } from '../componentes/exemplo-crud/exemplo-crud';
+import { ListPage } from '../componentes/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FirebaseModule } from "../firebase/firebase.module";
 import { FirebaseProvider } from '../firebase/firebase';
-import { HomeBotoesPage } from "../pages/home-botoes/home-botoes";
-import {VacinasNavbarComponent} from "../pages/vacinas-navbar/vacinas-navbar.component";
-import {VacinasLogInComponent} from "../pages/vacinas-login.component";
+import { HomeBotoesPage } from "../componentes/inicial/home-botoes";
+import {VacinasNavbarComponent} from "../componentes/tema/vacinas-navbar.component";
+import {VacinasLogInComponent} from "../componentes/tema/vacinas-login.component";
 import {VacinasAuthService} from "../firebase/vacinas-auth.service";
-import {OpcoesComponent} from "../pages/opcoes/opcoes";
-import {OpcaoComponent} from "../pages/opcoes/opcao.component";
-import {DosesComponent} from "../pages/doses/doses.component";
-import {DescricaoVacinaComponent} from "../pages/descricao-vacina.component";
-import {LoadingDropComponent} from "../pages/loading-drop.component";
-import {VacinasFooterComponent} from "../pages/vacinas-navbar/vacinas-footer.component";
-import {VacinasExtraSUSPage} from "../pages/extra-sus/extra-sus";
-import {WelderComponent} from "../welder/welder.component";
+import {OpcoesComponent} from "../componentes/opcoes/opcoes";
+import {OpcaoComponent} from "../componentes/opcoes/opcao.component";
+import {DosesComponent} from "../componentes/doses/doses.component";
+import {DescricaoVacinaComponent} from "../componentes/descricao-vacina.component";
+import {LoadingDropComponent} from "../componentes/tema/loading-drop.component";
+import {VacinasFooterComponent} from "../componentes/tema/vacinas-footer.component";
+import {VacinasExtraSUSPage} from "../componentes/extra-sus/extra-sus";
+import {WelderComponent} from "../componentes/welder/welder.component";
 
 @NgModule({
   declarations: [
