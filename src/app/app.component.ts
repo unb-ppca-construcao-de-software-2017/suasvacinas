@@ -3,10 +3,10 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { ExemploCrudPage } from '../pages/exemplo-crud/exemplo-crud';
-import { ListPage } from '../pages/list/list';
-import {HomeBotoesPage} from "../pages/home-botoes/home-botoes";
-import {VacinasExtraSUSPage} from "../pages/extra-sus/extra-sus";
+import { ExemploCrudPage } from '../componentes/exemplo-crud/exemplo-crud';
+import { ListPage } from '../componentes/list/list';
+import {InicialComponent} from "../componentes/inicial/inicial.component";
+import {VacinasExtraSUSPage} from "../componentes/extra-sus/extra-sus";
 import {WelderComponent} from "../componentes/welder/welder.component";
 
 @Component({
@@ -35,7 +35,7 @@ import {WelderComponent} from "../componentes/welder/welder.component";
 export class SuasVacinasAppComponent {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomeBotoesPage;
+  rootPage: any = InicialComponent;
 
   pages: Array<{title: string, component: any}>;
 
@@ -43,7 +43,7 @@ export class SuasVacinasAppComponent {
     this.initializeApp();
 
     this.pages = [
-      { title: 'Início', component: HomeBotoesPage },
+      { title: 'Início', component: InicialComponent },
       { title: 'Exemplo Crud', component: ExemploCrudPage },
       { title: 'Lista', component: ListPage },
       { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage},
