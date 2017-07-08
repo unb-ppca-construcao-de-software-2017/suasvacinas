@@ -3,7 +3,26 @@ import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-list',
-  templateUrl: 'list.html'
+  template: `
+    <ion-header>
+      <vacinas-navbar></vacinas-navbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+          <ion-icon [name]="item.icon" item-left></ion-icon>
+          {{item.title}}
+          <div class="item-note" item-right>
+            {{item.note}}
+          </div>
+        </button>
+      </ion-list>
+      <div *ngIf="selectedItem" padding>
+        Você chegou aqui por <b>{{selectedItem.title || selectedItem}}</b>
+      </div>
+    </ion-content>
+  `
 })
 export class ListPage {
   selectedItem: any;

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {VacinasAuthService} from "../../firebase/vacinas-auth.service";
+import {VacinasAuthService} from "../firebase/vacinas-auth.service";
 
 @Component({
   selector: 'vacinas-login',

@@ -3,11 +3,11 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { ExemploCrudPage } from '../componentes/exemplo-crud/exemplo-crud';
-import { ListPage } from '../componentes/list/list';
-import {InicialComponent} from "../componentes/inicial/inicial.component";
-import {VacinasExtraSUSPage} from "../componentes/extra-sus/extra-sus";
-import {WelderComponent} from "../componentes/welder/welder.component";
+import { ExemploCrudPage } from '../ts/exemplo-crud/exemplo-crud';
+import { ListPage } from '../ts/list/list';
+import {InicialComponent} from "../ts/home/inicial.component";
+import {VacinasExtraSUSPage} from "../ts/extra-sus/extra-sus";
+import {WelderComponent} from "../ts/welder/welder.component";
 
 @Component({
   template: `
