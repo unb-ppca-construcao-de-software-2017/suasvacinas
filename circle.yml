@@ -15,4 +15,4 @@ test:
     # figure out how to run tests before
     # npm run test
     # npm run e2e
-    - docker run --env FIREBASE_TOKEN=$FIREBASE_TOKEN --env SHA=$CIRCLE_SHA1 suasvacinas-ci bash -c "env && cat www/index.html && echo 'OKOKO' && sed -i \"s/<script src='build\/main.js'><\/script>/<script src='build\/main.js?$SHA'><\/script>/g\" www/index.html && echo www/index.html && echo '2222222222222222' && npm run deploy-firebase"
+    - docker run --env FIREBASE_TOKEN=$FIREBASE_TOKEN --env SHA=$CIRCLE_SHA1 suasvacinas-ci bash -c "env && cat www/index.html && echo 'OKOKO' && sed -i \"s/<script src='build\/main.js'><\/script>/<script src='build\/main.js?$SHA'><\/script>/g\" www/index.html && cat www/index.html && echo '2222222222222222' && npm run deploy-firebase"
