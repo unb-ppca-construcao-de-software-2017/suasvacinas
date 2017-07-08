@@ -6,9 +6,9 @@ import { IonicModule, Platform, NavController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PlatformMock, StatusBarMock, SplashScreenMock } from '../../../test-config/mocks-ionic';
-import { FirebaseProvider } from "../../providers/firebase/firebase";
+import { FirebaseProvider } from "../../firebase/firebase";
 import "rxjs/add/observable/from";
-import {FirebaseProviderMock} from "../../providers/firebase/firebase.testhelper";
+import {FirebaseProviderMock} from "../../firebase/firebase.testhelper";
 import {VacinasNavbarComponent} from "../vacinas-navbar/vacinas-navbar.component";
 
 describe('ExemploCrudPage', () => {

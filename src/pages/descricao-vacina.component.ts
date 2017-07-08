@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 import {NavController, NavParams} from "ionic-angular";
 import {Observable} from "rxjs/Observable";
-import {DescricaoVacina, VacinaIdadeDoseFonte, VacinasRepository} from "../providers/firebase/vacinas.repository";
+import {DescricaoVacina, VacinaIdadeDoseFonte, VacinasRepository} from "../firebase/vacinas.repository";
 
 @Component({
   selector: 'vacinas-descricao-vacina',

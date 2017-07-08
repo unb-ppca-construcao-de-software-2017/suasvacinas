@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, Input} from "@angular/core";
 import {NavController} from "ionic-angular";
-import {SubOpcao, VacinasRepository} from "../../providers/firebase/vacinas.repository";
+import {SubOpcao, VacinasRepository} from "../../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {OpcoesComponent} from "./opcoes";
 import {DosesComponent} from "../doses/doses.component";

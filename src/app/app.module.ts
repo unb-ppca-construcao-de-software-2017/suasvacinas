@@ -9,7 +9,7 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FirebaseModule } from "../firebase/firebase.module";
-import { FirebaseProvider } from '../providers/firebase/firebase';
+import { FirebaseProvider } from '../firebase/firebase';
 import { HomeBotoesPage } from "../pages/home-botoes/home-botoes";
 import {VacinasNavbarComponent} from "../pages/vacinas-navbar/vacinas-navbar.component";
 import {VacinasLogInComponent} from "../pages/vacinas-login.component";

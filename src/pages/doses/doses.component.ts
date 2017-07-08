@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {IdadeDose, VacinasRepository} from "../../providers/firebase/vacinas.repository";
+import {IdadeDose, VacinasRepository} from "../../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacinaComponent} from "../descricao-vacina.component";
 
