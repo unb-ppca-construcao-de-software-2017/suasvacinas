@@ -5,6 +5,8 @@ import 'rxjs/add/operator/concatMap';
 import "rxjs/add/operator/filter";
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
+import 'rxjs/add/observable/of';
+import {OpcoesFixasRepository} from "./opcoesfixas.service";
 
 export class Opcao {
   chave: string;
@@ -45,13 +47,16 @@ export class VacinaIdadeDoseFonte {
 @Injectable()
 export class VacinasRepository {
 
-  constructor(public afd: AngularFireDatabase) { }
+  constructor(public afd: AngularFireDatabase, public opcoesFixasRepo: OpcoesFixasRepository) { }
 
   getOpcoes(): Observable<Opcao[]> {
     return this.afd.list('/base/opcoes/');
   }
 
   getOpcao(chave: string): Observable<Opcao> {
+    if (chave.indexOf('fixa-') !== -1) {
+      return this.opcoesFixasRepo.getOpcao(chave);
+    }
     return this.getOpcoes().concatMap((x: Opcao[]) => x).filter((x: Opcao) => x.chave === chave).first();
   }
 

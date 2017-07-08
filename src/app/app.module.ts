@@ -22,6 +22,7 @@ import {LoadingDropComponent} from "../componentes/tema/vacinas-loading.componen
 import {VacinasFooterComponent} from "../componentes/tema/vacinas-footer.component";
 import {VacinasExtraSUSPage} from "../componentes/extra-sus/extra-sus";
 import {WelderComponent} from "../componentes/welder/welder.component";
+import {OpcoesFixasRepository} from "../firebase/opcoesfixas.service";
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import {WelderComponent} from "../componentes/welder/welder.component";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseProvider,
+    OpcoesFixasRepository,
     VacinasAuthService
   ]
 })

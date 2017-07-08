@@ -22,6 +22,6 @@ import "rxjs/add/operator/map";
 })
 export class InicialComponent {
 
-  chaveHome: string = "home";
+  chaveHome: string = "fixa-inicial";
 
 }
