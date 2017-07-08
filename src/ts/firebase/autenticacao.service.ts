@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-export class VacinasAuthService {
+export class AutenticacaoService {
 
   authenticated$: Observable<boolean>;
   uid$: Observable<string>;

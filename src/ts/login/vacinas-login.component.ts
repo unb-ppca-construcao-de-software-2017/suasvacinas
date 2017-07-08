@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {VacinasAuthService} from "../firebase/vacinas-auth.service";
+import {AutenticacaoService} from "../firebase/autenticacao.service";
 
 @Component({
   selector: 'vacinas-login',
@@ -22,18 +22,18 @@ import {VacinasAuthService} from "../firebase/vacinas-auth.service";
 })
 export class VacinasLogInComponent {
 
-  constructor(private vacinasAuthService: VacinasAuthService) {}
+  constructor(private autenticacaoService: AutenticacaoService) {}
 
   signInWithGoogle(): void {
-    this.vacinasAuthService.signInWithGoogle().then(() => this.postLogIn());
+    this.autenticacaoService.signInWithGoogle().then(() => this.postLogIn());
   }
 
   signInWithTwitter(): void {
-    this.vacinasAuthService.signInWithTwitter().then(() => this.postLogIn());
+    this.autenticacaoService.signInWithTwitter().then(() => this.postLogIn());
   }
 
   signInWithFacebook(): void {
-    this.vacinasAuthService.signInWithFacebook().then(() => this.postLogIn());
+    this.autenticacaoService.signInWithFacebook().then(() => this.postLogIn());
   }
 
   private postLogIn(): void {

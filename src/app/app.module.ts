@@ -13,7 +13,7 @@ import { FirebaseProvider } from '../ts/firebase/firebase';
 import { InicialComponent } from "../ts/home/inicial.component";
 import {VacinasNavbarComponent} from "../ts/header-footer/vacinas-navbar.component";
 import {VacinasLogInComponent} from "../ts/login/vacinas-login.component";
-import {VacinasAuthService} from "../ts/firebase/vacinas-auth.service";
+import {AutenticacaoService} from "../ts/firebase/autenticacao.service";
 import {OpcoesComponent} from "../ts/opcoes/opcoes";
 import {OpcaoComponent} from "../ts/opcoes/opcao.component";
 import {DosesComponent} from "../ts/doses/doses.component";
@@ -72,7 +72,7 @@ import {BannerCadastreSeComponent} from "../ts/tour/banner-cadastre-se.component
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseProvider,
     OpcoesFixasRepository,
-    VacinasAuthService
+    AutenticacaoService
   ]
 })
 export class AppModule {}
