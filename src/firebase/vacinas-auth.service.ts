@@ -26,6 +26,11 @@ export class VacinasAuthService {
       .catch(error => console.log('ERROR @ AuthService#signInAnonymously() :', error));
   }
 
+  signinWithComEmailSenha(email: string, senha: string): firebase.Promise<any> {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, senha)
+      .catch(error => console.log('ERROR @ AuthService#signInWithEmailAndPassword() :', error));
+  }
+
   signInWithGithub(): firebase.Promise<any> {
     return this.signIn(new firebase.auth.GithubAuthProvider());
   }
