@@ -23,7 +23,7 @@ import { Component } from '@angular/core';
       </button>
       <ion-title>
         <p class="saudacoes">Oi, <button ion-button outline small class="cadastrese">
-        <span class="branco">cadastre-se</span>
+        <span class="branco">quem é você?</span>
         &nbsp;&nbsp;<ion-icon name="logo-facebook" class="branco"></ion-icon>
         &nbsp;<ion-icon name="logo-google" class="branco"></ion-icon>
         &nbsp;<ion-icon name="logo-twitter" class="branco"></ion-icon></button>!</p>
