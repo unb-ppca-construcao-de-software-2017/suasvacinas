@@ -37,6 +37,7 @@ export class VacinasLogInComponent {
   }
 
   private postLogIn(): void {
+    console.log('Logou!');
     // pra onde vai apos login, colocar um nav reroute aqui
   }
 
