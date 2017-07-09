@@ -8,7 +8,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "../caderneta/caderneta.model";
 
 @Component({
-  selector: 'vacinas-dose',
+  selector: 'vacinas-doses-lista',
   styles: [`
     h1 { padding: 5px; }
     p.item-note {
@@ -101,16 +101,7 @@ import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-            <div class="dose-div" *ngFor="let dose of idadeDose.doses">
-              <ion-fab class="fab-dose">
-                <button ion-fab color="light" mini (click)="abrirActionSheetDose(dose)"><ion-icon name="checkbox-outline"></ion-icon></button>
-              </ion-fab>
-              <button ion-item class="botao-dose" (click)="abrirVacina(dose.nome)">
-                {{ dose.nome }}
-                <p>{{ dose.dose }}</p>
-                <p class="item-note" item-right>{{ dose.fonte }}</p>
-              </button>
-            </div>
+            <vacinas-dose [dose]="dose" *ngFor="let dose of idadeDose.doses"></vacinas-dose>
           </ion-list>
         </ion-card-content>
       </ion-card>
@@ -132,8 +123,7 @@ export class DosesComponent {
 
   autenticado: Observable<any>;
 
-  constructor(private autenticacaoService: AutenticacaoService, public navCtrl: NavController,
-              public navParams: NavParams, public vacinasRepository: VacinasRepository, public actionSheetCtrl: ActionSheetController) {
+  constructor(private autenticacaoService: AutenticacaoService, public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
     this.autenticado = autenticacaoService.isAutenticado();
 
     this.caderneta = navParams.get('caderneta');
@@ -169,33 +159,6 @@ export class DosesComponent {
   //noinspection JSMethodCanBeStatic
   _imagemGenero(caderneta: Caderneta) {
     return `assets/icon/sexo-${caderneta.sexo}.png`; // duplicado em caderneta.component.ts
-  }
-
-  abrirActionSheetDose(dose: Dose) {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: `${dose.nome} - ${dose.dose}`,
-      buttons: [
-        {
-          text: 'Marcar dose como já tomada',
-          role: 'destructive',
-          handler: () => {
-            console.log('Destructive clicked');
-          }
-        },{
-          text: 'Ver mais informações sobre ' + dose.nome,
-          handler: () => {
-            console.log('Archive clicked');
-          }
-        },{
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-    actionSheet.present();
   }
 
 }

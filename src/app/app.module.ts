@@ -31,6 +31,7 @@ import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
 import {TourHomeComponent} from "../ts/tour/tour-home.component";
 import {CadernetaNovaComponent} from "../ts/caderneta/caderneta-nova.component";
 import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
+import {DoseComponent} from "../ts/doses/dose.component";
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
     OpcoesComponent,
     WelderComponent,
     DosesComponent,
+    DoseComponent,
     DescricaoVacinaComponent,
     VacinasNavbarComponent,
     VacinasFooterComponent,
@@ -68,6 +70,10 @@ import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
       monthShortNames: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
       dayNames: ['domingo', 'segunda-feira', 'ter\u00e7a-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 's\u00e1bado', 'domingo'],
       dayShortNames: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 's\u00e1b', 'dom']
+    }, {
+      links: [
+        { component: HomeComponent, name: 'Home', segment: 'home' }
+      ]
     })
   ],
   bootstrap: [IonicApp],

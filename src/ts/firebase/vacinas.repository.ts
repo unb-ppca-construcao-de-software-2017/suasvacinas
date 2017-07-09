@@ -25,10 +25,10 @@ export class IdadeDose {
   doses: Dose[];
 }
 export class Dose {
-  idade?: string;
-  nome: string;
-  dose: string;
-  fonte: string;
+  idadedose: string;
+  nomevacina: string;
+  dosevacina: string;
+  fontedose: string;
 }
 export class DescricaoVacina {
   nomevacina: string;
@@ -40,9 +40,6 @@ export class DescricaoVacina {
 export class TextoFonte {
   texto: string;
   fonte: string;
-}
-export class VacinaIdadeDoseFonte {
-  constructor(public nomevacina: string, public idade: string, public dose: string, public fonte: string) { }
 }
 @Injectable()
 export class VacinasRepository {
@@ -69,19 +66,17 @@ export class VacinasRepository {
     return this.afd.list('/base/descricoes-vacinas/').concatMap((dvs: DescricaoVacina[]) => dvs).filter((dv: DescricaoVacina) => dv.nomevacina === nomevacina).first();
   }
 
-  getDosesVacina(chaveVacina: string): Observable<VacinaIdadeDoseFonte[]> {
+  getDosesVacina(chaveVacina: string): Observable<Dose[]> {
     return this.getAllDoses().map((idadeDoses: IdadeDose[]) => this.idadeDosesToVacinaIdadeDoseFontes(idadeDoses, chaveVacina));
   }
 
-  private static flatMap<T, S>(xs: T[], f: (x: T) => S[]): S[] {
-    return [].concat(...xs.map(f));
+  private static flatMap<ENTRADA, SAIDA>(listaEntrada: ENTRADA[], funcaoConversaoEntradaSaida: (entrada: ENTRADA) => SAIDA[]): SAIDA[] {
+    return [].concat(...listaEntrada.map(funcaoConversaoEntradaSaida));
   }
 
-  private idadeDosesToVacinaIdadeDoseFontes(idadeDoses: IdadeDose[], chaveVacina: string): VacinaIdadeDoseFonte[] {
-    return VacinasRepository.flatMap<IdadeDose, VacinaIdadeDoseFonte>(idadeDoses, (idadeDose: IdadeDose) => {
-      let doses: Dose[] = idadeDose.doses;
-      let vidfs: VacinaIdadeDoseFonte[] = doses.map((dose: Dose) => new VacinaIdadeDoseFonte(dose.nome, idadeDose.idadeDose, dose.dose, dose.fonte));
-      return vidfs.filter(vidf => vidf.nomevacina === chaveVacina);
+  private idadeDosesToVacinaIdadeDoseFontes(idadeDoses: IdadeDose[], chaveVacina: string): Dose[] {
+    return VacinasRepository.flatMap<IdadeDose, Dose>(idadeDoses, (idadeDose: IdadeDose) => {
+      return idadeDose.doses.filter(dose => dose.nomevacina === chaveVacina);
     });
   }
 }
