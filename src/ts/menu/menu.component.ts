@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {App} from "ionic-angular";
-import {InicialComponent} from "../home/inicial.component";
+import {HomeComponent} from "../home/home.component";
 import {VacinasExtraSUSPage} from "../extra-sus/extra-sus";
 import {ContatoComponent} from "../contato/contato";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
@@ -49,7 +49,7 @@ export class VacinasMenuComponent {
   constructor(private appCtrl: App, private autenticacaoService: AutenticacaoService) {
     this.autenticado = autenticacaoService.isAutenticado();
     this.pages = [
-      { title: 'Início', component: InicialComponent },
+      { title: 'Início', component: HomeComponent },
       // { title: 'Exemplo Crud', component: ExemploCrudPage },
       // { title: 'Lista', component: ListPage },
       { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage},

@@ -4,7 +4,7 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
 
 @Component({
-  selector: 'vacinas-inicial',
+  selector: 'vacinas-home',
   template: `
     <ion-header>
       <vacinas-navbar></vacinas-navbar>
@@ -20,8 +20,8 @@ import "rxjs/add/operator/map";
     </ion-footer>
   `
 })
-export class InicialComponent {
+export class HomeComponent {
 
-  chaveHome: string = "fixa-inicial";
+  chaveHome: string = "fixa-home";
 
 }

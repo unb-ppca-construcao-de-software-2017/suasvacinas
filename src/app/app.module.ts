@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FirebaseModule } from "../ts/firebase/firebase.module";
 import { FirebaseProvider } from '../ts/firebase/firebase';
-import { InicialComponent } from "../ts/home/inicial.component";
+import { HomeComponent } from "../ts/home/home.component";
 import {VacinasNavbarComponent} from "../ts/header-footer/vacinas-navbar.component";
 import {VacinasLogInComponent} from "../ts/login/vacinas-login.component";
 import {AutenticacaoService} from "../ts/firebase/autenticacao.service";
@@ -33,7 +33,7 @@ import {VacinasMenuComponent} from "../ts/menu/menu.component";
   declarations: [
     VacinasMenuComponent,
     SuasVacinasAppComponent,
-    InicialComponent,
+    HomeComponent,
     HomeCrieSuaCadernetaComponent,
     ExemploCrudPage,
     ListPage,
@@ -63,7 +63,7 @@ import {VacinasMenuComponent} from "../ts/menu/menu.component";
   bootstrap: [IonicApp],
   entryComponents: [
     SuasVacinasAppComponent,
-    InicialComponent,
+    HomeComponent,
     ExemploCrudPage,
     ListPage,
     DescricaoVacinaComponent,

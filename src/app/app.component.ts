@@ -2,7 +2,7 @@ import {Component} from "@angular/core";
 import {Platform} from "ionic-angular";
 import {StatusBar} from "@ionic-native/status-bar";
 import {SplashScreen} from "@ionic-native/splash-screen";
-import {InicialComponent} from "../ts/home/inicial.component";
+import {HomeComponent} from "../ts/home/home.component";
 
 @Component({
   template: `
@@ -26,7 +26,7 @@ import {InicialComponent} from "../ts/home/inicial.component";
 })
 export class SuasVacinasAppComponent {
 
-  rootPage: any = InicialComponent;
+  rootPage: any = HomeComponent;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();

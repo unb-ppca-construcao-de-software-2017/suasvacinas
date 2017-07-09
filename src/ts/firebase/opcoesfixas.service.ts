@@ -14,8 +14,8 @@ export class BaseFixaPageComponentArgs {
 export class OpcoesFixasRepository {
 
   private readonly baseFixa = {
-    'fixa-inicial': {
-      "chave": "fixa-inicial",
+    'fixa-home': {
+      "chave": "fixa-home",
       "descricao": "Que vacinas deveria ter tomado...",
       "subOpcoes": [
         // {"tipo": "opcao", "titulo": "Meu filho ou minha filha", "chave": "meu-filho"},
