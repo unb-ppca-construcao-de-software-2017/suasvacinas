@@ -3,11 +3,20 @@ import {App} from "ionic-angular";
 import {InicialComponent} from "../home/inicial.component";
 import {VacinasExtraSUSPage} from "../extra-sus/extra-sus";
 import {ContatoComponent} from "../contato/contato";
+import {AutenticacaoService} from "../firebase/autenticacao.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'vacinas-menu',
+  styles: [`
+    .email-contato {
+      text-decoration: none;
+      color: black;
+      font-size: 80%;
+    }
+  `],
   template: `
-    <ion-grid class="jogar-pro-centro-verticalmente">
+    <ion-grid>
       <ion-row>
         <ion-col col-12 style="text-align: center">
           <img src="assets/icon/vaccine.png">
@@ -20,14 +29,25 @@ import {ContatoComponent} from "../contato/contato";
         {{p.title}}
       </button>
     </ion-list>
-    <h6 style="text-align: center"><a href="mailto:contato@vacine.org" style="text-decoration: none">contato@vacine.org</a></h6>
+    
+    <br><br>
+    <div class="texto-centralizado">
+
+      <button *ngIf="(autenticado | async)?.logado" ion-button color="dark" outline small (click)="sair()">Sair do vacine.org</button>
+      <br><br>
+      <a href="mailto:contato@vacine.org" class="email-contato">contato@vacine.org</a>
+    
+    </div>
   `
 })
 export class VacinasMenuComponent {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public appCtrl: App) {
+  autenticado: Observable<any>;
+
+  constructor(private appCtrl: App, private autenticacaoService: AutenticacaoService) {
+    this.autenticado = autenticacaoService.isAutenticado();
     this.pages = [
       { title: 'Início', component: InicialComponent },
       // { title: 'Exemplo Crud', component: ExemploCrudPage },
@@ -41,6 +61,12 @@ export class VacinasMenuComponent {
 
   openPage(page) {
     this.appCtrl.getRootNav().setRoot(page.component);
+  }
+
+  sair() {
+    this.autenticacaoService.signOut().then(() => {
+      window.location.reload();
+    });
   }
 
 }
