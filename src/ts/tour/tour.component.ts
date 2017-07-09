@@ -1,6 +1,7 @@
 import {Component, ViewChild} from "@angular/core";
 import {NavController, NavParams, Slides} from "ionic-angular";
 import {OpcoesComponent} from "../opcoes/opcoes";
+import {VacinasLogInComponent} from "../login/vacinas-login.component";
 
 @Component({
   selector: 'vacinas-banner-cadastre-se',
@@ -53,7 +54,7 @@ import {OpcoesComponent} from "../opcoes/opcoes";
           <img class="vacina" src="assets/icon/notepad2.png" alt="suas vacinas">
           <img class="vacina" src="assets/icon/vaccine-256.png" alt="suas vacinas"><br>
 
-          <button ion-button outline large class="cadastrese">
+          <button ion-button outline large class="cadastrese" (click)="irParaLogin()">
             <span class="branco">Crie sua caderneta!</span>
             &nbsp;&nbsp;<ion-icon name="logo-facebook" class="branco"></ion-icon>
             &nbsp;<ion-icon name="logo-google" class="branco"></ion-icon>
@@ -85,7 +86,7 @@ import {OpcoesComponent} from "../opcoes/opcoes";
     </ion-footer>
   `
 })
-export class BannerCadastreSeComponent {
+export class TourComponent {
 
   @ViewChild(Slides) slides: Slides;
 
@@ -102,6 +103,10 @@ export class BannerCadastreSeComponent {
   abrirIdadeEspecifica() {
     this.navCtrl.push(OpcoesComponent, {chave: this.args.chave});
     return false;
+  }
+
+  irParaLogin(): void {
+    this.navCtrl.push(VacinasLogInComponent);
   }
 
 }

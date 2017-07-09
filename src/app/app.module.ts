@@ -10,7 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { FirebaseModule } from "../ts/firebase/firebase.module";
 import { FirebaseProvider } from '../ts/firebase/firebase';
-import { InicialComponent } from "../ts/home/inicial.component";
+import { HomeComponent } from "../ts/home/home.component";
 import {VacinasNavbarComponent} from "../ts/header-footer/vacinas-navbar.component";
 import {VacinasLogInComponent} from "../ts/login/vacinas-login.component";
 import {AutenticacaoService} from "../ts/firebase/autenticacao.service";
@@ -22,18 +22,22 @@ import {LoadingDropComponent} from "../ts/header-footer/vacinas-loading.componen
 import {VacinasFooterComponent} from "../ts/header-footer/vacinas-footer.component";
 import {VacinasExtraSUSComponent} from "../ts/extra-sus/extra-sus";
 import {WelderComponent} from "../ts/welder/welder.component";
-import {OpcoesFixasRepository} from "../ts/firebase/opcoesfixas.service";
-import {BannerCadastreSeComponent} from "../ts/tour/banner-cadastre-se.component";
+import {TourComponent} from "../ts/tour/tour.component";
 import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.component";
-import {HomeCrieSuaCadernetaComponent} from "../ts/home/home-crie-sua-caderneta.component";
 import {ContatoComponent} from "../ts/contato/contato";
 import {AlergiaComponent} from "../ts/alergia/alergia";
+import {VacinasMenuComponent} from "../ts/menu/menu.component";
+import {CadernetaMioloComponent} from "../ts/caderneta/caderneta-miolo.component";
+import {TourHomeComponent} from "../ts/tour/tour-home.component";
+import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
 
 @NgModule({
   declarations: [
+    VacinasMenuComponent,
     SuasVacinasAppComponent,
-    InicialComponent,
-    HomeCrieSuaCadernetaComponent,
+    HomeComponent,
+    CadernetaComponent,
+    CadernetaMioloComponent,
     ExemploCrudPage,
     ListPage,
     OpcaoComponent,
@@ -46,10 +50,11 @@ import {AlergiaComponent} from "../ts/alergia/alergia";
     VacinasLogInComponent,
     VacinasLogInComEmailComponent,
     LoadingDropComponent,
-    BannerCadastreSeComponent,
     VacinasExtraSUSComponent,
     ContatoComponent,
-    AlergiaComponent
+    AlergiaComponent,
+    TourComponent,
+    TourHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +68,8 @@ import {AlergiaComponent} from "../ts/alergia/alergia";
   bootstrap: [IonicApp],
   entryComponents: [
     SuasVacinasAppComponent,
-    InicialComponent,
+    HomeComponent,
+    CadernetaComponent,
     ExemploCrudPage,
     ListPage,
     DescricaoVacinaComponent,
@@ -72,7 +78,7 @@ import {AlergiaComponent} from "../ts/alergia/alergia";
     OpcaoComponent,
     OpcoesComponent,
     WelderComponent,
-    BannerCadastreSeComponent,
+    TourComponent,
     DosesComponent,
     VacinasExtraSUSComponent,
     ContatoComponent,
@@ -83,7 +89,6 @@ import {AlergiaComponent} from "../ts/alergia/alergia";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseProvider,
-    OpcoesFixasRepository,
     AutenticacaoService
   ]
 })
