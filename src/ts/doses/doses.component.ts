@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import {IdadeDose, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
+import {VacinasLogInComponent} from "../login/vacinas-login.component";
+import {AutenticacaoService} from "../firebase/autenticacao.service";
 
 @Component({
   selector: 'vacinas-dose',
@@ -45,7 +47,7 @@ import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
             Abaixo as doses recomendadas até <span class="idade-escolhida">{{ idadeEscolhida }}</span>.<br>
             Conheça detalhes e <b>marque as que já tomou</b>.<br>
 
-              <button ion-button outline small>
+              <button ion-button outline small (click)="irParaLogin()">
                 Crie uma caderneta
                 &nbsp;&nbsp;<ion-icon name="logo-facebook"></ion-icon>
                 &nbsp;<ion-icon name="logo-google"></ion-icon>
@@ -98,7 +100,11 @@ export class DosesComponent {
 
   idadeDoses: Observable<IdadeDose[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
+  autenticado: Observable<any>;
+
+  constructor(private autenticacaoService: AutenticacaoService, public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
+    this.autenticado = autenticacaoService.isAutenticado();
+
     this.meses = navParams.get('meses');
     this.idadeEscolhida = navParams.get('idadeEscolhida').toLowerCase();
 
@@ -107,6 +113,10 @@ export class DosesComponent {
 
   abrirVacina(nomevacina: string) {
     this.navCtrl.push(DescricaoVacinaComponent, { nomevacina: nomevacina });
+  }
+
+  irParaLogin(): void {
+    this.navCtrl.push(VacinasLogInComponent);
   }
 
   marcarVacina() {
