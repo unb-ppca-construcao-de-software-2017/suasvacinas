@@ -24,11 +24,14 @@ import {VacinasExtraSUSPage} from "../ts/extra-sus/extra-sus";
 import {WelderComponent} from "../ts/welder/welder.component";
 import {OpcoesFixasRepository} from "../ts/firebase/opcoesfixas.service";
 import {BannerCadastreSeComponent} from "../ts/tour/banner-cadastre-se.component";
+import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.component";
+import {HomeCrieSuaCadernetaComponent} from "../ts/home/home-crie-sua-caderneta.component";
 
 @NgModule({
   declarations: [
-    InicialComponent,
     SuasVacinasAppComponent,
+    InicialComponent,
+    HomeCrieSuaCadernetaComponent,
     ExemploCrudPage,
     ListPage,
     OpcaoComponent,
@@ -39,6 +42,7 @@ import {BannerCadastreSeComponent} from "../ts/tour/banner-cadastre-se.component
     VacinasNavbarComponent,
     VacinasFooterComponent,
     VacinasLogInComponent,
+    VacinasLogInComEmailComponent,
     LoadingDropComponent,
     BannerCadastreSeComponent,
     VacinasExtraSUSPage
@@ -59,6 +63,8 @@ import {BannerCadastreSeComponent} from "../ts/tour/banner-cadastre-se.component
     ExemploCrudPage,
     ListPage,
     DescricaoVacinaComponent,
+    VacinasLogInComponent,
+    VacinasLogInComEmailComponent,
     OpcaoComponent,
     OpcoesComponent,
     WelderComponent,
