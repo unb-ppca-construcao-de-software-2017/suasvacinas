@@ -82,7 +82,14 @@ export class CadernetaNovaComponent {
   }
 
   criarNovaCaderneta(): void {
-    this.cadernetaRepository.adicionarCaderneta(new Caderneta(this.nome, this.data_nascimento, this.sexo)).then(() =>
+    let novaCaderneta;
+    if (this.data_nascimento) {
+      novaCaderneta = new Caderneta(this.nome, this.sexo, this.data_nascimento);
+    } else {
+      novaCaderneta = new Caderneta(this.nome, this.sexo, "");
+    }
+
+    this.cadernetaRepository.adicionarCaderneta(novaCaderneta).then(() =>
       this.appCtrl.getRootNav().setRoot(HomeComponent)
     );
   }
