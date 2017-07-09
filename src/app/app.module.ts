@@ -22,7 +22,6 @@ import {LoadingDropComponent} from "../ts/header-footer/vacinas-loading.componen
 import {VacinasFooterComponent} from "../ts/header-footer/vacinas-footer.component";
 import {VacinasExtraSUSPage} from "../ts/extra-sus/extra-sus";
 import {WelderComponent} from "../ts/welder/welder.component";
-import {OpcoesFixasRepository} from "../ts/firebase/opcoesfixas.service";
 import {TourComponent} from "../ts/tour/tour.component";
 import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.component";
 import {ContatoComponent} from "../ts/contato/contato";
@@ -84,7 +83,6 @@ import {TourHomeComponent} from "../ts/tour/tour-home.component";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseProvider,
-    OpcoesFixasRepository,
     AutenticacaoService
   ]
 })

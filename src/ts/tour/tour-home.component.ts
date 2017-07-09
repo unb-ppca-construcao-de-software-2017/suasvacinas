@@ -7,6 +7,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {SubOpcao} from "../firebase/vacinas.repository";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {NavController} from "ionic-angular";
+import {TourComponent} from "./tour.component";
 
 @Component({
   selector: 'vacinas-tour-home',
@@ -26,16 +27,17 @@ import {NavController} from "ionic-angular";
   `],
   template: `
     <h1 class="pergunta">Que vacinas deveria ter tomado...</h1>
-    
-    <div *ngFor="let subOpcao of opcoesTour">
-      <button ion-button large block class="botao-pessoa" (click)="abrirOpcao(subOpcao)">{{ subOpcao.titulo }}</button>
+
+    <div *ngFor="let tour of tours">
+      <button ion-button large block class="botao-pessoa" (click)="abrirOpcao(tour)">{{ tour.titulo }}</button>
     </div>
 
     <div class="login">
       <h1>Cadastre as vacinas do seu filho, filha ou familiar</h1>
       <button ion-button outline large (click)="irParaLogin()">
         Crie sua caderneta!
-        &nbsp;&nbsp;<ion-icon name="logo-facebook" class="branco"></ion-icon>
+        &nbsp;&nbsp;
+        <ion-icon name="logo-facebook" class="branco"></ion-icon>
         &nbsp;<ion-icon name="logo-google" class="branco"></ion-icon>
         &nbsp;<ion-icon name="logo-twitter" class="branco"></ion-icon>
       </button>
@@ -47,20 +49,25 @@ export class TourHomeComponent {
 
   autenticado: Observable<any>;
 
-  opcoesTour: any[];
+  tours: any[];
 
   constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController) {
     this.autenticado = autenticacaoService.isAutenticado();
-    this.opcoesTour = [
-      {titulo: "Minha filha",  chave: "fixapage-filha"},
-      {titulo: "Meu filho",    chave: "fixapage-filho"},
-      {titulo: "Eu",           chave: "fixapage-eu"},
-      {titulo: "Meu familiar", chave: "fixapage-familiar"}
+    this.tours = [
+      {titulo: "Minha filha",  args: {msg: "caderneta da sua filha",        chave: "minha-filha"}},
+      {titulo: "Meu filho",    args: {msg: "caderneta do seu filho",        chave: "meu-filho"}},
+      {titulo: "Eu",           args: {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}}, // isto estah duplicado em vacinas-footer.component.ts
+      {titulo: "Meu familiar", args: {msg: "caderneta do seu familiar",     chave: "meu-familiar"}}
     ];
   }
 
   irParaLogin(): void {
     this.navCtrl.push(VacinasLogInComponent);
+  }
+
+  abrirOpcao(tour: any) {
+    this.navCtrl.push(TourComponent, {args: tour.args});
+        // this.navCtrl.push(OpcoesComponent, {chave: tour.chave});
   }
 
 }

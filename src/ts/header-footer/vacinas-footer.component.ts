@@ -4,7 +4,6 @@ import {Observable} from "rxjs/Observable";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {NavController} from "ionic-angular";
 import {TourComponent} from "../tour/tour.component";
-import {OpcoesFixasRepository} from "../firebase/opcoesfixas.service";
 
 @Component({
   selector: 'vacinas-footer',
@@ -61,7 +60,7 @@ export class VacinasFooterComponent {
 
   autenticado: Observable<any>;
 
-  constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController, private opcoesFixas: OpcoesFixasRepository) {
+  constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController) {
     this.autenticado = autenticacaoService.isAutenticado();
   }
 
@@ -74,7 +73,7 @@ export class VacinasFooterComponent {
   }
 
   irParaTour(): void {
-    this.navCtrl.push(TourComponent, {args: this.opcoesFixas.getOpcaoFixaPagePadrao().args});
+    this.navCtrl.push(TourComponent, {args: {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}}); // duplicado de tour-home.component.ts
   }
 
 }
