@@ -1,10 +1,11 @@
 import {Component} from "@angular/core";
 import {App} from "ionic-angular";
 import {HomeComponent} from "../home/home.component";
-import {VacinasExtraSUSPage} from "../extra-sus/extra-sus";
 import {ContatoComponent} from "../contato/contato";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Observable} from "rxjs/Observable";
+import {VacinasExtraSUSComponent} from "../extra-sus/extra-sus";
+import {AlergiaComponent} from "../alergia/alergia";
 
 @Component({
   selector: 'vacinas-menu',
@@ -53,7 +54,8 @@ export class VacinasMenuComponent {
       // { title: 'Exemplo Crud', component: ExemploCrudPage },
       // { title: 'Lista', component: ListPage },
       { title: 'Caderneta de Vacinas', component: HomeComponent},
-      { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage},
+      { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSComponent},
+      { title: 'Alergias', component: AlergiaComponent},
       // { title: 'Componente do Welder', component: WelderComponent},
       { title: 'Fale Conosco', component: ContatoComponent}
     ];

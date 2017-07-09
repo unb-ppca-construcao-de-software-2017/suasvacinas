@@ -22,7 +22,7 @@ import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
     </ion-content>
   `
 })
-export class VacinasExtraSUSPage {
+export class VacinasExtraSUSComponent {
 
   vacinas: any[] = [
     {nome: "Penta/DTP", descricao: "Pentavalente Acelular"},

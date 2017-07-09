@@ -7,19 +7,17 @@ import {HomeComponent} from "../ts/home/home.component";
 @Component({
   template: `
     <ion-menu [content]="content">
-      
+
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
-
       <ion-content>
         <vacinas-menu></vacinas-menu>
       </ion-content>
-      
-    </ion-menu>
 
+    </ion-menu>
     <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
     <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
   `

@@ -20,11 +20,12 @@ import {DosesComponent} from "../ts/doses/doses.component";
 import {DescricaoVacinaComponent} from "../ts/detalhes/descricao-vacina.component";
 import {LoadingDropComponent} from "../ts/header-footer/vacinas-loading.component";
 import {VacinasFooterComponent} from "../ts/header-footer/vacinas-footer.component";
-import {VacinasExtraSUSPage} from "../ts/extra-sus/extra-sus";
+import {VacinasExtraSUSComponent} from "../ts/extra-sus/extra-sus";
 import {WelderComponent} from "../ts/welder/welder.component";
 import {TourComponent} from "../ts/tour/tour.component";
 import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.component";
 import {ContatoComponent} from "../ts/contato/contato";
+import {AlergiaComponent} from "../ts/alergia/alergia";
 import {VacinasMenuComponent} from "../ts/menu/menu.component";
 import {CadernetaMioloComponent} from "../ts/caderneta/caderneta-miolo.component";
 import {TourHomeComponent} from "../ts/tour/tour-home.component";
@@ -52,10 +53,11 @@ import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
     VacinasLogInComponent,
     VacinasLogInComEmailComponent,
     LoadingDropComponent,
+    VacinasExtraSUSComponent,
+    ContatoComponent,
+    AlergiaComponent,
     TourComponent,
-    TourHomeComponent,
-    VacinasExtraSUSPage,
-    ContatoComponent
+    TourHomeComponent
   ],
   imports: [
     BrowserModule,
@@ -86,8 +88,9 @@ import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
     WelderComponent,
     TourComponent,
     DosesComponent,
-    VacinasExtraSUSPage,
-    ContatoComponent
+    VacinasExtraSUSComponent,
+    ContatoComponent,
+    AlergiaComponent
   ],
   providers: [
     StatusBar,
