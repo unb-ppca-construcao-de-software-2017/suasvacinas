@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Observable} from "rxjs/Observable";
+import {VacinasLogInComponent} from "../login/vacinas-login.component";
+import {NavController} from "ionic-angular";
 
 @Component({
   selector: 'vacinas-footer',
@@ -28,7 +30,7 @@ import {Observable} from "rxjs/Observable";
           
           <span *ngIf="(autenticado | async)?.logado;else botao_quem_eh_voce">{{ (autenticado | async)?.nome }}!</span>
           <ng-template #botao_quem_eh_voce>
-            <button ion-button outline small class="cadastrese">
+            <button ion-button outline small class="cadastrese" (click)="irParaLogin()">
             <span class="branco">quem é você?</span>
             &nbsp;&nbsp;<ion-icon name="logo-facebook" class="branco"></ion-icon>
             &nbsp;<ion-icon name="logo-google" class="branco"></ion-icon>
@@ -50,8 +52,12 @@ export class VacinasFooterComponent {
 
   autenticado: Observable<any>;
 
-  constructor(private autenticacaoService: AutenticacaoService) {
+  constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController) {
     this.autenticado = autenticacaoService.isAutenticado();
+  }
+
+  irParaLogin(): void {
+    this.navCtrl.push(VacinasLogInComponent);
   }
 
 }
