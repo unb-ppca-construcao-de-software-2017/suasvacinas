@@ -8,7 +8,7 @@ import * as firebase from 'firebase/app';
 @Injectable()
 export class CadernetaRepository {
 
-  private cadernetas$: FirebaseListObservable<Caderneta[]>;
+  public cadernetas$: FirebaseListObservable<Caderneta[]>;
 
   constructor(public afDb: AngularFireDatabase, private autenticacaoService: AutenticacaoService) {
     autenticacaoService.uid$
@@ -17,12 +17,10 @@ export class CadernetaRepository {
         console.log('caderneta repository logado!', uid);
         const path = `/cadernetas/${uid}`;
 
+        afDb.list(path).subscribe(x => console.log('subs', x));
+
         this.cadernetas$ = afDb.list(path);
       });
-  }
-
-  getCadernetasDoUsuarioLogado(): Observable<Caderneta[]> {
-    return this.cadernetas$;
   }
 
   adicionarCaderneta(caderneta: Caderneta): firebase.Promise<any> {
