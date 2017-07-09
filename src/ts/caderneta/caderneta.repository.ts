@@ -21,7 +21,7 @@ export class CadernetaRepository {
       });
   }
 
-  getCadernetasDoUsuarioLogado(): Observable<any[]> {
+  getCadernetasDoUsuarioLogado(): Observable<Caderneta[]> {
     return this.cadernetas$;
   }
 
