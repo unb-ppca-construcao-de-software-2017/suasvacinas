@@ -8,6 +8,7 @@ import { ListPage } from '../ts/list/list';
 import {InicialComponent} from "../ts/home/inicial.component";
 import {VacinasExtraSUSPage} from "../ts/extra-sus/extra-sus";
 import {WelderComponent} from "../ts/welder/welder.component";
+import {ContatoComponent} from "../ts/contato/contato";
 
 @Component({
   template: `
@@ -47,7 +48,8 @@ export class SuasVacinasAppComponent {
       { title: 'Exemplo Crud', component: ExemploCrudPage },
       { title: 'Lista', component: ListPage },
       { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage},
-      { title: 'Componente do Welder', component: WelderComponent}
+      { title: 'Componente do Welder', component: WelderComponent},
+      { title: 'Fale Conosco', component: ContatoComponent}
     ];
 
   }
