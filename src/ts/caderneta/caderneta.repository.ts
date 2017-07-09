@@ -3,6 +3,7 @@ import {AngularFireDatabase, FirebaseListObservable} from "angularfire2/database
 import {Observable} from "rxjs/Observable";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Caderneta} from "./caderneta.model";
+import * as firebase from 'firebase/app';
 
 @Injectable()
 export class CadernetaRepository {
@@ -18,19 +19,18 @@ export class CadernetaRepository {
 
         this.cadernetas$ = afDb.list(path);
       });
-
   }
 
   getCadernetasDoUsuarioLogado(): Observable<any[]> {
     return this.cadernetas$;
   }
 
-  adicionarCaderneta(caderneta: Caderneta): void {
-    this.cadernetas$.push(caderneta);
+  adicionarCaderneta(caderneta: Caderneta): firebase.Promise<any> {
+    return this.cadernetas$.push(caderneta);
   }
 
-  removerCaderneta(caderneta: Caderneta): void {
-    this.cadernetas$.remove(caderneta.$key);
+  removerCaderneta(caderneta: Caderneta): firebase.Promise<any> {
+    return this.cadernetas$.remove(caderneta.$key);
   }
 
 }

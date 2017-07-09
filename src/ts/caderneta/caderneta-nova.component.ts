@@ -1,5 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
 import {AutenticacaoService} from "../firebase/autenticacao.service";
+import {CadernetaRepository} from "./caderneta.repository";
+import {Caderneta} from "./caderneta.model";
+import {App} from "ionic-angular";
+import {HomeComponent} from "../home/home.component";
 
 @Component({
   selector: 'vacinas-caderneta-nova',
@@ -26,7 +30,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
           <ion-col offset-1 col-10>
             <h1 class="centro">Nova caderneta</h1>
 
-            <form #cadastroForm="ngForm" (ngSubmit)="submeterForm()">
+            <form #cadastroForm="ngForm">
               <ion-list>
                 <ion-item>
                   <ion-label stacked>Nome da caderneta/pessoa</ion-label>
@@ -74,11 +78,13 @@ export class CadernetaNovaComponent {
   data_nascimento: string;
   sexo: string = "ambos";
 
-  constructor(private autenticacaoService: AutenticacaoService) {
+  constructor(private appCtrl: App, private autenticacaoService: AutenticacaoService, private cadernetaRepository: CadernetaRepository) {
   }
 
   criarNovaCaderneta(): void {
-    console.log(`criarNovaCaderneta!!!`);
+    this.cadernetaRepository.adicionarCaderneta(new Caderneta(this.nome, this.data_nascimento, this.sexo)).then(() =>
+      this.appCtrl.getRootNav().setRoot(HomeComponent)
+    );
   }
 
 }
