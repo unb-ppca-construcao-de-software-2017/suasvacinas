@@ -3,7 +3,7 @@ import "rxjs/add/operator/pluck";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
 import {NavController} from "ionic-angular";
-import {DescricaoVacinaComponent} from "../descricao-vacina.component";
+import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
 
 @Component({
   selector: 'vacinas-extra-sus',
