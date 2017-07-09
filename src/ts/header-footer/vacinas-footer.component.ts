@@ -3,6 +3,8 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Observable} from "rxjs/Observable";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {NavController} from "ionic-angular";
+import {TourComponent} from "../tour/tour.component";
+import {OpcoesFixasRepository} from "../firebase/opcoesfixas.service";
 
 @Component({
   selector: 'vacinas-footer',
@@ -41,9 +43,16 @@ import {NavController} from "ionic-angular";
         
       </ion-title>
       <ion-buttons end>
-        <button ion-button icon-right color="royal">
-          <ion-icon name="bookmarks"></ion-icon> &nbsp;&nbsp;
-        </button>
+        <span *ngIf="(autenticado | async)?.logado;else caderneta_abrirah_tour">
+          <button ion-button icon-right color="royal" (click)="irParaCaderneta()">
+            <ion-icon name="bookmarks"></ion-icon> &nbsp;&nbsp;
+          </button>
+        </span>
+        <ng-template #caderneta_abrirah_tour>
+          <button ion-button icon-right color="royal" (click)="irParaTour()">
+            <ion-icon name="bookmarks"></ion-icon> &nbsp;&nbsp;
+          </button>
+        </ng-template>
       </ion-buttons>
     </ion-toolbar>
   `
@@ -52,12 +61,20 @@ export class VacinasFooterComponent {
 
   autenticado: Observable<any>;
 
-  constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController) {
+  constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController, private opcoesFixas: OpcoesFixasRepository) {
     this.autenticado = autenticacaoService.isAutenticado();
   }
 
   irParaLogin(): void {
     this.navCtrl.push(VacinasLogInComponent);
+  }
+
+  irParaCaderneta(): void {
+    // todo
+  }
+
+  irParaTour(): void {
+    this.navCtrl.push(TourComponent, {args: this.opcoesFixas.getOpcaoFixaPagePadrao().args});
   }
 
 }

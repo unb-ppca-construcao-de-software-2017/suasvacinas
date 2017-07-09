@@ -27,10 +27,11 @@ export class OpcoesFixasRepository {
     }
   };
 
+  private readonly opcaoFixaPagePadrao: string = 'fixapage-eu';
   private readonly baseFixaPage = {
     'fixapage-filha': {component: TourComponent, args: {msg: "caderneta da sua filha", chave: "minha-filha"}},
     'fixapage-filho': {component: TourComponent, args: {msg: "caderneta do seu filho", chave: "meu-filho"}},
-    'fixapage-eu': {component: TourComponent, args: {msg: "sua caderneta, do seu filho", chave: "meu-filho"}},
+    'fixapage-eu': {component: TourComponent, args: {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}},
     'fixapage-familiar': {component: TourComponent, args: {msg: "caderneta do seu familiar", chave: "meu-familiar"}}
   };
 
@@ -43,6 +44,10 @@ export class OpcoesFixasRepository {
       return this.baseFixaPage[chave];
     }
     return undefined;
+  }
+
+  getOpcaoFixaPagePadrao(): BaseFixaPageComponentArgs {
+    return this.baseFixaPage[this.opcaoFixaPagePadrao];
   }
 
 }
