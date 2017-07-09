@@ -52,6 +52,7 @@ export class VacinasMenuComponent {
       { title: 'Início', component: HomeComponent },
       // { title: 'Exemplo Crud', component: ExemploCrudPage },
       // { title: 'Lista', component: ListPage },
+      { title: 'Caderneta de Vacinas', component: HomeComponent},
       { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage},
       // { title: 'Componente do Welder', component: WelderComponent},
       { title: 'Fale Conosco', component: ContatoComponent}
