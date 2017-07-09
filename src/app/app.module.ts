@@ -29,7 +29,6 @@ import {AlergiaComponent} from "../ts/alergia/alergia";
 import {VacinasMenuComponent} from "../ts/menu/menu.component";
 import {CadernetaMioloComponent} from "../ts/caderneta/caderneta-miolo.component";
 import {TourHomeComponent} from "../ts/tour/tour-home.component";
-import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
 import {CadernetaNovaComponent} from "../ts/caderneta/caderneta-nova.component";
 import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
 
@@ -38,7 +37,6 @@ import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
     VacinasMenuComponent,
     SuasVacinasAppComponent,
     HomeComponent,
-    CadernetaComponent,
     CadernetaMioloComponent,
     CadernetaNovaComponent,
     ExemploCrudPage,
@@ -76,7 +74,6 @@ import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
   entryComponents: [
     SuasVacinasAppComponent,
     HomeComponent,
-    CadernetaComponent,
     CadernetaNovaComponent,
     ExemploCrudPage,
     ListPage,
