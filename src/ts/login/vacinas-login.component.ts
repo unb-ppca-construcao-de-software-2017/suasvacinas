@@ -33,10 +33,6 @@ import {VacinasLogInComEmailComponent} from "./vacinas-login-email.component";
         </ion-row>
       </ion-grid>
     </ion-content>
-
-    <ion-footer>
-      <vacinas-footer></vacinas-footer>
-    </ion-footer>
   `
 })
 export class VacinasLogInComponent {

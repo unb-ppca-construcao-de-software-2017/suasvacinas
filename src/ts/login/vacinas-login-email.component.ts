@@ -56,10 +56,6 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
         </ion-row>
       </ion-grid>
     </ion-content>
-
-    <ion-footer>
-      <vacinas-footer></vacinas-footer>
-    </ion-footer>
   `
 })
 export class VacinasLogInComEmailComponent {
