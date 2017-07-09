@@ -30,6 +30,7 @@ import {CadernetaMioloComponent} from "../ts/caderneta/caderneta-miolo.component
 import {TourHomeComponent} from "../ts/tour/tour-home.component";
 import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
 import {CadernetaNovaComponent} from "../ts/caderneta/caderneta-nova.component";
+import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
 
 @NgModule({
   declarations: [
@@ -93,6 +94,7 @@ import {CadernetaNovaComponent} from "../ts/caderneta/caderneta-nova.component";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseProvider,
+    CadernetaRepository,
     AutenticacaoService
   ]
 })
