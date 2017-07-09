@@ -3,17 +3,29 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/take';
+import {UsuarioLogado} from "../login/usuario-logado.model";
 
 
 @Injectable()
 export class AutenticacaoService {
 
-  authenticated$: Observable<boolean>;
+  authenticated$: Observable<firebase.User>;
   uid$: Observable<string>;
 
   constructor(public afAuth: AngularFireAuth) {
-    this.authenticated$ = afAuth.authState.map(user => !!user);
+    this.authenticated$ = afAuth.authState;
     this.uid$ = afAuth.authState.map(user => user.uid);
+  }
+
+  isAutenticado(): Observable<UsuarioLogado> {
+    return this.authenticated$
+      .take(1)
+      .map(usuario => {
+        console.log('isAutenticado', usuario);
+        return new UsuarioLogado(usuario.displayName);
+      });
   }
 
   signIn(provider: firebase.auth.AuthProvider): firebase.Promise<any> {
