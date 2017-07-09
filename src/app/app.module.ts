@@ -27,6 +27,7 @@ import {BannerCadastreSeComponent} from "../ts/tour/banner-cadastre-se.component
 import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.component";
 import {HomeCrieSuaCadernetaComponent} from "../ts/home/home-crie-sua-caderneta.component";
 import {ContatoComponent} from "../ts/contato/contato";
+import {AlergiaComponent} from "../ts/alergia/alergia";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import {ContatoComponent} from "../ts/contato/contato";
     LoadingDropComponent,
     BannerCadastreSeComponent,
     VacinasExtraSUSComponent,
-    ContatoComponent
+    ContatoComponent,
+    AlergiaComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,8 @@ import {ContatoComponent} from "../ts/contato/contato";
     BannerCadastreSeComponent,
     DosesComponent,
     VacinasExtraSUSComponent,
-    ContatoComponent
+    ContatoComponent,
+    AlergiaComponent
   ],
   providers: [
     StatusBar,
