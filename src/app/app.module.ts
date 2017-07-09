@@ -28,12 +28,14 @@ import {ContatoComponent} from "../ts/contato/contato";
 import {VacinasMenuComponent} from "../ts/menu/menu.component";
 import {CadernetaMioloComponent} from "../ts/caderneta/caderneta-miolo.component";
 import {TourHomeComponent} from "../ts/tour/tour-home.component";
+import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
 
 @NgModule({
   declarations: [
     VacinasMenuComponent,
     SuasVacinasAppComponent,
     HomeComponent,
+    CadernetaComponent,
     CadernetaMioloComponent,
     ExemploCrudPage,
     ListPage,
@@ -65,6 +67,7 @@ import {TourHomeComponent} from "../ts/tour/tour-home.component";
   entryComponents: [
     SuasVacinasAppComponent,
     HomeComponent,
+    CadernetaComponent,
     ExemploCrudPage,
     ListPage,
     DescricaoVacinaComponent,
