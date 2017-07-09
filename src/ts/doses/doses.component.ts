@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {ActionSheetController, NavController, NavParams} from 'ionic-angular';
-import {Dose, IdadeDose, VacinasRepository} from "../firebase/vacinas.repository";
+import {NavController, NavParams} from 'ionic-angular';
+import {IdadeDose, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
@@ -78,7 +78,8 @@ import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "
                   {{ caderneta.nome }}
                 </ion-card-header>
                 <ion-card-content>
-                  {{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} de idade - <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
+                  <span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} -</span>
+                  <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
                 </ion-card-content>
 
               </ion-card>
@@ -87,8 +88,8 @@ import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "
         </ion-row>
         <ion-row *ngIf="caderneta">
           <ion-col col-12>
-            <div style="text-align: center">
-              Abaixo as doses recomendadas até <span class="idade-escolhida">{{ idadeEscolhida }}</span>.<br>
+            <div style="text-align: center; font-size: 90%">
+              Abaixo as doses recomendadas <span class="idade-escolhida">{{ idadeEscolhida }}</span>.<br>
               Conheça detalhes e <b>marque</b> as que já foram tomadas.
             </div>
           </ion-col>
@@ -129,15 +130,26 @@ export class DosesComponent {
     this.caderneta = navParams.get('caderneta');
 
     if (this.caderneta) {
-      this.meses = idadeEmMeses(this.caderneta.datanascimento) + 3;
-      this.idadeEscolhida = mesesPorExtenso(this.meses);
+      let emMeses = idadeEmMeses(this.caderneta.datanascimento);
+      if (emMeses < 0) {
+        // ainda nao nasceu, exibimos dois meses
+        this.meses = 2;
+      } else {
+        // fluxo geral, exibimos até três meses além da idade atual
+        this.meses = emMeses + 3;
+      }
+      if (emMeses >= 9999) {
+        this.idadeEscolhida = 'para todas as idades';
+      } else {
+        this.idadeEscolhida = 'até ' + mesesPorExtenso(this.meses);
+      }
       this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
 
       // TODO varrer caderneta e marcar na tela as doses que foram tomadas
       // TODO (ou fazer isso direto no template, talvez seja mais simples)
     } else {
       this.meses = navParams.get('meses');
-      this.idadeEscolhida = navParams.get('idadeEscolhida').toLowerCase();
+      this.idadeEscolhida = 'até ' + navParams.get('idadeEscolhida').toLowerCase();
       this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
     }
 

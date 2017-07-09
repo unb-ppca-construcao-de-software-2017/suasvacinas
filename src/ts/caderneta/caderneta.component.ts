@@ -41,7 +41,8 @@ import {DosesComponent} from "../doses/doses.component";
               {{ caderneta.nome }}
             </ion-card-header>
             <ion-card-content>
-              {{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} de idade - <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
+              <span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} -</span> 
+              <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
 
               <ion-buttons item-end>
                 <button ion-button outline icon-only (click)="abrirCaderneta(caderneta)">

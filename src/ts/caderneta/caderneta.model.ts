@@ -29,12 +29,16 @@ export function idadeEmMeses(yyyymmdd: string): number {
   if (mesDiff < 0) {
     return 0;
   }
-  return mesDiff + (anoDiff > 0 ? anoDiff * 12 : 0);
+  return mesDiff + anoDiff * 12;
 }
 
 export function mesesPorExtenso(meses: number): string {
+  let prefixo = '';
+  let sufixo = ' de idade';
   if (meses <= 0) {
-    return 'Ainda não nascido';
+    prefixo = 'Nascerá em ';
+    sufixo = '';
+    meses *= -1;
   }
   if (meses >= 9999) {
     return 'Sem idade';
@@ -47,7 +51,7 @@ export function mesesPorExtenso(meses: number): string {
   if (anoDiff > 0) age.push(anoDiff + (anoDiff > 1 ? ' anos' : ' ano'));
   if (mesDiff > 0) age.push(mesDiff + (mesDiff > 1 ? ' meses' : ' mês'));
   if (age.length > 1) age.splice(age.length - 1, 0, ' e ');
-  return age.join('');
+  return prefixo + age.join('') + sufixo;
 }
 
 export function idadeEmMesesPorExtenso(yyyymmdd: string): string {
