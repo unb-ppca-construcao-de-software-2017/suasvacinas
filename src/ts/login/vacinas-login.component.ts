@@ -55,9 +55,10 @@ export class VacinasLogInComponent {
     this.navCtrl.push(VacinasLogInComEmailComponent);
   }
 
+  //noinspection JSMethodCanBeStatic
   private postLogIn(): void {
     console.log('Logou!');
-    // pra onde vai apos login, colocar um nav reroute aqui
+    window.location.reload();
   }
 
 }
