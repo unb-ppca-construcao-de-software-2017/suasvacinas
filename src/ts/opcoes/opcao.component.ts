@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, Input} from "@angular/core";
 import {NavController} from "ionic-angular";
-import {SubOpcao, VacinasRepository} from "../../firebase/vacinas.repository";
+import {SubOpcao, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {OpcoesComponent} from "./opcoes";
 import {DosesComponent} from "../doses/doses.component";
-import {BaseFixaPageComponentArgs, OpcoesFixasRepository} from "../../firebase/opcoesfixas.service";
+import {BaseFixaPageComponentArgs, OpcoesFixasRepository} from "../firebase/opcoesfixas.service";
 
 @Component({
   selector: 'vacina-opcao',

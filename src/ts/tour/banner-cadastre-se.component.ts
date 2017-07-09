@@ -68,7 +68,7 @@ import {OpcoesComponent} from "../opcoes/opcoes";
                 <ion-col offset-2 col-8>
                   <div>
                     Na dúvida?<br>
-                    <a (click)="abrirIdadeEspecifica()">Experimente conferir as vacinas para uma idade específica.</a>
+                    <a (click)="abrirIdadeEspecifica()">Confira as vacinas para uma idade específica e entenda como podemos te ajudar.</a>
                   </div>
                 </ion-col>
               </ion-row>

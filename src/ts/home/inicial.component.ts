@@ -12,7 +12,7 @@ import "rxjs/add/operator/map";
 
     <ion-content padding>
       <vacina-opcao [chave]="chaveHome"></vacina-opcao>
-      <vacinas-login></vacinas-login>
+      <home-crie-sua-caderneta></home-crie-sua-caderneta>
     </ion-content>
 
     <ion-footer>

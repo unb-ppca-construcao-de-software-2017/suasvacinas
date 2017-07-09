@@ -26,7 +26,7 @@ import { Component } from '@angular/core';
       <ion-title>
         <span class="row">
           <span class="cell logo-img"><img alt="logo" src="assets/icon/vaccine.png"></span>
-          <span class="cell logo-texto">Suas Vacinas</span>
+          <span class="cell logo-texto">Vacine.org</span>
         </span>
       </ion-title>
     </ion-navbar>

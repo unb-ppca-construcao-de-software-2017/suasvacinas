@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/of";
 import {Opcao} from "./vacinas.repository";
-import {BannerCadastreSeComponent} from "../componentes/banner-cadastre-se/banner-cadastre-se.component";
+import {BannerCadastreSeComponent} from "../tour/banner-cadastre-se.component";
 
 
 export class BaseFixaPageComponentArgs {

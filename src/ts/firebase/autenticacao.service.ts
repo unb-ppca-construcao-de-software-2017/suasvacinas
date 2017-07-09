@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 
 
 @Injectable()
-export class VacinasAuthService {
+export class AutenticacaoService {
 
   authenticated$: Observable<boolean>;
   uid$: Observable<string>;
@@ -24,6 +24,11 @@ export class VacinasAuthService {
   signInAnonymously(): firebase.Promise<any> {
     return this.afAuth.auth.signInAnonymously()
       .catch(error => console.log('ERROR @ AuthService#signInAnonymously() :', error));
+  }
+
+  signinWithComEmailSenha(email: string, senha: string): firebase.Promise<any> {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, senha)
+      .catch(error => console.log('ERROR @ AuthService#signInWithEmailAndPassword() :', error));
   }
 
   signInWithGithub(): firebase.Promise<any> {
