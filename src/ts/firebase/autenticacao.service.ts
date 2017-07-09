@@ -41,6 +41,11 @@ export class AutenticacaoService {
       .catch(error => console.log('ERROR @ AuthService#signInAnonymously() :', error));
   }
 
+  criarUsuarioComEmailSenha(email: string, senha: string): firebase.Promise<any> {
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, senha)
+      .catch(error => console.log('ERROR @ AuthService#signInWithEmailAndPassword() :', error));
+  }
+
   signinWithComEmailSenha(email: string, senha: string): firebase.Promise<any> {
     return this.afAuth.auth.signInWithEmailAndPassword(email, senha)
       .catch(error => console.log('ERROR @ AuthService#signInWithEmailAndPassword() :', error));
