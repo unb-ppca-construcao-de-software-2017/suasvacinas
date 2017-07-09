@@ -26,14 +26,15 @@ import {Observable} from "rxjs/Observable";
       <ion-title>
         <p class="saudacoes">Oi, 
           
-        <span *ngIf="(autenticado | async)?.naoLogado;else usuario_logado">
-        <button ion-button outline small class="cadastrese">
-        <span class="branco">quem é você?</span>
-        &nbsp;&nbsp;<ion-icon name="logo-facebook" class="branco"></ion-icon>
-        &nbsp;<ion-icon name="logo-google" class="branco"></ion-icon>
-        &nbsp;<ion-icon name="logo-twitter" class="branco"></ion-icon></button>!
-        </span>
-        <ng-template #usuario_logado>{{ (autenticado | async)?.nome }}!</ng-template></p>
+          <span *ngIf="(autenticado | async)?.logado;else botao_quem_eh_voce">{{ (autenticado | async)?.nome }}!</span>
+          <ng-template #botao_quem_eh_voce>
+            <button ion-button outline small class="cadastrese">
+            <span class="branco">quem é você?</span>
+            &nbsp;&nbsp;<ion-icon name="logo-facebook" class="branco"></ion-icon>
+            &nbsp;<ion-icon name="logo-google" class="branco"></ion-icon>
+            &nbsp;<ion-icon name="logo-twitter" class="branco"></ion-icon></button>
+          </ng-template>
+        </p>
         
         
       </ion-title>

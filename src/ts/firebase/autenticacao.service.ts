@@ -24,7 +24,10 @@ export class AutenticacaoService {
       .take(1)
       .map(usuario => {
         console.log('isAutenticado', usuario);
-        return new UsuarioLogado(usuario.displayName);
+        if (usuario) {
+          return new UsuarioLogado(usuario.displayName);
+        }
+        return usuario;
       });
   }
 
@@ -59,7 +62,7 @@ export class AutenticacaoService {
     return this.signIn(new firebase.auth.FacebookAuthProvider());
   }
 
-  signOut(): void {
-    this.afAuth.auth.signOut();
+  signOut(): firebase.Promise<any> {
+    return this.afAuth.auth.signOut();
   }
 }
