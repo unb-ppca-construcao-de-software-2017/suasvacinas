@@ -27,9 +27,11 @@ import {BannerCadastreSeComponent} from "../ts/tour/banner-cadastre-se.component
 import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.component";
 import {HomeCrieSuaCadernetaComponent} from "../ts/home/home-crie-sua-caderneta.component";
 import {ContatoComponent} from "../ts/contato/contato";
+import {VacinasMenuComponent} from "../ts/menu/menu.component";
 
 @NgModule({
   declarations: [
+    VacinasMenuComponent,
     SuasVacinasAppComponent,
     InicialComponent,
     HomeCrieSuaCadernetaComponent,

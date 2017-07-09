@@ -1,18 +1,13 @@
-import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { ExemploCrudPage } from '../ts/exemplo-crud/exemplo-crud';
-import { ListPage } from '../ts/list/list';
+import {Component} from "@angular/core";
+import {Platform} from "ionic-angular";
+import {StatusBar} from "@ionic-native/status-bar";
+import {SplashScreen} from "@ionic-native/splash-screen";
 import {InicialComponent} from "../ts/home/inicial.component";
-import {VacinasExtraSUSPage} from "../ts/extra-sus/extra-sus";
-import {WelderComponent} from "../ts/welder/welder.component";
-import {ContatoComponent} from "../ts/contato/contato";
 
 @Component({
   template: `
     <ion-menu [content]="content">
+      
       <ion-header>
         <ion-toolbar>
           <ion-title>Menu</ion-title>
@@ -20,13 +15,9 @@ import {ContatoComponent} from "../ts/contato/contato";
       </ion-header>
 
       <ion-content>
-        <ion-list>
-          <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-            {{p.title}}
-          </button>
-        </ion-list>
+        <vacinas-menu></vacinas-menu>
       </ion-content>
-
+      
     </ion-menu>
 
     <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
@@ -34,24 +25,11 @@ import {ContatoComponent} from "../ts/contato/contato";
   `
 })
 export class SuasVacinasAppComponent {
-  @ViewChild(Nav) nav: Nav;
 
   rootPage: any = InicialComponent;
 
-  pages: Array<{title: string, component: any}>;
-
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
-
-    this.pages = [
-      { title: 'Início', component: InicialComponent },
-      { title: 'Exemplo Crud', component: ExemploCrudPage },
-      { title: 'Lista', component: ListPage },
-      { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage},
-      { title: 'Componente do Welder', component: WelderComponent},
-      { title: 'Fale Conosco', component: ContatoComponent}
-    ];
-
   }
 
   initializeApp() {
@@ -63,9 +41,4 @@ export class SuasVacinasAppComponent {
     });
   }
 
-  openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
-  }
 }
