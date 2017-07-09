@@ -1,14 +1,22 @@
-import { Component } from '@angular/core';
+import {Component} from "@angular/core";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {NavController} from "ionic-angular";
 import {CadernetaNovaComponent} from "./caderneta-nova.component";
 import {CadernetaRepository} from "./caderneta.repository";
-import {Caderneta} from "./caderneta.model";
+import {Caderneta, idadeEmMesesPorExtenso} from "./caderneta.model";
 import {Observable} from "rxjs/Observable";
+import {DosesComponent} from "../doses/doses.component";
 
 @Component({
   selector: 'vacinas-caderneta',
   styles: [`
+    .imagem-genero {
+      /* duplicado em doses.component.ts */
+      height: 16px;
+      width: auto;
+      display: inline-block;
+      margin-bottom: -2px;
+    }
   `],
   template: `
     <ion-grid>
@@ -23,7 +31,7 @@ import {Observable} from "rxjs/Observable";
 
           <ion-card *ngIf="(cadernetaRepository.cadernetas$ | async) && !(cadernetaRepository.cadernetas$ | async)?.length">
             <ion-card-content>
-            Você ainda não tem nenhuma caderneta criada.<br>Vamos <a (click)="novaCaderneta()">criar a primeira</a>?
+            Você ainda não tem nenhuma caderneta criada.<br><br>Vamos <a (click)="novaCaderneta()">criar a primeira</a>?
             </ion-card-content>
           </ion-card>
           
@@ -33,16 +41,14 @@ import {Observable} from "rxjs/Observable";
               {{ caderneta.nome }}
             </ion-card-header>
             <ion-card-content>
-              {{ caderneta.datanascimento }} - {{ caderneta.sexo }}
+              {{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} de idade - <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
 
               <ion-buttons item-end>
-                <button ion-button outline icon-only>
-                  <ion-icon name="open-outline"></ion-icon>
+                <button ion-button outline icon-only (click)="abrirCaderneta(caderneta)">
+                  <ion-icon name="folder-open-outline"></ion-icon>
                 </button>
               </ion-buttons>
-              
             </ion-card-content>
-
             
           </ion-card>
 
@@ -69,6 +75,20 @@ export class CadernetaComponent {
 
   novaCaderneta(): void {
     this.navCtrl.push(CadernetaNovaComponent);
+  }
+
+  abrirCaderneta(caderneta): void {
+    this.navCtrl.push(DosesComponent, {caderneta: caderneta});
+  }
+
+  //noinspection JSMethodCanBeStatic
+  _idadeEmMesesPorExtenso(yyyymmdd) {
+    return idadeEmMesesPorExtenso(yyyymmdd); // duplicado em doses.component.ts
+  }
+
+  //noinspection JSMethodCanBeStatic
+  _imagemGenero(caderneta: Caderneta) {
+    return `assets/icon/sexo-${caderneta.sexo}.png`; // duplicado em doses.component.ts
   }
 
 }

@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import {IdadeDose, VacinasRepository} from "../firebase/vacinas.repository";
+import {ActionSheetController, NavController, NavParams} from 'ionic-angular';
+import {Dose, IdadeDose, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
+import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "../caderneta/caderneta.model";
 
 @Component({
   selector: 'vacinas-dose',
@@ -33,6 +34,13 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
     .idade-escolhida {
       color: #488aff;
     }
+    .imagem-genero {
+      /* duplicado em caderneta.component.ts */
+      height: 16px;
+      width: auto;
+      display: inline-block;
+      margin-bottom: -2px;
+    }
   `],
   template: `
     <ion-header>
@@ -41,7 +49,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
 
     <ion-content class="bg-style">
       <ion-grid>
-        <ion-row>
+        <ion-row *ngIf="!caderneta">
           <ion-col col-12>
             <div style="text-align: center">
             Abaixo as doses recomendadas até <span class="idade-escolhida">{{ idadeEscolhida }}</span>.<br>
@@ -60,6 +68,32 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
             </div>
           </ion-col>
         </ion-row>
+
+        <ion-row *ngIf="caderneta">
+          <ion-col offset-1 col-10>
+            <div style="text-align: center">
+              <ion-card>
+
+                <ion-card-header>
+                  {{ caderneta.nome }}
+                </ion-card-header>
+                <ion-card-content>
+                  {{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} de idade - <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
+                </ion-card-content>
+
+              </ion-card>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="caderneta">
+          <ion-col col-12>
+            <div style="text-align: center">
+              Abaixo as doses recomendadas até <span class="idade-escolhida">{{ idadeEscolhida }}</span>.<br>
+              Conheça detalhes e <b>marque</b> as que já foram tomadas.
+            </div>
+          </ion-col>
+        </ion-row>
+        
       </ion-grid>
       <ion-card *ngFor="let idadeDose of idadeDoses | async">
         <ion-card-header>
@@ -69,13 +103,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
           <ion-list>
             <div class="dose-div" *ngFor="let dose of idadeDose.doses">
               <ion-fab class="fab-dose">
-                <button ion-fab color="light" mini><ion-icon name="ios-log-in"></ion-icon></button>
-                <ion-fab-list side="right">
-                  <button ion-fab (click)="marcarVacina()" color="secondary"><ion-icon name="checkmark"></ion-icon></button>
-                  <button ion-fab (click)="abrirVacina(dose.nome)" color="danger"><ion-icon name="information"></ion-icon></button>
-                  <button ion-fab (click)="shareTwitter()" color="default"><ion-icon name="logo-facebook"></ion-icon></button>
-                  <button ion-fab (click)="shareTwitter()"><ion-icon name="logo-twitter"></ion-icon></button>
-                </ion-fab-list>
+                <button ion-fab color="light" mini (click)="abrirActionSheetDose(dose)"><ion-icon name="checkbox-outline"></ion-icon></button>
               </ion-fab>
               <button ion-item class="botao-dose" (click)="abrirVacina(dose.nome)">
                 {{ dose.nome }}
@@ -100,15 +128,29 @@ export class DosesComponent {
 
   idadeDoses: Observable<IdadeDose[]>;
 
+  caderneta: Caderneta;
+
   autenticado: Observable<any>;
 
-  constructor(private autenticacaoService: AutenticacaoService, public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
+  constructor(private autenticacaoService: AutenticacaoService, public navCtrl: NavController,
+              public navParams: NavParams, public vacinasRepository: VacinasRepository, public actionSheetCtrl: ActionSheetController) {
     this.autenticado = autenticacaoService.isAutenticado();
 
-    this.meses = navParams.get('meses');
-    this.idadeEscolhida = navParams.get('idadeEscolhida').toLowerCase();
+    this.caderneta = navParams.get('caderneta');
 
-    this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
+    if (this.caderneta) {
+      this.meses = idadeEmMeses(this.caderneta.datanascimento) + 3;
+      this.idadeEscolhida = mesesPorExtenso(this.meses);
+      this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
+
+      // TODO varrer caderneta e marcar na tela as doses que foram tomadas
+      // TODO (ou fazer isso direto no template, talvez seja mais simples)
+    } else {
+      this.meses = navParams.get('meses');
+      this.idadeEscolhida = navParams.get('idadeEscolhida').toLowerCase();
+      this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
+    }
+
   }
 
   abrirVacina(nomevacina: string) {
@@ -119,14 +161,41 @@ export class DosesComponent {
     this.navCtrl.push(VacinasLogInComponent);
   }
 
-  marcarVacina() {
-    // fazendo
+  //noinspection JSMethodCanBeStatic
+  _idadeEmMesesPorExtenso(yyyymmdd) {
+    return idadeEmMesesPorExtenso(yyyymmdd); // duplicado em caderneta.component.ts
   }
 
-  shareTwitter() {
-    // abrir "https://twitter.com/intent/tweet?text={{ base_path }}{{ page.url }}"
-    // "https://www.facebook.com/sharer/sharer.php?u={{ base_path }}{{ page.url }}"
-    // "https://plus.google.com/share?url={{ base_path }}{{ page.url }}"
+  //noinspection JSMethodCanBeStatic
+  _imagemGenero(caderneta: Caderneta) {
+    return `assets/icon/sexo-${caderneta.sexo}.png`; // duplicado em caderneta.component.ts
+  }
+
+  abrirActionSheetDose(dose: Dose) {
+    let actionSheet = this.actionSheetCtrl.create({
+      title: `${dose.nome} - ${dose.dose}`,
+      buttons: [
+        {
+          text: 'Marcar dose como já tomada',
+          role: 'destructive',
+          handler: () => {
+            console.log('Destructive clicked');
+          }
+        },{
+          text: 'Ver mais informações sobre ' + dose.nome,
+          handler: () => {
+            console.log('Archive clicked');
+          }
+        },{
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    actionSheet.present();
   }
 
 }
