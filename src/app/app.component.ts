@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ExemploCrudPage } from '../ts/exemplo-crud/exemplo-crud';
 import { ListPage } from '../ts/list/list';
 import {InicialComponent} from "../ts/home/inicial.component";
-import {VacinasExtraSUSPage} from "../ts/extra-sus/extra-sus";
+import {VacinasExtraSUSComponent} from "../ts/extra-sus/extra-sus";
 import {WelderComponent} from "../ts/welder/welder.component";
 import {ContatoComponent} from "../ts/contato/contato";
 
@@ -47,7 +47,7 @@ export class SuasVacinasAppComponent {
       { title: 'Início', component: InicialComponent },
       { title: 'Exemplo Crud', component: ExemploCrudPage },
       { title: 'Lista', component: ListPage },
-      { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSPage},
+      { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSComponent},
       { title: 'Componente do Welder', component: WelderComponent},
       { title: 'Fale Conosco', component: ContatoComponent}
     ];

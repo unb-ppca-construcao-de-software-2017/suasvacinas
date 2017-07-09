@@ -20,7 +20,7 @@ import {DosesComponent} from "../ts/doses/doses.component";
 import {DescricaoVacinaComponent} from "../ts/detalhes/descricao-vacina.component";
 import {LoadingDropComponent} from "../ts/header-footer/vacinas-loading.component";
 import {VacinasFooterComponent} from "../ts/header-footer/vacinas-footer.component";
-import {VacinasExtraSUSPage} from "../ts/extra-sus/extra-sus";
+import {VacinasExtraSUSComponent} from "../ts/extra-sus/extra-sus";
 import {WelderComponent} from "../ts/welder/welder.component";
 import {OpcoesFixasRepository} from "../ts/firebase/opcoesfixas.service";
 import {BannerCadastreSeComponent} from "../ts/tour/banner-cadastre-se.component";
@@ -46,7 +46,7 @@ import {ContatoComponent} from "../ts/contato/contato";
     VacinasLogInComEmailComponent,
     LoadingDropComponent,
     BannerCadastreSeComponent,
-    VacinasExtraSUSPage,
+    VacinasExtraSUSComponent,
     ContatoComponent
   ],
   imports: [
@@ -72,7 +72,7 @@ import {ContatoComponent} from "../ts/contato/contato";
     WelderComponent,
     BannerCadastreSeComponent,
     DosesComponent,
-    VacinasExtraSUSPage,
+    VacinasExtraSUSComponent,
     ContatoComponent
   ],
   providers: [
