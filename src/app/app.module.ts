@@ -29,6 +29,7 @@ import {VacinasMenuComponent} from "../ts/menu/menu.component";
 import {CadernetaMioloComponent} from "../ts/caderneta/caderneta-miolo.component";
 import {TourHomeComponent} from "../ts/tour/tour-home.component";
 import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
+import {CadernetaNovaComponent} from "../ts/caderneta/caderneta-nova.component";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
     HomeComponent,
     CadernetaComponent,
     CadernetaMioloComponent,
+    CadernetaNovaComponent,
     ExemploCrudPage,
     ListPage,
     OpcaoComponent,
@@ -60,7 +62,11 @@ import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
     IonicModule.forRoot(SuasVacinasAppComponent,{
       backButtonText: 'Voltar',
       iconMode: 'ios',
-      mode: 'ios'
+      mode: 'ios',
+      monthNames: ['janeiro', 'fevereiro', 'mar\u00e7o', 'abril', 'maio', 'junho', 'julho', 'agosto', 'setembro', 'outubro', 'novembro', 'dezembro'],
+      monthShortNames: ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'],
+      dayNames: ['domingo', 'segunda-feira', 'ter\u00e7a-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 's\u00e1bado', 'domingo'],
+      dayShortNames: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 's\u00e1b', 'dom']
     })
   ],
   bootstrap: [IonicApp],
@@ -68,6 +74,7 @@ import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
     SuasVacinasAppComponent,
     HomeComponent,
     CadernetaComponent,
+    CadernetaNovaComponent,
     ExemploCrudPage,
     ListPage,
     DescricaoVacinaComponent,
