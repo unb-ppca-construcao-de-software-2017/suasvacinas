@@ -29,7 +29,7 @@ export class CadernetaRepository {
     this.cadernetas$.push(caderneta);
   }
 
-  removeVacina(caderneta: Caderneta): void {
+  removerCaderneta(caderneta: Caderneta): void {
     this.cadernetas$.remove(caderneta.$key);
   }
 
