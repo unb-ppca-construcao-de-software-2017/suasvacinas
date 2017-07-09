@@ -1,13 +1,5 @@
-export interface ICaderneta {
+export class Caderneta {
   $key?: string;
-
-  nome: string;
-  datanascimento: string;
-  sexo: string;
-  dosesTomadas: any;
-}
-
-export class Caderneta implements ICaderneta {
 
   dosesTomadas: any = {};
 
