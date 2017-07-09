@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {Observable} from "rxjs/Observable";
 import "rxjs/add/observable/of";
 import {Opcao} from "./vacinas.repository";
-import {BannerCadastreSeComponent} from "../tour/banner-cadastre-se.component";
+import {TourComponent} from "../tour/tour.component";
 
 
 export class BaseFixaPageComponentArgs {
@@ -28,10 +28,10 @@ export class OpcoesFixasRepository {
   };
 
   private readonly baseFixaPage = {
-    'fixapage-filha': {component: BannerCadastreSeComponent, args: {msg: "caderneta da sua filha", chave: "minha-filha"}},
-    'fixapage-filho': {component: BannerCadastreSeComponent, args: {msg: "caderneta do seu filho", chave: "meu-filho"}},
-    'fixapage-eu': {component: BannerCadastreSeComponent, args: {msg: "sua caderneta, do seu filho", chave: "meu-filho"}},
-    'fixapage-familiar': {component: BannerCadastreSeComponent, args: {msg: "caderneta do seu familiar", chave: "meu-familiar"}}
+    'fixapage-filha': {component: TourComponent, args: {msg: "caderneta da sua filha", chave: "minha-filha"}},
+    'fixapage-filho': {component: TourComponent, args: {msg: "caderneta do seu filho", chave: "meu-filho"}},
+    'fixapage-eu': {component: TourComponent, args: {msg: "sua caderneta, do seu filho", chave: "meu-filho"}},
+    'fixapage-familiar': {component: TourComponent, args: {msg: "caderneta do seu familiar", chave: "meu-familiar"}}
   };
 
   getOpcao(chave: string): Observable<Opcao> {

@@ -86,7 +86,7 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
     </ion-footer>
   `
 })
-export class BannerCadastreSeComponent {
+export class TourComponent {
 
   @ViewChild(Slides) slides: Slides;
 
