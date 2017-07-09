@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/take';
-import {UsuarioLogado} from "../login/usuario-logado.model";
+import {UsuarioLogin} from "../login/usuario-login.model";
 
 
 @Injectable()
@@ -19,15 +19,15 @@ export class AutenticacaoService {
     this.uid$ = afAuth.authState.map(user => user.uid);
   }
 
-  isAutenticado(): Observable<UsuarioLogado> {
+  isAutenticado(): Observable<UsuarioLogin> {
     return this.authenticated$
       .take(1)
       .map(usuario => {
         console.log('isAutenticado', usuario);
         if (usuario) {
-          return new UsuarioLogado(usuario.displayName);
+          return new UsuarioLogin(usuario.displayName);
         }
-        return usuario;
+        return UsuarioLogin.USUARIO_NAO_AUTENTICADO;
       });
   }
 
