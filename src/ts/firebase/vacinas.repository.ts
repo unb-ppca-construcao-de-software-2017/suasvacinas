@@ -25,6 +25,7 @@ export class IdadeDose {
   doses: Dose[];
 }
 export class Dose {
+  idade?: string;
   nome: string;
   dose: string;
   fonte: string;
