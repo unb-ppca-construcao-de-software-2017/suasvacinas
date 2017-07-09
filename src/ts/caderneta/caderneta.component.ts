@@ -4,7 +4,7 @@ import {NavController} from "ionic-angular";
 import {CadernetaNovaComponent} from "./caderneta-nova.component";
 
 @Component({
-  selector: 'vacinas-caderneta-miolo',
+  selector: 'vacinas-caderneta',
   styles: [`
   `],
   template: `
@@ -30,7 +30,7 @@ import {CadernetaNovaComponent} from "./caderneta-nova.component";
     </ion-grid>
   `
 })
-export class CadernetaMioloComponent {
+export class CadernetaComponent {
 
   constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController) {
     autenticacaoService.isAutenticado();

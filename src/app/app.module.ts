@@ -27,7 +27,7 @@ import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.com
 import {ContatoComponent} from "../ts/contato/contato";
 import {AlergiaComponent} from "../ts/alergia/alergia";
 import {VacinasMenuComponent} from "../ts/menu/menu.component";
-import {CadernetaMioloComponent} from "../ts/caderneta/caderneta-miolo.component";
+import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
 import {TourHomeComponent} from "../ts/tour/tour-home.component";
 import {CadernetaNovaComponent} from "../ts/caderneta/caderneta-nova.component";
 import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
@@ -37,7 +37,7 @@ import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
     VacinasMenuComponent,
     SuasVacinasAppComponent,
     HomeComponent,
-    CadernetaMioloComponent,
+    CadernetaComponent,
     CadernetaNovaComponent,
     ExemploCrudPage,
     ListPage,

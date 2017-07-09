@@ -16,7 +16,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
       <div *ngIf="(autenticado | async); else home_processado">
         
         <div *ngIf="(autenticado | async)?.logado;else home_tour">
-          <vacinas-caderneta-miolo></vacinas-caderneta-miolo>
+          <vacinas-caderneta></vacinas-caderneta>
         </div>
         <ng-template #home_tour>
           <vacinas-tour-home></vacinas-tour-home>
