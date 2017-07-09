@@ -1,7 +1,9 @@
-import {Component} from "@angular/core";
+import {Component, AfterViewInit} from "@angular/core";
 import "rxjs/add/operator/pluck";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
+import {Observable} from "rxjs/Observable";
+import {AutenticacaoService} from "../firebase/autenticacao.service";
 
 @Component({
   selector: 'vacinas-home',
@@ -11,8 +13,19 @@ import "rxjs/add/operator/map";
     </ion-header>
 
     <ion-content padding>
-      <vacina-opcao [chave]="chaveHome"></vacina-opcao>
-      <home-crie-sua-caderneta></home-crie-sua-caderneta>
+      <div *ngIf="(autenticado | async); else home_processado">
+        
+        <div *ngIf="(autenticado | async)?.logado;else home_tour">
+          <vacinas-caderneta-miolo></vacinas-caderneta-miolo>
+        </div>
+        <ng-template #home_tour>
+          <vacinas-tour-home></vacinas-tour-home>
+        </ng-template>
+        
+      </div>
+      <ng-template #home_processado>
+        <vacinas-loading></vacinas-loading>
+      </ng-template>
     </ion-content>
 
     <ion-footer>
@@ -22,6 +35,10 @@ import "rxjs/add/operator/map";
 })
 export class HomeComponent {
 
-  chaveHome: string = "fixa-home";
+  autenticado: Observable<any>;
+
+  constructor(private autenticacaoService: AutenticacaoService) {
+    this.autenticado = autenticacaoService.isAutenticado();
+  }
 
 }

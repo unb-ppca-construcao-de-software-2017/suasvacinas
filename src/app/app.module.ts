@@ -25,16 +25,17 @@ import {WelderComponent} from "../ts/welder/welder.component";
 import {OpcoesFixasRepository} from "../ts/firebase/opcoesfixas.service";
 import {TourComponent} from "../ts/tour/tour.component";
 import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.component";
-import {HomeCrieSuaCadernetaComponent} from "../ts/home/home-crie-sua-caderneta.component";
 import {ContatoComponent} from "../ts/contato/contato";
 import {VacinasMenuComponent} from "../ts/menu/menu.component";
+import {CadernetaMioloComponent} from "../ts/caderneta/caderneta-miolo.component";
+import {TourHomeComponent} from "../ts/tour/tour-home.component";
 
 @NgModule({
   declarations: [
     VacinasMenuComponent,
     SuasVacinasAppComponent,
     HomeComponent,
-    HomeCrieSuaCadernetaComponent,
+    CadernetaMioloComponent,
     ExemploCrudPage,
     ListPage,
     OpcaoComponent,
@@ -48,6 +49,7 @@ import {VacinasMenuComponent} from "../ts/menu/menu.component";
     VacinasLogInComEmailComponent,
     LoadingDropComponent,
     TourComponent,
+    TourHomeComponent,
     VacinasExtraSUSPage,
     ContatoComponent
   ],
