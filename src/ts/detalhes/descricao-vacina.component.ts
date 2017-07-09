@@ -47,7 +47,7 @@ import {DescricaoVacina, VacinaIdadeDoseFonte, VacinasRepository} from "../fireb
     <ion-content class="bg-style">
       <p class="detalhesvacina">Detalhes da Vacina</p>
       <h1 class="nomevacina">{{ (vacina | async)?.nomevacina }}</h1>
-      <ion-card *ngIf="(doses|async)">
+      <ion-card *ngIf="(doses|async)?.length > 0">
         <ion-card-header>Doses</ion-card-header>
         <ion-card-content>
           <ion-item *ngFor="let dose of doses | async">
@@ -57,6 +57,8 @@ import {DescricaoVacina, VacinaIdadeDoseFonte, VacinasRepository} from "../fireb
                 <button ion-fab (click)="marcarVacina()" color="secondary"><ion-icon name="checkmark"></ion-icon></button>
               </ion-fab-list>
             </ion-fab>
+            
+            
             <div class="div-dose">
               <h2>{{ dose.idade }}</h2>
               <p>{{ dose.dose }}</p>

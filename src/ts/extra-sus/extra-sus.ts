@@ -28,7 +28,7 @@ export class VacinasExtraSUSPage {
     {nome: "Penta/DTP", descricao: "Pentavalente Acelular"},
     {nome: "Hexavalente acelular", descricao: "Hexavalente Acelular"},
     {nome: "Meningocócica B", descricao: "Meningocócica B"},
-    {nome: "MeningoACWY", descricao: "Meningocócica ACWY"},
+    {nome: "Meningocócica ACWY", descricao: "Meningocócica ACWY"},
     {nome: "Pneumocócia (conjugada)", descricao: "Pneumocócica 13-Valente"},
     {nome: "Rotavírus Humano", descricao: "Rotavírus Humano Pentavalente"},
     {nome: "Influenza (gripe)", descricao: "Gripe (Influenza) (a partir de 5 anos)"},
