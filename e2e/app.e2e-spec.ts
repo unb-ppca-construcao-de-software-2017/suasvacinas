@@ -12,9 +12,9 @@ describe('App', () => {
       page.navigateTo('/');
     });
 
-    it('deve ter um titulo dizendo Suas Vacinas', () => {
+    it('deve ter um titulo dizendo Vacine.org', () => {
       page.getTitle().then(title => {
-        expect(title).toEqual('Suas Vacinas');
+        expect(title).toEqual('Vacine.org');
       });
     });
   });

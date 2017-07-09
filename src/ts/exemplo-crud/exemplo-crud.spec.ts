@@ -41,10 +41,10 @@ describe('ExemploCrudPage', () => {
 
   it('deve criar component', () => expect(comp).toBeDefined());
 
-  it('deve ter titulo suas vacinas', () => {
+  it('deve ter titulo Vacine.org', () => {
     fixture.detectChanges();
     const titleElement = titleDebugElement.nativeElement;
-    expect(titleElement.innerText).toBe("Suas Vacinas");
+    expect(titleElement.innerText).toBe("Vacine.org");
   });
 
 });

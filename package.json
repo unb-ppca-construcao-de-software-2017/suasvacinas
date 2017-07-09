@@ -1,7 +1,7 @@
 {
-  "name": "suasvacinas",
+  "name": "vacineorg",
   "version": "1.0.0",
-  "description": "Suas Vacinas",
+  "description": "Vacine.org",
   "homepage": "https://github.com/unb-ppca-construcao-de-software-2017/suasvacinas",
   "repository": {
     "type": "git",
