@@ -5,31 +5,6 @@ import "rxjs/add/operator/map";
 
 @Component({
   selector: 'alergia',
-  styles: [`
-    .card-background-page {
-      ion-card {
-        position: relative;
-        text-align: center;
-      }
-  
-      .card-title {
-        position: absolute;
-        top: 36%;
-        font-size: 2.0em;
-        width: 100%;
-        font-weight: bold;
-        color: #fff;
-      }
-  
-      .card-subtitle {
-        font-size: 1.0em;
-        position: absolute;
-        top: 52%;
-        width: 100%;
-        color: #fff;
-      }
-    }
-  `],
   template: `
     <ion-header>
       <vacinas-navbar></vacinas-navbar>
@@ -38,9 +13,14 @@ import "rxjs/add/operator/map";
     <ion-content class="card-background-page">
       <h1>Alergias</h1>
       <ion-card>
-        <img src="img/ovo.png"/>
+        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-saopaolo.png"/>
         <div class="card-title">Ovo</div>
         <div class="card-subtitle">Vacinas que contém ovo em sua composição</div>
+      </ion-card>
+      <ion-card>
+        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/card-amsterdam.png"/>
+        <div class="card-title">Leite</div>
+        <div class="card-subtitle">Vacinas que contém leite em sua composição</div>
       </ion-card>
     </ion-content>
   `
