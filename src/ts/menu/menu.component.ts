@@ -55,7 +55,7 @@ export class VacinasMenuComponent {
       // { title: 'Lista', component: ListPage },
       { title: 'Caderneta de Vacinas', component: HomeComponent},
       { title: 'Ampliar Cobertura do SUS', component: VacinasExtraSUSComponent},
-      { title: 'Alergias', component: AlergiaComponent},
+      // { title: 'Alergias', component: AlergiaComponent},
       // { title: 'Componente do Welder', component: WelderComponent},
       { title: 'Fale Conosco', component: ContatoComponent}
     ];
