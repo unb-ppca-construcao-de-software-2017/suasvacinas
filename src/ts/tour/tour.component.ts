@@ -67,7 +67,7 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
               <ion-row>
                 <ion-col col-12>
                   <div>
-                    Curioso?<br>Comece agora mesmo!<br>
+                    Só na curiosidade?<br>Comece agora mesmo!<br>
                     <a (click)="abrirIdadeEspecifica()">Confira as vacinas para uma idade específica e entenda como podemos te ajudar.</a>
                   </div>
                 </ion-col>
