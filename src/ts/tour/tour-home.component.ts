@@ -31,7 +31,7 @@ import {TourComponent} from "./tour.component";
       <button ion-button large block class="botao-pessoa" (click)="abrirOpcao(tour)">{{ tour.titulo }}</button>
     </div>
 
-    <div class="login">
+    <div class="login" *ngIf="false">
       <h1>Cadastre as vacinas do seu filho, filha ou familiar</h1>
       <button ion-button outline large (click)="irParaLogin()">
         Crie sua caderneta!
