@@ -25,7 +25,9 @@ export class IdadeDose {
   doses: Dose[];
 }
 export class Dose {
-  idadedose: string;
+  chavedose: string;
+  idadedosemeses: number;
+  idadedoseextenso: string;
   nomevacina: string;
   dosevacina: string;
   fontedose: string;

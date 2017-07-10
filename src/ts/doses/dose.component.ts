@@ -53,7 +53,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
       </ion-fab>
 
       <div class="div-dose">
-        <h2>{{ dose.idadedose }}</h2>
+        <h2>{{ dose.idadedoseextenso }}</h2>
         <p>{{ dose.dosevacina }}</p>
         <p class="dose-fonte">Fonte: {{ dose.fontedose }}</p>
       </div>
