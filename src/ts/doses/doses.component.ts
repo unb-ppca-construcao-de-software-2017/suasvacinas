@@ -96,6 +96,9 @@ import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "
         </ion-row>
         
       </ion-grid>
+      
+      <vacinas-loading *ngIf="!(idadeDoses | async)"></vacinas-loading>
+      
       <ion-card *ngFor="let idadeDose of idadeDoses | async">
         <ion-card-header>
           {{ idadeDose.idadeDose }}
