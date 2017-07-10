@@ -148,7 +148,7 @@ export class DoseComponent {
       handler: () => {
         if (!this.caderneta) {
           let toast = this.toastCtrl.create({
-            message: 'Se você estivesse numa caderneta, neste momento a vacina teria sido marcada como tomada! Crie sua caderneta e veja muito mais!',
+            message: 'Se você estivesse em uma caderneta, neste momento a vacina teria sido marcada como tomada! Crie sua caderneta e veja muito mais!',
             showCloseButton: true,
             closeButtonText: 'Ok',
             duration: 12000,
