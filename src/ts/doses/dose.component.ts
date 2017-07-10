@@ -116,12 +116,14 @@ export class DoseComponent {
 
     // botoesAction.push({text: 'Destructive', , handler: () => { console.log('Destructive clicked'); } });
 
-    botoesAction.push({
-      text: 'Ver mais informações sobre ' + this.dose.nomevacina,
-      handler: () => {
-        this.abrirVacina(this.dose.nomevacina);
-      }
-    });
+    if (!this.dentroDeDescricaoVacina) {
+      botoesAction.push({
+        text: 'Ver mais informações sobre ' + this.dose.nomevacina,
+        handler: () => {
+          this.abrirVacina(this.dose.nomevacina);
+        }
+      });
+    }
 
     botoesAction.push({
       text: 'Cancelar',
@@ -146,10 +148,10 @@ export class DoseComponent {
       handler: () => {
         if (!this.caderneta) {
           let toast = this.toastCtrl.create({
-            message: 'Neste momento, a vacina seria marcada como tomada! Crie sua caderneta e veja muito mais!',
+            message: 'Se você estivesse numa caderneta, neste momento a vacina teria sido marcada como tomada! Crie sua caderneta e veja muito mais!',
             showCloseButton: true,
             closeButtonText: 'Ok',
-            duration: 8000,
+            duration: 12000,
             position: 'bottom'
           });
           toast.present(toast);
