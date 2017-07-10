@@ -2,7 +2,7 @@ export class Caderneta {
 
   $key?: string;
 
-  dosesTomadas: any = {};
+  doses: any = {};
 
   constructor(public nome: string, public sexo: string, public datanascimento?: string) {
   }

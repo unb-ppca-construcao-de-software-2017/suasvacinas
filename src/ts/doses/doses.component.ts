@@ -102,7 +102,7 @@ import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-            <vacinas-dose [dose]="dose" *ngFor="let dose of idadeDose.doses"></vacinas-dose>
+            <vacinas-dose [caderneta]="caderneta" [dose]="dose" *ngFor="let dose of idadeDose.doses"></vacinas-dose>
           </ion-list>
         </ion-card-content>
       </ion-card>
@@ -144,9 +144,6 @@ export class DosesComponent {
         this.idadeEscolhida = 'até ' + mesesPorExtenso(this.meses);
       }
       this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
-
-      // TODO varrer caderneta e marcar na tela as doses que foram tomadas
-      // TODO (ou fazer isso direto no template, talvez seja mais simples)
     } else {
       this.meses = navParams.get('meses');
       this.idadeEscolhida = 'até ' + navParams.get('idadeEscolhida').toLowerCase();
