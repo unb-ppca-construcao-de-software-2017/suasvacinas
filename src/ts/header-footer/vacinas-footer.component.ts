@@ -4,6 +4,7 @@ import {Observable} from "rxjs/Observable";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {NavController} from "ionic-angular";
 import {TourComponent} from "../tour/tour.component";
+import {HomeComponent} from "../home/home.component";
 
 @Component({
   selector: 'vacinas-footer',
@@ -69,7 +70,7 @@ export class VacinasFooterComponent {
   }
 
   irParaCaderneta(): void {
-    // todo
+    this.navCtrl.push(HomeComponent);
   }
 
   irParaTour(): void {
