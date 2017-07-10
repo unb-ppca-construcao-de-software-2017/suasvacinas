@@ -8,7 +8,7 @@ import {DosesComponent} from "../doses/doses.component";
 @Component({
   selector: 'vacina-opcao',
   styles: [`
-    h1.pergunta {
+    .pergunta {
       white-space: pre-line;
       text-align: center;
     }
@@ -19,7 +19,7 @@ import {DosesComponent} from "../doses/doses.component";
   template: `
     <vacinas-loading *ngIf="!(descricao | async)"></vacinas-loading>
 
-    <h1 class="pergunta">{{ descricao | async }}</h1>
+    <h3 class="pergunta">{{ descricao | async }}</h3>
     <div *ngFor="let subOpcao of subOpcoes | async">
       <button ion-button large block class="botao-pessoa" (click)="abrirOpcao(subOpcao)">{{ subOpcao.titulo }}</button>
     </div>
