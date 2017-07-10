@@ -4,6 +4,7 @@ import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-home',
@@ -39,6 +40,7 @@ export class HomeComponent {
 
   constructor(private autenticacaoService: AutenticacaoService) {
     this.autenticado = autenticacaoService.isAutenticado();
+    GoogleAnalytics.sendPageViewForPage('/home');
   }
 
 }
