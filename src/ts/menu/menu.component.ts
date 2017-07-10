@@ -5,7 +5,6 @@ import {ContatoComponent} from "../contato/contato";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Observable} from "rxjs/Observable";
 import {VacinasExtraSUSComponent} from "../extra-sus/extra-sus";
-import {AlergiaComponent} from "../alergia/alergia";
 
 @Component({
   selector: 'vacinas-menu',
