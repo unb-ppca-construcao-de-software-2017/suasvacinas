@@ -38,6 +38,7 @@ export class DescricaoVacina {
   redepublica: TextoFonte;
   variacao: TextoFonte;
   comentarios: TextoFonte;
+  doses: Dose[];
 }
 export class TextoFonte {
   texto: string;
@@ -68,17 +69,4 @@ export class VacinasRepository {
     return this.afd.list('/base/descricoes-vacinas/').concatMap((dvs: DescricaoVacina[]) => dvs).filter((dv: DescricaoVacina) => dv.nomevacina === nomevacina).first();
   }
 
-  getDosesVacina(chaveVacina: string): Observable<Dose[]> {
-    return this.getAllDoses().map((idadeDoses: IdadeDose[]) => this.idadeDosesToVacinaIdadeDoseFontes(idadeDoses, chaveVacina));
-  }
-
-  private static flatMap<ENTRADA, SAIDA>(listaEntrada: ENTRADA[], funcaoConversaoEntradaSaida: (entrada: ENTRADA) => SAIDA[]): SAIDA[] {
-    return [].concat(...listaEntrada.map(funcaoConversaoEntradaSaida));
-  }
-
-  private idadeDosesToVacinaIdadeDoseFontes(idadeDoses: IdadeDose[], chaveVacina: string): Dose[] {
-    return VacinasRepository.flatMap<IdadeDose, Dose>(idadeDoses, (idadeDose: IdadeDose) => {
-      return idadeDose.doses.filter(dose => dose.nomevacina === chaveVacina);
-    });
-  }
 }

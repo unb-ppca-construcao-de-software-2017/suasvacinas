@@ -44,21 +44,21 @@ import {CadernetaRepository} from "../caderneta/caderneta.repository";
   template: `
     <div class="dose-div" *ngIf="!dentroDeDescricaoVacina">
       <ion-fab class="fab-dose">
-        <button *ngIf="doseFoiTomada(dose); else icone_dose" ion-fab color="light" mini (click)="abrirActionSheetDose(dose)">
+        <button *ngIf="doseFoiTomada(); else icone_dose" ion-fab color="light" mini (click)="abrirActionSheetDose()">
           <ion-icon name="information-circle-outline"></ion-icon>
         </button>
         <ng-template #icone_dose>
-          <button ion-fab color="secondary" mini (click)="abrirActionSheetDose(dose)">
+          <button ion-fab color="secondary" mini (click)="abrirActionSheetDose()">
             <ion-icon name="checkbox-outline"></ion-icon>
           </button>
         </ng-template>
       </ion-fab>
       <button ion-item class="botao-dose" (click)="abrirVacina(dose.nomevacina)">
-        <span [ngClass]="{tomada: doseFoiTomada(dose)}">{{ dose.nomevacina }}
+        <span [ngClass]="{tomada: doseFoiTomada()}">{{ dose.nomevacina }}
         <p>{{ dose.dosevacina }}</p>
         </span>
         <p class="item-note" item-right>
-          <span *ngIf="doseFoiTomada(dose); else fonte_dose" class="cor-vermelha">Já tomada</span>
+          <span *ngIf="doseFoiTomada(); else fonte_dose" class="cor-vermelha">Já tomada</span>
           <ng-template #fonte_dose>{{ dose.fontedose }}</ng-template>
         </p>
       </button>
@@ -66,21 +66,21 @@ import {CadernetaRepository} from "../caderneta/caderneta.repository";
 
     <ion-item *ngIf="dentroDeDescricaoVacina">
       <ion-fab class="fab-dose-descricao">
-        <button *ngIf="doseFoiTomada(dose); else icone_dose2" ion-fab color="light" mini (click)="abrirActionSheetDose(undefined)">
+        <button *ngIf="doseFoiTomada(); else icone_dose2" ion-fab color="light" mini (click)="abrirActionSheetDose()">
           <ion-icon name="information-circle-outline"></ion-icon>
         </button>
         <ng-template #icone_dose2>
-          <button ion-fab color="secondary" mini (click)="abrirActionSheetDose(undefined)">
+          <button ion-fab color="secondary" mini (click)="abrirActionSheetDose()">
             <ion-icon name="checkbox-outline"></ion-icon>
           </button>
         </ng-template>
       </ion-fab>
 
-      <div class="div-dose" [ngClass]="{tomada: doseFoiTomada(dose)}">
+      <div class="div-dose" [ngClass]="{tomada: doseFoiTomada()}">
         <h2>{{ dose.idadedoseextenso }}</h2>
         <p>{{ dose.dosevacina }}</p>
         <p class="dose-fonte">
-          <span *ngIf="doseFoiTomada(dose); else fonte_dose2" class="cor-vermelha" style="text-decoration: none;">Já tomada</span>
+          <span *ngIf="doseFoiTomada(); else fonte_dose2" class="cor-vermelha" style="text-decoration: none;">Já tomada</span>
           <ng-template #fonte_dose2>Fonte: {{ dose.fontedose }}</ng-template>
         </p>
       </div>
@@ -102,24 +102,24 @@ export class DoseComponent {
   }
 
   abrirVacina(nomevacina: string) {
-    this.navCtrl.push(DescricaoVacinaComponent, { nomevacina: nomevacina });
+    this.navCtrl.push(DescricaoVacinaComponent, { nomevacina: nomevacina, caderneta: this.caderneta });
   }
 
-  abrirActionSheetDose(dose: Dose) {
+  abrirActionSheetDose() {
     let botoesAction = [];
 
-    if (this.doseFoiTomada(dose)) {
-      botoesAction.push(this.botaoActionDESMarcarDoseComoTomada(dose));
+    if (this.doseFoiTomada()) {
+      botoesAction.push(this.botaoActionDESMarcarDoseComoTomada(this.dose));
     } else {
-      botoesAction.push(this.botaoActionMarcarDoseComoTomada(dose));
+      botoesAction.push(this.botaoActionMarcarDoseComoTomada(this.dose));
     }
 
     // botoesAction.push({text: 'Destructive', , handler: () => { console.log('Destructive clicked'); } });
 
     botoesAction.push({
-      text: 'Ver mais informações sobre ' + dose.nomevacina,
+      text: 'Ver mais informações sobre ' + this.dose.nomevacina,
       handler: () => {
-        this.abrirVacina(dose.nomevacina);
+        this.abrirVacina(this.dose.nomevacina);
       }
     });
 
@@ -130,14 +130,14 @@ export class DoseComponent {
     });
 
     let actionSheet = this.actionSheetCtrl.create({
-      title: `${dose.nomevacina} - ${dose.dosevacina}`,
+      title: `${this.dose.nomevacina} - ${this.dose.dosevacina}`,
       buttons: botoesAction
     });
     actionSheet.present();
   }
 
-  private doseFoiTomada(dose: Dose) {
-    return this.caderneta && this.caderneta.doses && this.caderneta.doses[dose.chavedose] && this.caderneta.doses[dose.chavedose].tomada;
+  private doseFoiTomada() {
+    return this.caderneta && this.caderneta.doses && this.caderneta.doses[this.dose.chavedose] && this.caderneta.doses[this.dose.chavedose].tomada;
   }
 
   private botaoActionMarcarDoseComoTomada(dose: Dose) {

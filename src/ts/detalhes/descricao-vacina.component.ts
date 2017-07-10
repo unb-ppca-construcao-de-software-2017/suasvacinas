@@ -1,7 +1,8 @@
 import {Component} from "@angular/core";
 import {NavController, NavParams} from "ionic-angular";
 import {Observable} from "rxjs/Observable";
-import {DescricaoVacina, Dose, VacinasRepository} from "../firebase/vacinas.repository";
+import {DescricaoVacina, VacinasRepository} from "../firebase/vacinas.repository";
+import {Caderneta, idadeEmMesesPorExtenso} from "../caderneta/caderneta.model";
 
 @Component({
   selector: 'vacinas-descricao-vacina',
@@ -26,6 +27,13 @@ import {DescricaoVacina, Dose, VacinasRepository} from "../firebase/vacinas.repo
     span.quebra-linha {
       white-space: pre-line;
     }
+    .imagem-genero {
+      /* duplicado em caderneta.component.ts e + */
+      height: 16px;
+      width: auto;
+      display: inline-block;
+      margin-bottom: -2px;
+    }
   `],
   template: `
     <ion-header>
@@ -33,12 +41,30 @@ import {DescricaoVacina, Dose, VacinasRepository} from "../firebase/vacinas.repo
     </ion-header>
 
     <ion-content class="bg-style">
+      <ion-row *ngIf="caderneta">
+        <ion-col offset-1 col-10>
+          <div style="text-align: center">
+            <ion-card>
+
+              <ion-card-header>
+                {{ caderneta.nome }}
+              </ion-card-header>
+              <ion-card-content>
+                <span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} -</span>
+                <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
+              </ion-card-content>
+
+            </ion-card>
+          </div>
+        </ion-col>
+      </ion-row>
+      
       <p class="detalhesvacina">Detalhes da Vacina</p>
       <h1 class="nomevacina">{{ (vacina | async)?.nomevacina }}</h1>
-      <ion-card *ngIf="(doses|async)?.length > 0">
+      <ion-card *ngIf="caderneta && (vacina|async)?.doses?.length">
         <ion-card-header>Doses</ion-card-header>
         <ion-card-content>
-          <vacinas-dose [dose]="dose" *ngFor="let dose of doses | async" [dentroDeDescricaoVacina]="true"></vacinas-dose>
+          <vacinas-dose [dose]="dose" [caderneta]="caderneta" *ngFor="let dose of (vacina|async)?.doses" [dentroDeDescricaoVacina]="true"></vacinas-dose>
         </ion-card-content>
       </ion-card>
       <ion-card *ngIf="(vacina|async)?.descricao.texto !== '-'"><ion-card-header>Descrição</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.descricao.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.descricao.fonte }}</p></ion-card-content></ion-card>
@@ -55,12 +81,24 @@ import {DescricaoVacina, Dose, VacinasRepository} from "../firebase/vacinas.repo
 export class DescricaoVacinaComponent {
 
   vacina: Observable<DescricaoVacina>;
-  doses: Observable<Dose[]>;
+
+  caderneta: Caderneta;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
+    this.caderneta = navParams.get('caderneta');
+
     let chaveVacina = navParams.get('nomevacina');
     this.vacina = this.vacinasRepository.getDescricaoVacina(chaveVacina);
-    this.doses = this.vacinasRepository.getDosesVacina(chaveVacina);
+  }
+
+  //noinspection JSMethodCanBeStatic
+  _idadeEmMesesPorExtenso(yyyymmdd) {
+    return idadeEmMesesPorExtenso(yyyymmdd); // duplicado em caderneta.component.ts e descricao-vacina.component.ts
+  }
+
+  //noinspection JSMethodCanBeStatic
+  _imagemGenero(caderneta: Caderneta) {
+    return `assets/icon/sexo-${caderneta.sexo}.png`; // duplicado em caderneta.component.ts e descricao-vacina.component.ts
   }
 
 }

@@ -153,7 +153,7 @@ export class DosesComponent {
   }
 
   abrirVacina(nomevacina: string) {
-    this.navCtrl.push(DescricaoVacinaComponent, { nomevacina: nomevacina });
+    this.navCtrl.push(DescricaoVacinaComponent, { nomevacina: nomevacina, caderneta: this.caderneta });
   }
 
   irParaLogin(): void {
@@ -162,12 +162,12 @@ export class DosesComponent {
 
   //noinspection JSMethodCanBeStatic
   _idadeEmMesesPorExtenso(yyyymmdd) {
-    return idadeEmMesesPorExtenso(yyyymmdd); // duplicado em caderneta.component.ts
+    return idadeEmMesesPorExtenso(yyyymmdd); // duplicado em caderneta.component.ts e descricao-vacina.component.ts
   }
 
   //noinspection JSMethodCanBeStatic
   _imagemGenero(caderneta: Caderneta) {
-    return `assets/icon/sexo-${caderneta.sexo}.png`; // duplicado em caderneta.component.ts
+    return `assets/icon/sexo-${caderneta.sexo}.png`; // duplicado em caderneta.component.ts e descricao-vacina.component.ts
   }
 
 }
