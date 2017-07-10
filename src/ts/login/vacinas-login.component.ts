@@ -30,7 +30,7 @@ import {OpcoesComponent} from "../opcoes/opcoes";
                 <ion-row>
                   <ion-col col-12>
                     <div>
-                      <h4>Curioso?<br>Comece agora mesmo!</h4>
+                      <h4>Só na curiosidade?<br>Comece agora mesmo!</h4>
                       <a (click)="abrirIdadeEspecifica()" style="font-size: 120%">
 
                         Clique aqui, confira as vacinas para uma idade específica e entenda como podemos te ajudar.
