@@ -37,7 +37,7 @@ import {OpcoesComponent} from "../opcoes/opcoes";
         </ion-row>
         <ion-row>
           <ion-col col-12 class="login">
-            <h5><span style="font-size: 80%">Pronto para salvar suas cadernetas? Ótimo!</span><br>Como você prefere se autenticar?</h5>
+            <h5><span style="font-size: 80%">Tudo pronto para salvar suas cadernetas? Ótimo!</span><br>Como você prefere se autenticar?</h5>
             
             <button ion-button outline item-end icon-left large (click)="signInWithFacebook()"><ion-icon name="logo-facebook"></ion-icon>Facebook</button><br>
           

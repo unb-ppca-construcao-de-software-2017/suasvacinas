@@ -50,29 +50,27 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
         </ion-slide>
 
         <ion-slide style="background-color: #ecf4f7">
-          <img class="vacina" src="assets/icon/notepad2.png" alt="suas vacinas">
-          <img class="vacina" src="assets/icon/vaccine-256.png" alt="suas vacinas"><br>
-
-          <button ion-button outline class="cadastrese" (click)="irParaLogin()">
-            <span>Crie sua caderneta!</span>
-            &nbsp;&nbsp;<ion-icon name="logo-facebook"></ion-icon>
-            &nbsp;<ion-icon name="logo-google"></ion-icon>
-            &nbsp;<ion-icon name="logo-twitter"></ion-icon>
-          </button>
-          
-          
+          <ion-grid>
+            <ion-row>
+              <ion-col col-12>
+                <div>
+                  Só na curiosidade?<br>Comece agora mesmo!<br>
+                  <a (click)="abrirIdadeEspecifica()" href="#">Confira as vacinas para uma idade específica e entenda como podemos te ajudar.</a>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
           
           <div class="duvida">
-            <ion-grid>
-              <ion-row>
-                <ion-col col-12>
-                  <div>
-                    Só na curiosidade?<br>Comece agora mesmo!<br>
-                    <a (click)="abrirIdadeEspecifica()" href="#">Confira as vacinas para uma idade específica e entenda como podemos te ajudar.</a>
-                  </div>
-                </ion-col>
-              </ion-row>
-            </ion-grid>
+            <img class="vacina" src="assets/icon/notepad2.png" alt="suas vacinas">
+            <img class="vacina" src="assets/icon/vaccine-256.png" alt="suas vacinas"><br>
+            Já quer criar a caderneta?
+            <button ion-button outline class="cadastrese" (click)="irParaLogin()">
+              <span>Crie sua caderneta!</span>
+              &nbsp;&nbsp;<ion-icon name="logo-facebook"></ion-icon>
+              &nbsp;<ion-icon name="logo-google"></ion-icon>
+              &nbsp;<ion-icon name="logo-twitter"></ion-icon>
+            </button>
           </div>
         </ion-slide>
 
@@ -104,7 +102,7 @@ export class TourComponent {
   }
 
   irParaLogin(): void {
-    this.navCtrl.push(VacinasLogInComponent);
+    this.navCtrl.push(VacinasLogInComponent, { ocultarTextoCuriosidade: true });
   }
 
 }
