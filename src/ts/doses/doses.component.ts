@@ -168,7 +168,7 @@ export class DosesComponent {
   }
 
   irParaLogin(): void {
-    this.navCtrl.push(VacinasLogInComponent);
+    this.navCtrl.push(VacinasLogInComponent, { ocultarTextoCuriosidade: true });
   }
 
   //noinspection JSMethodCanBeStatic

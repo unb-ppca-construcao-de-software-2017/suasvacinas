@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {AutenticacaoService} from "../firebase/autenticacao.service";
-import {NavController} from "ionic-angular";
+import {NavController, NavParams} from "ionic-angular";
 import {VacinasLogInComEmailComponent} from "./vacinas-login-email.component";
 import {OpcoesComponent} from "../opcoes/opcoes";
 
@@ -23,7 +23,7 @@ import {OpcoesComponent} from "../opcoes/opcoes";
 
     <ion-content padding>
       <ion-grid>
-        <ion-row>
+        <ion-row *ngIf="!ocultarTextoCuriosidade">
           <ion-col col-12>
             
             <div class="duvida">
@@ -55,7 +55,11 @@ import {OpcoesComponent} from "../opcoes/opcoes";
 })
 export class VacinasLogInComponent {
 
-  constructor(private navCtrl: NavController, private autenticacaoService: AutenticacaoService) {}
+  ocultarTextoCuriosidade: boolean = false;
+
+  constructor(private navCtrl: NavController, private autenticacaoService: AutenticacaoService, public navParams: NavParams) {
+    this.ocultarTextoCuriosidade = navParams.get('ocultarTextoCuriosidade') || false;
+  }
 
   signInWithGoogle(): void {
     this.autenticacaoService.signInWithGoogle().then(() => this.postLogIn());
