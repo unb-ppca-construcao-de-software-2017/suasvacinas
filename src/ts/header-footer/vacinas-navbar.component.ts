@@ -23,7 +23,7 @@ import { Component } from '@angular/core';
   `],
   template: `
     <ion-navbar color="primary">
-      <button ion-button menuToggle>
+      <button ion-button menuToggle class="branco">
         <ion-icon name="menu"></ion-icon>
       </button>
       <ion-title class="vacinas-header-toolbar">

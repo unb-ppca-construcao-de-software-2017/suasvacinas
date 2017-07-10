@@ -14,9 +14,6 @@ import {HomeComponent} from "../home/home.component";
       margin-bottom: -4px;
       border-color: white;
     }
-    .branco {
-      color: white !important;
-    }
     .saudacoes {
       color: white !important;
       font-weight: bold !important;
@@ -24,7 +21,7 @@ import {HomeComponent} from "../home/home.component";
   `],
   template: `
     <ion-toolbar color="primary">
-      <button ion-button menuToggle>
+      <button ion-button menuToggle class="branco">
         <ion-icon name="menu"></ion-icon>
       </button>
       <div style="text-align: center">
@@ -43,12 +40,12 @@ import {HomeComponent} from "../home/home.component";
       </div>
       <ion-buttons end>
         <span *ngIf="(autenticado | async)?.logado;else caderneta_abrirah_tour">
-          <button ion-button icon-right color="royal" (click)="irParaCaderneta()">
+          <button ion-button icon-right color="royal" (click)="irParaCaderneta()" class="branco">
             <ion-icon name="bookmarks"></ion-icon> &nbsp;&nbsp;
           </button>
         </span>
         <ng-template #caderneta_abrirah_tour>
-          <button ion-button icon-right color="royal" (click)="irParaTour()">
+          <button ion-button icon-right color="royal" (click)="irParaTour()" class="branco">
             <ion-icon name="bookmarks"></ion-icon> &nbsp;&nbsp;
           </button>
         </ng-template>
