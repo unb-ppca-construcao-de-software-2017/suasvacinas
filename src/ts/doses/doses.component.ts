@@ -52,7 +52,7 @@ import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "
         <ion-row *ngIf="!caderneta">
           <ion-col col-12>
             <div style="text-align: center">
-            Abaixo as doses recomendadas até <span class="idade-escolhida">{{ idadeEscolhida }}</span>.<br>
+            Abaixo as doses recomendadas <span class="idade-escolhida">{{ idadeEscolhida }}</span>.<br>
             Conheça detalhes e <b>marque as que já tomou</b>.<br>
 
               <button ion-button outline small (click)="irParaLogin()">
@@ -146,8 +146,16 @@ export class DosesComponent {
       this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
     } else {
       this.meses = navParams.get('meses');
-      this.idadeEscolhida = 'até ' + navParams.get('idadeEscolhida').toLowerCase();
       this.idadeDoses = this.vacinasRepository.getDosesAtehMeses(this.meses);
+
+      let idade = navParams.get('idadeEscolhida').toLowerCase();
+      if (idade.indexOf('nascer') > -1 || idade.indexOf('até') > -1) {
+        this.idadeEscolhida = idade;
+      } else if (idade.indexOf('mais') > -1) {
+        this.idadeEscolhida = 'para ' + idade;
+      } else {
+        this.idadeEscolhida = 'até ' + idade;
+      }
     }
 
   }
