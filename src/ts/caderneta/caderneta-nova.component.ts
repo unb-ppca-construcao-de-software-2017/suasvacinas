@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {CadernetaRepository} from "./caderneta.repository";
 import {Caderneta} from "./caderneta.model";
-import {App} from "ionic-angular";
+import {App, LoadingController, ToastController} from "ionic-angular";
 import {HomeComponent} from "../home/home.component";
 
 @Component({
@@ -78,10 +78,16 @@ export class CadernetaNovaComponent {
   data_nascimento: string;
   sexo: string = "ambos";
 
-  constructor(private appCtrl: App, private autenticacaoService: AutenticacaoService, private cadernetaRepository: CadernetaRepository) {
+  constructor(private appCtrl: App, private autenticacaoService: AutenticacaoService, private cadernetaRepository: CadernetaRepository,
+              private loadingCtrl: LoadingController, public toastCtrl: ToastController) {
   }
 
   criarNovaCaderneta(): void {
+    let salvando = this.loadingCtrl.create({
+      content: "Salvando..."
+    });
+    salvando.present();
+
     let novaCaderneta;
     if (this.data_nascimento) {
       novaCaderneta = new Caderneta(this.nome, this.sexo, this.data_nascimento);
@@ -89,9 +95,18 @@ export class CadernetaNovaComponent {
       novaCaderneta = new Caderneta(this.nome, this.sexo, "");
     }
 
-    this.cadernetaRepository.adicionarCaderneta(novaCaderneta).then(() =>
-      this.appCtrl.getRootNav().setRoot(HomeComponent)
-    );
+    this.cadernetaRepository.adicionarCaderneta(novaCaderneta).then(() => {
+      salvando.dismiss();
+      let toast = this.toastCtrl.create({
+        message: 'Caderneta ' + this.nome + ' criada.',
+        showCloseButton: true,
+        closeButtonText: 'Ok',
+        duration: 5000,
+        position: 'bottom'
+      });
+      toast.present(toast);
+      return this.appCtrl.getRootNav().setRoot(HomeComponent);
+    });
   }
 
 }
