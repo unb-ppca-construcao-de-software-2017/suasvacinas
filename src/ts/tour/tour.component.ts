@@ -17,7 +17,7 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
       text-align: center;
     }
     img.vacina {
-      height: 110px;
+      height: 100px;
     }
   `],
   template: `
@@ -31,9 +31,9 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
 
         <ion-slide>
 
-          <h1>Crie...</h1>
+          <h5>Crie...</h5>
           <img class="emoji-cool" src="assets/icon/emoji-cool.png" alt="legal"><br>
-          <h3>a {{ args.msg }}...</h3>
+          <h5>a {{ args.msg }}...</h5>
           ...e de quem você quiser!
 
           <br><br>
