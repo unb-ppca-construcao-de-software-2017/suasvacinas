@@ -1,11 +1,9 @@
-import {Component, Input} from '@angular/core';
-import {ActionSheetController, NavController, NavParams} from 'ionic-angular';
-import {Dose, IdadeDose, VacinasRepository} from "../firebase/vacinas.repository";
+import {Component, Input} from "@angular/core";
+import {ActionSheetController, NavController, NavParams} from "ionic-angular";
+import {Dose, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
-import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
-import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "../caderneta/caderneta.model";
 
 @Component({
   selector: 'vacinas-dose',
