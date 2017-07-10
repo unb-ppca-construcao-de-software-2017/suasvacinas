@@ -11,6 +11,9 @@ import {Caderneta, idadeEmMesesPorExtenso} from "../caderneta/caderneta.model";
       float: right;
       margin-right: 10px;
       color: gray;
+      max-width: 22%;
+      margin-top: -1px;
+      text-align: center;
     }
     .nomevacina {
       padding: 0 5px 5px 20px;
