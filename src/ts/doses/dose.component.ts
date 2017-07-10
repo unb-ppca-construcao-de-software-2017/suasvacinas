@@ -83,21 +83,22 @@ export class DoseComponent {
       buttons: [
         {
           text: 'Marcar dose como já tomada',
-          role: 'destructive',
           handler: () => {
             console.log('Destructive clicked');
           }
         },{
+          // text: 'Marcar dose como nunca será tomada',
+          // role: 'destructive',
+          // handler: () => { console.log('Destructive clicked'); }
+        // },{
           text: 'Ver mais informações sobre ' + dose.nomevacina,
           handler: () => {
-            console.log('Archive clicked');
+            this.abrirVacina(dose.nomevacina);
           }
         },{
           text: 'Cancelar',
           role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
+          handler: () => { /* nada a fazer quando cancelarem */ }
         }
       ]
     });
