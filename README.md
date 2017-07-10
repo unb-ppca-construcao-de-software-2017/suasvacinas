@@ -4,7 +4,7 @@
 
 [![CircleCI](https://circleci.com/gh/suasvacinas/suasvacinas.svg?style=svg)](https://circleci.com/gh/suasvacinas/suasvacinas)
 
-App de SuasVacinas.com.br
+App de [Vacine.org](https://vacine.org).
 
 ---
 
@@ -35,7 +35,7 @@ ionic serve
 npm run e2e
 ```
 
-## Protótipo próxima versão
+## Protótipo primeira versão
 
 ![x](_docs/proto-v0.png)
 
