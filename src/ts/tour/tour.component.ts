@@ -53,11 +53,11 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
           <img class="vacina" src="assets/icon/notepad2.png" alt="suas vacinas">
           <img class="vacina" src="assets/icon/vaccine-256.png" alt="suas vacinas"><br>
 
-          <button ion-button outline large class="cadastrese" (click)="irParaLogin()">
-            <span class="branco">Crie sua caderneta!</span>
-            &nbsp;&nbsp;<ion-icon name="logo-facebook" class="branco"></ion-icon>
-            &nbsp;<ion-icon name="logo-google" class="branco"></ion-icon>
-            &nbsp;<ion-icon name="logo-twitter" class="branco"></ion-icon>
+          <button ion-button outline class="cadastrese" (click)="irParaLogin()">
+            <span>Crie sua caderneta!</span>
+            &nbsp;&nbsp;<ion-icon name="logo-facebook"></ion-icon>
+            &nbsp;<ion-icon name="logo-google"></ion-icon>
+            &nbsp;<ion-icon name="logo-twitter"></ion-icon>
           </button>
           
           
@@ -68,7 +68,7 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
                 <ion-col col-12>
                   <div>
                     Só na curiosidade?<br>Comece agora mesmo!<br>
-                    <a (click)="abrirIdadeEspecifica()">Confira as vacinas para uma idade específica e entenda como podemos te ajudar.</a>
+                    <a (click)="abrirIdadeEspecifica()" href="#">Confira as vacinas para uma idade específica e entenda como podemos te ajudar.</a>
                   </div>
                 </ion-col>
               </ion-row>
