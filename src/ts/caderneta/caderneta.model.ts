@@ -35,10 +35,13 @@ export function idadeEmMeses(yyyymmdd: string): number {
 export function mesesPorExtenso(meses: number): string {
   let prefixo = '';
   let sufixo = ' de idade';
-  if (meses <= 0) {
+  if (meses < 0) {
     prefixo = 'Nascerá em ';
     sufixo = '';
     meses *= -1;
+  }
+  if (meses === 0) {
+    return 'Nascerá em menos de um mês';
   }
   if (meses >= 9999) {
     return 'Sem idade';
