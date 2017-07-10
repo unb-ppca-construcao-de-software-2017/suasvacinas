@@ -41,6 +41,9 @@ import {Caderneta, idadeEmMesesPorExtenso} from "../caderneta/caderneta.model";
     </ion-header>
 
     <ion-content class="bg-style">
+      
+      <vacinas-loading *ngIf="!(vacina | async)"></vacinas-loading>
+      
       <ion-row *ngIf="caderneta">
         <ion-col offset-1 col-10>
           <div style="text-align: center">
@@ -59,18 +62,20 @@ import {Caderneta, idadeEmMesesPorExtenso} from "../caderneta/caderneta.model";
         </ion-col>
       </ion-row>
       
-      <p class="detalhesvacina">Detalhes da Vacina</p>
-      <h1 class="nomevacina">{{ (vacina | async)?.nomevacina }}</h1>
-      <ion-card *ngIf="caderneta && (vacina|async)?.doses?.length">
-        <ion-card-header>Doses</ion-card-header>
-        <ion-card-content>
-          <vacinas-dose [dose]="dose" [caderneta]="caderneta" *ngFor="let dose of (vacina|async)?.doses" [dentroDeDescricaoVacina]="true"></vacinas-dose>
-        </ion-card-content>
-      </ion-card>
-      <ion-card *ngIf="(vacina|async)?.descricao.texto !== '-'"><ion-card-header>Descrição</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.descricao.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.descricao.fonte }}</p></ion-card-content></ion-card>
-      <ion-card *ngIf="(vacina|async)?.redepublica.texto !== '-'"><ion-card-header>Rede Pública</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.redepublica.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.redepublica.fonte }}</p></ion-card-content></ion-card>
-      <ion-card *ngIf="(vacina|async)?.variacao.texto !== '-'"><ion-card-header>Variação (Rede Privada)</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.variacao.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.variacao.fonte }}</p></ion-card-content></ion-card>
-      <ion-card *ngIf="(vacina|async)?.comentarios.texto !== '-'"><ion-card-header>Outros dados</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.comentarios.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.comentarios.fonte }}</p></ion-card-content></ion-card>
+      <div *ngIf="(vacina | async)">
+        <p class="detalhesvacina">Detalhes da Vacina</p>
+        <h1 class="nomevacina">{{ (vacina | async)?.nomevacina }}</h1>
+        <ion-card *ngIf="(vacina|async)?.doses?.length">
+          <ion-card-header>Doses</ion-card-header>
+          <ion-card-content>
+            <vacinas-dose [dose]="dose" *ngFor="let dose of (vacina|async)?.doses" [dentroDeDescricaoVacina]="true"></vacinas-dose>
+          </ion-card-content>
+        </ion-card>
+        <ion-card *ngIf="(vacina|async)?.descricao.texto !== '-'"><ion-card-header>Descrição</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.descricao.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.descricao.fonte }}</p></ion-card-content></ion-card>
+        <ion-card *ngIf="(vacina|async)?.redepublica.texto !== '-'"><ion-card-header>Rede Pública</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.redepublica.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.redepublica.fonte }}</p></ion-card-content></ion-card>
+        <ion-card *ngIf="(vacina|async)?.variacao.texto !== '-'"><ion-card-header>Variação (Rede Privada)</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.variacao.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.variacao.fonte }}</p></ion-card-content></ion-card>
+        <ion-card *ngIf="(vacina|async)?.comentarios.texto !== '-'"><ion-card-header>Outros dados</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.comentarios.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.comentarios.fonte }}</p></ion-card-content></ion-card>
+      </div>
     </ion-content>
 
     <ion-footer>
