@@ -27,7 +27,7 @@ import {HomeComponent} from "../home/home.component";
       <button ion-button menuToggle>
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>
+      <div style="text-align: center">
         <p class="saudacoes">Oi, 
           
           <span *ngIf="(autenticado | async)?.logado;else botao_quem_eh_voce">{{ (autenticado | async)?.nome }}!</span>
@@ -40,8 +40,7 @@ import {HomeComponent} from "../home/home.component";
           </ng-template>
         </p>
         
-        
-      </ion-title>
+      </div>
       <ion-buttons end>
         <span *ngIf="(autenticado | async)?.logado;else caderneta_abrirah_tour">
           <button ion-button icon-right color="royal" (click)="irParaCaderneta()">
