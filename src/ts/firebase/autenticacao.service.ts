@@ -16,7 +16,7 @@ export class AutenticacaoService {
 
   constructor(public afAuth: AngularFireAuth) {
     this.authenticated$ = afAuth.authState;
-    this.uid$ = afAuth.authState.map(user => user.uid);
+    this.uid$ = afAuth.authState.map(user => user ? user.uid : user);
   }
 
   isAutenticado(): Observable<UsuarioLogin> {
