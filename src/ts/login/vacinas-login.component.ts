@@ -8,7 +8,7 @@ import {OpcoesComponent} from "../opcoes/opcoes";
   selector: 'vacinas-login',
   styles: [`
     .login {
-      margin-top: 25%;
+      margin-top: 5%;
       text-align: center;
     }
     .duvida {
@@ -24,36 +24,28 @@ import {OpcoesComponent} from "../opcoes/opcoes";
     <ion-content padding>
       <ion-grid>
         <ion-row>
-          <ion-col>
+          <ion-col col-12>
+            
             <div class="duvida">
-              <ion-grid>
-                <ion-row>
-                  <ion-col col-12>
-                    <div>
-                      <h4>Só na curiosidade?<br>Comece agora mesmo!</h4>
-                      <a (click)="abrirIdadeEspecifica()" style="font-size: 120%">
-
-                        Clique aqui, confira as vacinas para uma idade específica e entenda como podemos te ajudar.
-                        
-                      </a>
-                    </div>
-                  </ion-col>
-                </ion-row>
-              </ion-grid>
+              <h4>Só na curiosidade?<br><span style="font-size: 80%">Comece agora mesmo!</span></h4>
+              <a (click)="abrirIdadeEspecifica()" href="#" style="font-size: 110%">
+                Clique aqui, confira as vacinas para uma idade específica e entenda como podemos te ajudar.
+              </a>
             </div>
+            
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col col-12 class="login">
-            <h4><span style="font-size: 80%">Pronto para salvar suas cadernetas? Ótimo!</span><br>Como você prefere se autenticar?</h4>
+            <h5><span style="font-size: 80%">Pronto para salvar suas cadernetas? Ótimo!</span><br>Como você prefere se autenticar?</h5>
             
             <button ion-button outline item-end icon-left large (click)="signInWithFacebook()"><ion-icon name="logo-facebook"></ion-icon>Facebook</button><br>
           
             <button ion-button outline item-end icon-left large (click)="signInWithGoogle()"><ion-icon name="logo-google"></ion-icon>Google</button><br>
           
-            <button ion-button outline item-end icon-left large (click)="signInWithTwitter()">&nbsp;<ion-icon name="logo-twitter"></ion-icon>Twitter&nbsp;</button><br>
+            <button ion-button outline item-end icon-left large (click)="signInWithTwitter()">&nbsp;<ion-icon name="logo-twitter"></ion-icon>Twitter&nbsp;</button>
           
-            <button *ngIf="false" ion-button outline item-end icon-left large (click)="loginComEmail()"><ion-icon name="mail"></ion-icon>E-mail</button><br>
+            <button *ngIf="false" ion-button outline item-end icon-left large (click)="loginComEmail()"><ion-icon name="mail"></ion-icon>E-mail</button>
           </ion-col>
         </ion-row>
 
