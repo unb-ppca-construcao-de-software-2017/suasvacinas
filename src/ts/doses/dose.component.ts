@@ -144,6 +144,17 @@ export class DoseComponent {
     return {
       text: 'Marcar dose como já tomada',
       handler: () => {
+        if (!this.caderneta) {
+          let toast = this.toastCtrl.create({
+            message: 'Neste momento, a vacina seria marcada como tomada! Crie sua caderneta e veja muito mais!',
+            showCloseButton: true,
+            closeButtonText: 'Ok',
+            duration: 8000,
+            position: 'bottom'
+          });
+          toast.present(toast);
+          return;
+        }
         let salvando = this.loadingCtrl.create({
           content: "Salvando..."
         });

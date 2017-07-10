@@ -2,12 +2,17 @@ import { Component } from '@angular/core';
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {NavController} from "ionic-angular";
 import {VacinasLogInComEmailComponent} from "./vacinas-login-email.component";
+import {OpcoesComponent} from "../opcoes/opcoes";
 
 @Component({
   selector: 'vacinas-login',
   styles: [`
     .login {
-      margin-top: 10%;
+      margin-top: 25%;
+      text-align: center;
+    }
+    .duvida {
+      margin-top: 5%;
       text-align: center;
     }
   `],
@@ -19,18 +24,39 @@ import {VacinasLogInComEmailComponent} from "./vacinas-login-email.component";
     <ion-content padding>
       <ion-grid>
         <ion-row>
-          <ion-col offset-2 col-8 class="login">
-            <h2>Oi! Como você prefere se autenticar?</h2>
-            
-            <button ion-button outline item-end icon-left large (click)="signInWithFacebook()"><ion-icon name="logo-facebook"></ion-icon>Facebook</button><br><br>
-          
-            <button ion-button outline item-end icon-left large (click)="signInWithGoogle()"><ion-icon name="logo-google"></ion-icon>Google</button><br><br>
-          
-            <button ion-button outline item-end icon-left large (click)="signInWithTwitter()">&nbsp;<ion-icon name="logo-twitter"></ion-icon>Twitter&nbsp;</button><br><br>
-          
-            <button ion-button outline item-end icon-left large (click)="loginComEmail()"><ion-icon name="mail"></ion-icon>E-mail</button><br>
+          <ion-col>
+            <div class="duvida">
+              <ion-grid>
+                <ion-row>
+                  <ion-col col-12>
+                    <div>
+                      <h4>Curioso?<br>Comece agora mesmo!</h4>
+                      <a (click)="abrirIdadeEspecifica()" style="font-size: 120%">
+
+                        Clique aqui, confira as vacinas para uma idade específica e entenda como podemos te ajudar.
+                        
+                      </a>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
           </ion-col>
         </ion-row>
+        <ion-row>
+          <ion-col col-12 class="login">
+            <h4><span style="font-size: 80%">Pronto para salvar suas cadernetas? Ótimo!</span><br>Como você prefere se autenticar?</h4>
+            
+            <button ion-button outline item-end icon-left large (click)="signInWithFacebook()"><ion-icon name="logo-facebook"></ion-icon>Facebook</button><br>
+          
+            <button ion-button outline item-end icon-left large (click)="signInWithGoogle()"><ion-icon name="logo-google"></ion-icon>Google</button><br>
+          
+            <button ion-button outline item-end icon-left large (click)="signInWithTwitter()">&nbsp;<ion-icon name="logo-twitter"></ion-icon>Twitter&nbsp;</button><br>
+          
+            <button *ngIf="false" ion-button outline item-end icon-left large (click)="loginComEmail()"><ion-icon name="mail"></ion-icon>E-mail</button><br>
+          </ion-col>
+        </ion-row>
+
       </ion-grid>
     </ion-content>
   `
@@ -57,8 +83,11 @@ export class VacinasLogInComponent {
 
   //noinspection JSMethodCanBeStatic
   private postLogIn(): void {
-    console.log('Logou!');
     window.location.reload();
+  }
+
+  abrirIdadeEspecifica() {
+    this.navCtrl.push(OpcoesComponent, {chave: "meu-filho"});
   }
 
 }

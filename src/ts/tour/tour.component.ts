@@ -14,7 +14,6 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
     }
     .duvida {
       margin-top: 20%;
-      font-size: 80%;
       text-align: center;
     }
     img.vacina {
@@ -66,9 +65,9 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
           <div class="duvida">
             <ion-grid>
               <ion-row>
-                <ion-col offset-2 col-8>
+                <ion-col col-12>
                   <div>
-                    Na dúvida?<br>
+                    Curioso?<br>Comece agora mesmo!<br>
                     <a (click)="abrirIdadeEspecifica()">Confira as vacinas para uma idade específica e entenda como podemos te ajudar.</a>
                   </div>
                 </ion-col>
@@ -102,7 +101,6 @@ export class TourComponent {
 
   abrirIdadeEspecifica() {
     this.navCtrl.push(OpcoesComponent, {chave: this.args.chave});
-    return false;
   }
 
   irParaLogin(): void {

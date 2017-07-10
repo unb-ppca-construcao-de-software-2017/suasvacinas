@@ -1,10 +1,9 @@
-import {Component, AfterViewInit} from "@angular/core";
+import {Component} from "@angular/core";
 import "rxjs/add/operator/pluck";
 import "rxjs/add/operator/filter";
 import "rxjs/add/operator/map";
 import {Observable} from "rxjs/Observable";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
-import {SubOpcao} from "../firebase/vacinas.repository";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {NavController} from "ionic-angular";
 import {TourComponent} from "./tour.component";
@@ -56,7 +55,7 @@ export class TourHomeComponent {
     this.tours = [
       {titulo: "Minha filha",  args: {msg: "caderneta da sua filha",        chave: "minha-filha"}},
       {titulo: "Meu filho",    args: {msg: "caderneta do seu filho",        chave: "meu-filho"}},
-      {titulo: "Eu",           args: {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}}, // isto estah duplicado em vacinas-footer.component.ts
+      {titulo: "Eu",           args: {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}}, // isto estah duplicado em vacinas-footer.component.ts e vacinas-login.component.ts
       {titulo: "Meu familiar", args: {msg: "caderneta do seu familiar",     chave: "meu-familiar"}}
     ];
   }

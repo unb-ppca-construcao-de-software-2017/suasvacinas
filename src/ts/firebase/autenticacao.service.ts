@@ -23,7 +23,6 @@ export class AutenticacaoService {
     return this.authenticated$
       .take(1)
       .map(usuario => {
-        console.log('isAutenticado', usuario);
         if (usuario) {
           return new UsuarioLogin(usuario.displayName);
         }
