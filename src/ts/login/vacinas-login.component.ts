@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {NavController, NavParams} from "ionic-angular";
 import {VacinasLogInComEmailComponent} from "./vacinas-login-email.component";
