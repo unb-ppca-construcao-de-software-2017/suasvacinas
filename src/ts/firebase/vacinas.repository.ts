@@ -50,7 +50,7 @@ export class VacinasRepository {
   constructor(public afd: AngularFireDatabase) { }
 
   getOpcoes(): Observable<Opcao[]> {
-    return this.afd.list('/base/opcoes/');
+    return this.afd.list('/opcoes/');
   }
 
   getOpcao(chave: string): Observable<Opcao> {
