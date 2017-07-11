@@ -95,7 +95,7 @@ export class TourComponent {
   args: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.args = navParams.get('args') || {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}; // duped de tour-home.component.ts
+    this.args = navParams.get('args');
   }
 
   proximoSlide() {
