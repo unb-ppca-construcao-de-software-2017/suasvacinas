@@ -71,7 +71,7 @@ import {Caderneta, idadeEmMesesPorExtenso} from "../caderneta/caderneta.model";
         <ion-card *ngIf="(vacina|async)?.doses?.length">
           <ion-card-header>Doses</ion-card-header>
           <ion-card-content>
-            <vacinas-dose [dose]="dose" *ngFor="let dose of (vacina|async)?.doses" [dentroDeDescricaoVacina]="true"></vacinas-dose>
+            <vacinas-dose [dose]="dose" [caderneta]="caderneta" *ngFor="let dose of (vacina|async)?.doses" [dentroDeDescricaoVacina]="true"></vacinas-dose>
           </ion-card-content>
         </ion-card>
         <ion-card *ngIf="(vacina|async)?.descricao.texto !== '-'"><ion-card-header>Descrição</ion-card-header><ion-card-content><span class="quebra-linha">{{ (vacina | async)?.descricao.texto }}</span><p class="fonte">Fonte: {{ (vacina | async)?.descricao.fonte }}</p></ion-card-content></ion-card>
