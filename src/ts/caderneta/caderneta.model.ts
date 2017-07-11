@@ -9,6 +9,14 @@ export class Caderneta {
 
 }
 
+export function cadernetaDosesTomadas(caderneta: Caderneta) {
+  let dosesTomadas = Object.keys(caderneta.doses || {}).length;
+  if (dosesTomadas === 0) {
+    return 'Nenhuma dose tomada';
+  }
+  return dosesTomadas + ' doses tomadas';
+}
+
 export function idadeEmMeses(yyyymmdd: string): number {
   if (!yyyymmdd || !yyyymmdd.trim()) {
     return 9999;

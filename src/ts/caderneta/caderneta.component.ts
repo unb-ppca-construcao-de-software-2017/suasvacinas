@@ -3,7 +3,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {NavController} from "ionic-angular";
 import {CadernetaNovaComponent} from "./caderneta-nova.component";
 import {CadernetaRepository} from "./caderneta.repository";
-import {Caderneta, idadeEmMesesPorExtenso} from "./caderneta.model";
+import {Caderneta, cadernetaDosesTomadas, idadeEmMesesPorExtenso} from "./caderneta.model";
 import {Observable} from "rxjs/Observable";
 import {DosesComponent} from "../doses/doses.component";
 
@@ -17,52 +17,68 @@ import {DosesComponent} from "../doses/doses.component";
       display: inline-block;
       margin-bottom: -2px;
     }
+    .cor-maisoumenos {
+      color: #6d89b3;
+    }
+    .doses-tomadas {
+      font-size: 95%;
+      display: inline-block;
+      min-width: 170px;
+      color: #6d89b3;
+      margin-top: 8px;
+      margin-left: 5px;
+    }
   `],
   template: `
-    <ion-grid>
-      <ion-row>
-        <ion-col offset-1 col-10 class="texto-centralizado">
-        
-          <h1>Cadernetas</h1>
+    <div text-center>
+      <h1>Cadernetas</h1>
 
-          <br>
+      <vacinas-loading *ngIf="!(cadernetaRepository.cadernetas$ | async)"></vacinas-loading>
 
-          <vacinas-loading *ngIf="!(cadernetaRepository.cadernetas$ | async)"></vacinas-loading>
+      <ion-card *ngIf="(cadernetaRepository.cadernetas$ | async) && !(cadernetaRepository.cadernetas$ | async)?.length">
+        <ion-card-content>
+        Você ainda não tem nenhuma caderneta criada.<br><br>Vamos <a (click)="novaCaderneta()">criar a primeira</a>?
+        </ion-card-content>
+      </ion-card>
+      
+      <ion-card *ngFor="let caderneta of cadernetaRepository.cadernetas$ | async">
 
-          <ion-card *ngIf="(cadernetaRepository.cadernetas$ | async) && !(cadernetaRepository.cadernetas$ | async)?.length">
-            <ion-card-content>
-            Você ainda não tem nenhuma caderneta criada.<br><br>Vamos <a (click)="novaCaderneta()">criar a primeira</a>?
-            </ion-card-content>
-          </ion-card>
-          
-          <ion-card *ngFor="let caderneta of cadernetaRepository.cadernetas$ | async">
-            
-            <ion-card-header>
-              {{ caderneta.nome }}
-            </ion-card-header>
-            <ion-card-content>
-              <span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} -</span> 
-              <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
-
+        <ion-card-header text-center>
+          {{ caderneta.nome }}
+        </ion-card-header>
+        <p><span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }}</span>
+          <img item-end class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo"></p>
+        <ion-row>
+          <ion-col text-left>
+            <span class="cor-maisoumenos doses-tomadas" clear small icon-start>
+              <ion-icon name='done-all' name="md-done-all"></ion-icon>
+              {{ _cadernetaDosesTomadas(caderneta) }}
+            </span>
+            <br>
+            <button *ngIf="false" ion-button class="cor-maisoumenos" clear small icon-start>
+              <ion-icon name='clock-outline'></ion-icon>
+              4 nos próximos meses
+            </button>
+          </ion-col>
+          <ion-col align-self-center text-right>
+            <ion-note>
               <ion-buttons item-end>
-                <button ion-button outline icon-only (click)="abrirCaderneta(caderneta)">
+                <button ion-button outline small icon-only (click)="abrirCaderneta(caderneta)">
                   <ion-icon name="folder-open-outline"></ion-icon>
                 </button>
               </ion-buttons>
-            </ion-card-content>
-            
-          </ion-card>
+            </ion-note>
+          </ion-col>
+        </ion-row>
+      </ion-card>
 
-          <br><br>
+      <br><br>
 
-          <button ion-button outline item-end icon-left (click)="novaCaderneta()">
-            <ion-icon name="add"></ion-icon>
-            Nova Caderneta
-          </button>
-          
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+      <button ion-button outline item-end icon-left (click)="novaCaderneta()">
+        <ion-icon name="add"></ion-icon>
+        Nova Caderneta
+      </button>
+    </div>
   `
 })
 export class CadernetaComponent {
@@ -90,6 +106,10 @@ export class CadernetaComponent {
   //noinspection JSMethodCanBeStatic
   _imagemGenero(caderneta: Caderneta) {
     return `assets/icon/sexo-${caderneta.sexo}.png`; // duplicado em doses.component.ts
+  }
+
+  _cadernetaDosesTomadas(caderneta: Caderneta) {
+    return cadernetaDosesTomadas(caderneta);
   }
 
 }

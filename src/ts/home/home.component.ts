@@ -8,12 +8,17 @@ import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-home',
+  styles: [`
+    .bgCaderneta {
+      background-color: #f4f4f7;
+    }
+  `],
   template: `
     <ion-header>
       <vacinas-navbar></vacinas-navbar>
     </ion-header>
 
-    <ion-content padding>
+    <ion-content padding [ngClass]="{bgCaderneta: (autenticado | async)?.logado}">
       <div *ngIf="(autenticado | async); else home_processado">
         
         <div *ngIf="(autenticado | async)?.logado;else home_tour">
