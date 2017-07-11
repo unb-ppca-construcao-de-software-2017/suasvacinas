@@ -2,6 +2,7 @@ import {Component, ViewChild} from "@angular/core";
 import {NavController, NavParams, Slides} from "ionic-angular";
 import {OpcoesComponent} from "../opcoes/opcoes";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-banner-cadastre-se',
@@ -21,7 +22,16 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
         height: 40px;
       }
       img.vacina {
-        height: 40px;
+        height: 30px;
+      }
+      .duvida {
+        margin-top: 0;
+      }
+      .quebra-de-linha-ocultavel {
+        display: none;
+      }
+      .slide-com-emoticon {
+        font-size: 90%;
       }
     }
   `],
@@ -34,14 +44,14 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
 
       <ion-slides pager>
 
-        <ion-slide>
+        <ion-slide class="slide-com-emoticon">
 
           <h5>Crie...</h5>
-          <img class="emoji-cool" src="assets/icon/emoji-cool.png" alt="legal"><br>
+          <img class="emoji-cool" src="assets/icon/emoji-cool.png" alt="legal"><br class="quebra-de-linha-ocultavel">
           <h5>a {{ args.msg }}...</h5>
           ...e de quem você quiser!
 
-          <br><br>
+          <br><br class="quebra-de-linha-ocultavel">
           Acompanhe datas, doses recomendadas (<span class="cor-verde">SUS e rede privada</span>), alergias e até
           dicas.
 
@@ -96,6 +106,7 @@ export class TourComponent {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.args = navParams.get('args');
+    GoogleAnalytics.sendPageViewForPage('/tour');
   }
 
   proximoSlide() {
