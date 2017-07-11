@@ -72,8 +72,7 @@ import {DoseComponent} from "../ts/doses/dose.component";
       dayShortNames: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 's\u00e1b', 'dom']
     }, {
       links: [
-        { component: HomeComponent, name: 'Home', segment: 'home' },
-        { component: TourComponent, name: 'Tour', segment: 'tour' },
+        { component: HomeComponent, name: 'Home', segment: 'home' }
       ]
     })
   ],
