@@ -6,9 +6,6 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
 @Component({
   selector: 'vacinas-banner-cadastre-se',
   styles: [`
-    img.cocar-cabeca {
-      height: 90px;
-    }
     img.emoji-cool {
       height: 110px;
     }
@@ -18,6 +15,14 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
     }
     img.vacina {
       height: 100px;
+    }
+    @media(max-height:480px) {
+      img.emoji-cool {
+        height: 40px;
+      }
+      img.vacina {
+        height: 40px;
+      }
     }
   `],
   template: `
@@ -90,7 +95,7 @@ export class TourComponent {
   args: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    this.args = navParams.get('args');
+    this.args = navParams.get('args') || {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}; // duped de tour-home.component.ts
   }
 
   proximoSlide() {
