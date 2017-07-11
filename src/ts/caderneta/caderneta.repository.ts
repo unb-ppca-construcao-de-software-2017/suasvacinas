@@ -14,9 +14,6 @@ export class CadernetaRepository {
       .take(1)
       .subscribe(uid => {
         const path = `/cadernetas/${uid}`;
-
-        afDb.list(path).subscribe(x => console.log('subs', x));
-
         this.cadernetas$ = afDb.list(path);
       });
   }
