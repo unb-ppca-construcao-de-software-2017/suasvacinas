@@ -24,7 +24,7 @@ import {VacinasExtraSUSComponent} from "../ts/extra-sus/extra-sus";
 import {WelderComponent} from "../ts/welder/welder.component";
 import {TourComponent} from "../ts/tour/tour.component";
 import {VacinasLogInComEmailComponent} from "../ts/login/vacinas-login-email.component";
-import {ContatoComponent} from "../ts/contato/contato";
+import {ContatoComponent} from "../ts/contato/contato.component";
 import {AlergiaComponent} from "../ts/alergia/alergia";
 import {VacinasMenuComponent} from "../ts/menu/menu.component";
 import {CadernetaComponent} from "../ts/caderneta/caderneta.component";
@@ -72,7 +72,8 @@ import {DoseComponent} from "../ts/doses/dose.component";
       dayShortNames: ['dom', 'seg', 'ter', 'qua', 'qui', 'sex', 's\u00e1b', 'dom']
     }, {
       links: [
-        { component: HomeComponent, name: 'Home', segment: 'home' }
+        { component: HomeComponent, name: 'Home', segment: 'home' },
+        { component: ContatoComponent, name: 'Contato', segment: 'contato' }
       ]
     })
   ],
