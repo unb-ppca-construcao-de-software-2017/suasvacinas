@@ -32,6 +32,7 @@ import {TourHomeComponent} from "../ts/tour/tour-home.component";
 import {CadernetaNovaComponent} from "../ts/caderneta/caderneta-nova.component";
 import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
 import {DoseComponent} from "../ts/doses/dose.component";
+import {CadernetaService} from "../ts/caderneta/caderneta.service";
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import {DoseComponent} from "../ts/doses/dose.component";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     FirebaseProvider,
     CadernetaRepository,
-    AutenticacaoService
+    AutenticacaoService,
+    CadernetaService
   ]
 })
 export class AppModule {}

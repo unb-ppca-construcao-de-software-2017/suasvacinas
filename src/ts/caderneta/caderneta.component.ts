@@ -6,6 +6,7 @@ import {CadernetaRepository} from "./caderneta.repository";
 import {Caderneta, cadernetaDosesTomadas, idadeEmMesesPorExtenso} from "./caderneta.model";
 import {Observable} from "rxjs/Observable";
 import {DosesComponent} from "../doses/doses.component";
+import {CadernetaService, DosesAtrasadasEProximas} from "./caderneta.service";
 
 @Component({
   selector: 'vacinas-caderneta',
@@ -17,16 +18,20 @@ import {DosesComponent} from "../doses/doses.component";
       display: inline-block;
       margin-bottom: -2px;
     }
-    .cor-maisoumenos {
-      color: #6d89b3;
-    }
-    .doses-tomadas {
+    .doses-aviso {
       font-size: 95%;
       display: inline-block;
       min-width: 170px;
-      color: #6d89b3;
+    }
+    .aviso-tomadas { color: #6d89b3; }
+    .aviso-atrasadas { color: #bf5153; }
+    .aviso-proximos { color: #53b32f; }
+    .coluna-avisos {
       margin-top: 8px;
       margin-left: 5px;
+    }
+    .abrir-caderneta {
+      margin-left: -10px;
     }
   `],
   template: `
@@ -49,23 +54,17 @@ import {DosesComponent} from "../doses/doses.component";
         <p><span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }}</span>
           <img item-end class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo"></p>
         <ion-row>
-          <ion-col text-left>
-            <span class="cor-maisoumenos doses-tomadas" clear small icon-start>
-              <ion-icon name='done-all' name="md-done-all"></ion-icon>
-              {{ _cadernetaDosesTomadas(caderneta) }}
-            </span>
-            <br>
-            <button *ngIf="false" ion-button class="cor-maisoumenos" clear small icon-start>
-              <ion-icon name='clock-outline'></ion-icon>
-              4 nos próximos meses
-            </button>
+          <ion-col col-10 text-left class="coluna-avisos">
+            <span class="doses-aviso aviso-tomadas"   clear small icon-start><ion-icon name="md-done-all">               </ion-icon>{{ _cadernetaDosesTomadas(caderneta) }}</span>
+            <!--<span class="doses-aviso aviso-atrasadas" clear small icon-start><ion-icon name="clock-outline">             </ion-icon>{{ (cadernetaDosesAtrasadasEProximas(caderneta) | async)?.atrasadas }}</span>-->
+            <!--<span class="doses-aviso aviso-proximos"  clear small icon-start><ion-icon name="information-circle-outline"></ion-icon>{{ (cadernetaDosesAtrasadasEProximas(caderneta) | async)?.proximas }}</span>-->
           </ion-col>
-          <ion-col align-self-center text-right>
+          <ion-col col-1 align-self-center text-right>
             <ion-note>
               <ion-buttons item-end>
-                <button ion-button outline small icon-only (click)="abrirCaderneta(caderneta)">
+                <button ion-button outline small icon-only (click)="abrirCaderneta(caderneta)" class="abrir-caderneta">
                   <ion-icon name="folder-open-outline"></ion-icon>
-                </button>
+                </button>&nbsp;
               </ion-buttons>
             </ion-note>
           </ion-col>
@@ -85,7 +84,10 @@ export class CadernetaComponent {
 
   private cadernetas: Observable<Caderneta[]>;
 
-  constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController, public cadernetaRepository: CadernetaRepository) {
+  private dosesAtrasadasEProximas: any = {};
+
+  constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController,
+              public cadernetaRepository: CadernetaRepository, private cadernetaService: CadernetaService) {
     autenticacaoService.isAutenticado();
     this.cadernetas = cadernetaRepository.cadernetas$;
   }
@@ -110,6 +112,13 @@ export class CadernetaComponent {
 
   _cadernetaDosesTomadas(caderneta: Caderneta) {
     return cadernetaDosesTomadas(caderneta);
+  }
+
+  cadernetaDosesAtrasadasEProximas(caderneta: Caderneta): Observable<DosesAtrasadasEProximas> {
+    if (!this.dosesAtrasadasEProximas[caderneta.nome]) {
+      this.dosesAtrasadasEProximas[caderneta.nome] = this.cadernetaService.cadernetaDosesAtrasadasEProximas(caderneta);
+    }
+    return this.dosesAtrasadasEProximas[caderneta.nome];
   }
 
 }
