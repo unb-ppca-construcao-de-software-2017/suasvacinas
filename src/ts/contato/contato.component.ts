@@ -58,6 +58,10 @@ import {GoogleAnalytics} from "../../app/google-analytics";
         </ion-card-content>
       </ion-card>
     </ion-content>
+
+    <ion-footer>
+      <vacinas-footer></vacinas-footer>
+    </ion-footer>
   `
 })
 export class ContatoComponent {
