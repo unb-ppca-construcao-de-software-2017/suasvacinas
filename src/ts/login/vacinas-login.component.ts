@@ -3,6 +3,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {NavController, NavParams} from "ionic-angular";
 import {VacinasLogInComEmailComponent} from "./vacinas-login-email.component";
 import {OpcoesComponent} from "../opcoes/opcoes";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-login',
@@ -58,6 +59,7 @@ export class VacinasLogInComponent {
   ocultarTextoCuriosidade: boolean = false;
 
   constructor(private navCtrl: NavController, private autenticacaoService: AutenticacaoService, public navParams: NavParams) {
+    GoogleAnalytics.sendPageViewForPage('/login');
     this.ocultarTextoCuriosidade = navParams.get('ocultarTextoCuriosidade') || false;
   }
 

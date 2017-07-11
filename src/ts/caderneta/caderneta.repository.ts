@@ -13,7 +13,6 @@ export class CadernetaRepository {
     autenticacaoService.uid$
       .take(1)
       .subscribe(uid => {
-        console.log('caderneta repository logado!', uid);
         const path = `/cadernetas/${uid}`;
 
         afDb.list(path).subscribe(x => console.log('subs', x));

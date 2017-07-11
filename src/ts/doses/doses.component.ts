@@ -6,6 +6,7 @@ import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "../caderneta/caderneta.model";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-doses-lista',
@@ -128,6 +129,7 @@ export class DosesComponent {
   autenticado: Observable<any>;
 
   constructor(private autenticacaoService: AutenticacaoService, public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
+    GoogleAnalytics.sendPageViewForPage('/doses');
     this.autenticado = autenticacaoService.isAutenticado();
 
     this.caderneta = navParams.get('caderneta');

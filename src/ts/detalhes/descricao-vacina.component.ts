@@ -3,6 +3,7 @@ import {NavController, NavParams} from "ionic-angular";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacina, VacinasRepository} from "../firebase/vacinas.repository";
 import {Caderneta, idadeEmMesesPorExtenso} from "../caderneta/caderneta.model";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-descricao-vacina',
@@ -93,6 +94,7 @@ export class DescricaoVacinaComponent {
   caderneta: Caderneta;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public vacinasRepository: VacinasRepository) {
+    GoogleAnalytics.sendPageViewForPage('/descricao-vacina');
     this.caderneta = navParams.get('caderneta');
 
     let chaveVacina = navParams.get('nomevacina');
