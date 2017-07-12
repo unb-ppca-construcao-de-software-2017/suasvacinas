@@ -23,9 +23,12 @@ import {CadernetaService, DosesAtrasadasEProximas} from "./caderneta.service";
       display: inline-block;
       min-width: 170px;
     }
-    .aviso-tomadas { color: #6d89b3; }
+    .aviso-tomadas   { color: #6d89b3; }
     .aviso-atrasadas { color: #bf5153; }
-    .aviso-proximos { color: #53b32f; }
+    .aviso-proximos  { color: #53b32f; }
+    @media (max-width: 720px) {
+      .aviso-proximos  { margin-top: 2px; }
+    }
     .coluna-avisos {
       margin-top: 8px;
       margin-left: 5px;
@@ -56,8 +59,8 @@ import {CadernetaService, DosesAtrasadasEProximas} from "./caderneta.service";
         <ion-row>
           <ion-col col-10 text-left class="coluna-avisos">
             <span class="doses-aviso aviso-tomadas"   clear small icon-start><ion-icon name="md-done-all">               </ion-icon>{{ _cadernetaDosesTomadas(caderneta) }}</span>
-            <!--<span class="doses-aviso aviso-atrasadas" clear small icon-start><ion-icon name="clock-outline">             </ion-icon>{{ (cadernetaDosesAtrasadasEProximas(caderneta) | async)?.atrasadas }}</span>-->
-            <!--<span class="doses-aviso aviso-proximos"  clear small icon-start><ion-icon name="information-circle-outline"></ion-icon>{{ (cadernetaDosesAtrasadasEProximas(caderneta) | async)?.proximas }}</span>-->
+            <span *ngIf="caderneta?.datanascimento" class="doses-aviso aviso-atrasadas" clear small icon-start><ion-icon name="clock-outline">             </ion-icon>{{ (cadernetaDosesAtrasadasEProximas(caderneta) | async)?.atrasadas }}</span>
+            <span *ngIf="caderneta?.datanascimento" class="doses-aviso aviso-proximos"  clear small icon-start><ion-icon name="information-circle-outline"></ion-icon>{{ (cadernetaDosesAtrasadasEProximas(caderneta) | async)?.proximas }}</span>
           </ion-col>
           <ion-col col-1 align-self-center text-right>
             <ion-note>

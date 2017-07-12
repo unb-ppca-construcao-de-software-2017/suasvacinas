@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {Component} from "@angular/core";
+import {NavController, NavParams} from "ionic-angular";
 import {IdadeDose, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
@@ -7,6 +7,7 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Caderneta, idadeEmMeses, idadeEmMesesPorExtenso, mesesPorExtenso} from "../caderneta/caderneta.model";
 import {GoogleAnalytics} from "../../app/google-analytics";
+import {DosesAtrasadasEProximas} from "../caderneta/caderneta.service";
 
 @Component({
   selector: 'vacinas-doses-lista',
@@ -138,10 +139,10 @@ export class DosesComponent {
       let emMeses = idadeEmMeses(this.caderneta.datanascimento);
       if (emMeses < 0) {
         // ainda nao nasceu, exibimos dois meses
-        this.meses = 2;
+        this.meses = DosesAtrasadasEProximas.MESES_CORTE;
       } else {
         // fluxo geral, exibimos até três meses além da idade atual
-        this.meses = emMeses + 3;
+        this.meses = emMeses + DosesAtrasadasEProximas.MESES_CORTE;
       }
       if (emMeses >= 9999) {
         this.idadeEscolhida = 'para todas as idades';

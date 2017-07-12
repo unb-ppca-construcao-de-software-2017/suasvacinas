@@ -7,11 +7,45 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/of';
 
 export class DosesAtrasadasEProximas {
+
+  public static readonly MESES_CORTE = 3;
+
   public atrasadas: string;
   public proximas: string;
-  constructor(_atrasadas: number, _proximas: number) {
-    this.atrasadas = _atrasadas ? 'Nenhuma dose atrasada' : _atrasadas + ' doses atrasadas';
-    this.proximas = _proximas ? 'Nenhuma dose nos próximos meses' : _proximas + ' doses nos próximos meses';
+
+  constructor(doses: Dose[], idadeAtualEmMeses: number) {
+    let dosesAtrasadas = 0;
+    let dosesProximas = 0;
+    doses.forEach(dose => {
+      if (dose.idadedosemeses < idadeAtualEmMeses) {
+        dosesAtrasadas++;
+      } else {
+        dosesProximas++;
+      }
+    });
+    this.atrasadas = DosesAtrasadasEProximas.calcularMensagemDosesAtrasadas(dosesAtrasadas);
+    this.proximas = DosesAtrasadasEProximas.calcularMensagemDosesProximas(dosesProximas, idadeAtualEmMeses);
+  }
+  private static calcularMensagemDosesAtrasadas(dosesAtrasadas: number) {
+    if (dosesAtrasadas === 0) {
+      return 'Nenhuma dose atrasada';
+    } else if (dosesAtrasadas === 1) {
+      return 'Uma dose atrasada';
+    } else {
+      return dosesAtrasadas + ' doses atrasadas';
+    }
+  }
+  private static calcularMensagemDosesProximas(dosesProximas: number, idadeAtualEmMeses: number) {
+    if (idadeAtualEmMeses === 0) {
+      return dosesProximas + ' nos três primeiros meses';
+    }
+    if (dosesProximas === 0) {
+      return 'Nenhuma nos próximos três meses';
+    } else if (dosesProximas === 1) {
+      return 'Uma nos próximos três meses';
+    } else {
+      return dosesProximas + ' nos próximos três meses';
+    }
   }
 }
 
@@ -20,38 +54,26 @@ export class CadernetaService {
 
   constructor(public vacinasRepository: VacinasRepository) { }
 
+  static flatten<T>(arrayOfArrays: T[][]): T[] {
+    return [].concat.apply([], arrayOfArrays);
+  }
+
   cadernetaDosesNaoTomadas(caderneta: Caderneta, meses: number): Observable<Dose[]> {
     let dosesTomadas = caderneta.doses || {};
-    let dosesAtehMeses: Observable<IdadeDose[]> = this.vacinasRepository.getDosesAtehMeses(meses).do((ids: IdadeDose[]) => {
-      console.log('dosesAtehMeses', caderneta.nome, ids);
+    let dosesAtehMeses: Observable<IdadeDose[]> = this.vacinasRepository.getDosesAtehMeses(meses);
+    let dosesDevidas: Observable<Dose[]> = dosesAtehMeses.map((idadeDoses: IdadeDose[]) => {
+      let doses: Dose[][] = idadeDoses.map((idadeDose: IdadeDose) => idadeDose.doses);
+      return CadernetaService.flatten(doses);
     });
-    let dosesDevidas: Observable<Dose[]> = dosesAtehMeses.mergeMap((idadeDoses: IdadeDose[]) => idadeDoses.map((idadeDose: IdadeDose) => idadeDose.doses));
     return dosesDevidas.map((doses: Dose[]) => doses.filter((dose: Dose) => !dosesTomadas[dose.chavedose]));
   }
 
   cadernetaDosesAtrasadasEProximas(caderneta: Caderneta): Observable<DosesAtrasadasEProximas> {
-    console.log('consultando para', caderneta.nome, caderneta.datanascimento.length, caderneta.datanascimento);
     if (caderneta.datanascimento.length === 0) {
       return Observable.of();
     }
-    let meses = idadeEmMeses(caderneta.datanascimento);
-    if (meses < 0) {
-      meses = 0;
-    }
-    console.log('consultando para', meses + 3);
-    return this.cadernetaDosesNaoTomadas(caderneta, meses + 3).map((doses: Dose[]) => {
-      console.log('doses nao tomadas para', caderneta.nome, doses);
-      let dosesAtrasadas = 0;
-      let dosesProximas = 0;
-      doses.forEach(dose => {
-        if (dose.idadedosemeses < meses) {
-          dosesAtrasadas++;
-        } else {
-          dosesProximas++;
-        }
-      });
-      return new DosesAtrasadasEProximas(dosesAtrasadas, dosesProximas);
-    });
+    let meses = Math.max(idadeEmMeses(caderneta.datanascimento), 0);
+    return this.cadernetaDosesNaoTomadas(caderneta, meses + DosesAtrasadasEProximas.MESES_CORTE).map((doses: Dose[]) => new DosesAtrasadasEProximas(doses, meses));
   }
 
 }
