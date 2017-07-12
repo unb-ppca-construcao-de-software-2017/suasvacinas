@@ -80,8 +80,8 @@ import {DosesAtrasadasEProximas} from "../caderneta/caderneta.service";
                   {{ caderneta.nome }}
                 </ion-card-header>
                 <ion-card-content>
-                  <span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }} -</span>
-                  <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo">
+                  <p><span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }}</span>
+                  <img class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo"></p>
                 </ion-card-content>
 
               </ion-card>
