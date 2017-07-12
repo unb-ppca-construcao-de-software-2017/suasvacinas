@@ -33,6 +33,7 @@ import {CadernetaNovaComponent} from "../ts/caderneta/caderneta-nova.component";
 import {CadernetaRepository} from "../ts/caderneta/caderneta.repository";
 import {DoseComponent} from "../ts/doses/dose.component";
 import {CadernetaService} from "../ts/caderneta/caderneta.service";
+import {MarcarVacinaModalComponent} from "../ts/doses/dose-data.modal";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import {CadernetaService} from "../ts/caderneta/caderneta.service";
     ContatoComponent,
     AlergiaComponent,
     TourComponent,
-    TourHomeComponent
+    TourHomeComponent,
+    MarcarVacinaModalComponent
   ],
   imports: [
     BrowserModule,
@@ -95,7 +97,8 @@ import {CadernetaService} from "../ts/caderneta/caderneta.service";
     DosesComponent,
     VacinasExtraSUSComponent,
     ContatoComponent,
-    AlergiaComponent
+    AlergiaComponent,
+    MarcarVacinaModalComponent
   ],
   providers: [
     StatusBar,

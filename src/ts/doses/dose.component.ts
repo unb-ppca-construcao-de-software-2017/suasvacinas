@@ -1,11 +1,15 @@
 import {Component, Input} from "@angular/core";
-import {ActionSheetController, LoadingController, NavController, NavParams, ToastController} from "ionic-angular";
+import {
+  ActionSheetController, LoadingController, ModalController, NavController, NavParams,
+  ToastController
+} from "ionic-angular";
 import {Dose, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Caderneta} from "../caderneta/caderneta.model";
 import {CadernetaRepository} from "../caderneta/caderneta.repository";
+import {MarcarVacinaModalComponent} from "./dose-data.modal";
 
 @Component({
   selector: 'vacinas-dose',
@@ -58,7 +62,7 @@ import {CadernetaRepository} from "../caderneta/caderneta.repository";
         <p>{{ dose.dosevacina }}</p>
         </span>
         <p class="item-note" item-right>
-          <span *ngIf="doseFoiTomada(); else fonte_dose" class="cor-vermelha">Já tomada</span>
+          <span *ngIf="doseFoiTomada(); else fonte_dose" class="cor-vermelha">{{ dataFoiTomada() }}</span>
           <ng-template #fonte_dose>{{ dose.fontedose }}</ng-template>
         </p>
       </button>
@@ -80,7 +84,7 @@ import {CadernetaRepository} from "../caderneta/caderneta.repository";
         <h2>{{ dose.idadedoseextenso }}</h2>
         <p>{{ dose.dosevacina }}</p>
         <p class="dose-fonte">
-          <span *ngIf="doseFoiTomada(); else fonte_dose2" class="cor-vermelha" style="text-decoration: none;">Já tomada</span>
+          <span *ngIf="doseFoiTomada(); else fonte_dose2" class="cor-vermelha" style="text-decoration: none;">{{ dataFoiTomada() }}</span>
           <ng-template #fonte_dose2>Fonte: {{ dose.fontedose }}</ng-template>
         </p>
       </div>
@@ -95,10 +99,15 @@ export class DoseComponent {
 
   autenticado: Observable<any>;
 
-  constructor(private autenticacaoService: AutenticacaoService, public navCtrl: NavController,
+  constructor(public navCtrl: NavController,
               public navParams: NavParams, public vacinasRepository: VacinasRepository,
               public actionSheetCtrl: ActionSheetController, private cadernetaRepository: CadernetaRepository,
-              private loadingCtrl: LoadingController, public toastCtrl: ToastController) {
+              private loadingCtrl: LoadingController, public toastCtrl: ToastController, public modalCtrl: ModalController) {
+  }
+
+  openModal(characterNum) {
+    let modal = this.modalCtrl.create(MarcarVacinaModalComponent, characterNum);
+    modal.present();
   }
 
   abrirVacina(nomevacina: string) {
@@ -108,11 +117,7 @@ export class DoseComponent {
   abrirActionSheetDose() {
     let botoesAction = [];
 
-    if (this.doseFoiTomada()) {
-      botoesAction.push(this.botaoActionDESMarcarDoseComoTomada(this.dose));
-    } else {
-      botoesAction.push(this.botaoActionMarcarDoseComoTomada(this.dose));
-    }
+    botoesAction.push(this.botaoActionMarcarDoseComoTomada(this.dose));
 
     // botoesAction.push({text: 'Destructive', , handler: () => { console.log('Destructive clicked'); } });
 
@@ -138,70 +143,22 @@ export class DoseComponent {
     actionSheet.present();
   }
 
-  private doseFoiTomada() {
+  doseFoiTomada() {
     return this.caderneta && this.caderneta.doses && this.caderneta.doses[this.dose.chavedose] && this.caderneta.doses[this.dose.chavedose].tomada;
+  }
+
+  dataFoiTomada() {
+    if (this.caderneta && this.caderneta.doses && this.caderneta.doses[this.dose.chavedose] && this.caderneta.doses[this.dose.chavedose].dataTomada) {
+      return this.caderneta.doses[this.dose.chavedose].dataTomada;
+    }
+    return "Já tomada";
   }
 
   private botaoActionMarcarDoseComoTomada(dose: Dose) {
     return {
-      text: 'Marcar dose como já tomada',
+      text: 'Marcar/Desmarcar dose como já tomada',
       handler: () => {
-        if (!this.caderneta) {
-          let toast = this.toastCtrl.create({
-            message: 'Se você estivesse em uma caderneta, neste momento a vacina teria sido marcada como tomada! Crie sua caderneta e veja muito mais!',
-            showCloseButton: true,
-            closeButtonText: 'Ok',
-            duration: 12000,
-            position: 'bottom'
-          });
-          toast.present(toast);
-          return;
-        }
-        let salvando = this.loadingCtrl.create({
-          content: "Salvando..."
-        });
-        salvando.present();
-
-        if (!this.caderneta.doses) {
-          this.caderneta.doses = {};
-        }
-        this.caderneta.doses[dose.chavedose] = this.caderneta.doses[dose.chavedose] || {};
-        this.caderneta.doses[dose.chavedose].tomada = true;
-
-        this.cadernetaRepository.salvar(this.caderneta).then(() => {
-          salvando.dismiss();
-          let toast = this.toastCtrl.create({
-            message: 'Marcação gravada com sucesso',
-            duration: 2000,
-            position: 'bottom'
-          });
-          toast.present(toast);
-        });
-      }
-    };
-  }
-
-  private botaoActionDESMarcarDoseComoTomada(dose: Dose) {
-    return {
-      text: 'Desmarcar dose como já tomada',
-      role: 'destructive',
-      handler: () => {
-        let salvando = this.loadingCtrl.create({
-          content: "Salvando..."
-        });
-        salvando.present();
-
-        this.caderneta.doses[dose.chavedose].tomada = false;
-
-        this.cadernetaRepository.salvar(this.caderneta).then(() => {
-          salvando.dismiss();
-          let toast = this.toastCtrl.create({
-            message: 'Marcação gravada com sucesso',
-            duration: 2000,
-            position: 'bottom'
-          });
-          toast.present(toast);
-        });
+        this.openModal({caderneta: this.caderneta, dose: this.dose});
       }
     };
   }
