@@ -55,7 +55,7 @@ export class TourHomeComponent {
     this.tours = [
       {titulo: "Minha filha",  args: {msg: "caderneta da sua filha",        chave: "minha-filha"}},
       {titulo: "Meu filho",    args: {msg: "caderneta do seu filho",        chave: "meu-filho"}},
-      {titulo: "Eu",           args: {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}}, // isto estah duplicado em vacinas-footer.component.ts e vacinas-login.component.ts
+      {titulo: "Eu",           args: {msg: "sua caderneta, a do seu filho", chave: "meu-eu"}}, // isto estah duplicado em vacinas-footer.component.ts e vacinas-login.component.ts
       {titulo: "Meu familiar", args: {msg: "caderneta do seu familiar",     chave: "meu-familiar"}}
     ];
   }
