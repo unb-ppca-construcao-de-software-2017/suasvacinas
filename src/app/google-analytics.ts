@@ -10,7 +10,7 @@ export class GoogleAnalytics {
     GoogleAnalytics.googleAnalytics('send', 'pageview');
   }
 
-  public static sendEvent(eventCategory: string, eventAction: string, eventLabel: string): void {
+  public static sendEvent(eventCategory: string, eventAction: string, eventLabel: string = ''): void {
     console.log('evento', eventCategory, eventAction, eventLabel);
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/events?hl=pt-br
     GoogleAnalytics.googleAnalytics('send', {

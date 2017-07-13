@@ -66,7 +66,7 @@ export class TourHomeComponent {
   }
 
   abrirOpcao(tour: any) {
-    GoogleAnalytics.sendEvent('click', "Tour-Entrar", tour.titulo);
+    GoogleAnalytics.sendEvent('click', "Tour:Entrar", tour.titulo);
     this.navCtrl.push(TourComponent, {args: tour.args});
         // this.navCtrl.push(OpcoesComponent, {chave: tour.chave});
   }

@@ -43,10 +43,10 @@ export class OpcaoComponent implements AfterViewInit {
 
   abrirOpcao(subOpcao: SubOpcao) {
     if (subOpcao.tipo === "dose") {
-      GoogleAnalytics.sendEvent('click', "Doses-Abrir", this.chave + "-" + subOpcao.titulo);
+      GoogleAnalytics.sendEvent('click', "Doses:Abrir", this.chave + "-" + subOpcao.titulo);
       this.navCtrl.push(DosesComponent, {meses: subOpcao.meses, origem: this.chave, idadeEscolhida: subOpcao.titulo});
     } else {
-      GoogleAnalytics.sendEvent('click', "Opcoes", subOpcao.chave);
+      GoogleAnalytics.sendEvent('click', "Opcoes:Escolher", subOpcao.chave);
       this.navCtrl.push(OpcoesComponent, {chave: subOpcao.chave});
     }
   }

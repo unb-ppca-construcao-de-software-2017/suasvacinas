@@ -5,6 +5,7 @@ import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {NavController} from "ionic-angular";
 import {TourComponent} from "../tour/tour.component";
 import {HomeComponent} from "../home/home.component";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-footer',
@@ -62,14 +63,17 @@ export class VacinasFooterComponent {
   }
 
   irParaLogin(): void {
+    GoogleAnalytics.sendEvent('click', "Footer", 'ir para login');
     this.navCtrl.push(VacinasLogInComponent);
   }
 
   irParaCaderneta(): void {
+    GoogleAnalytics.sendEvent('click', "Footer", 'ir para caderneta');
     this.navCtrl.push(HomeComponent);
   }
 
   irParaTour(): void {
+    GoogleAnalytics.sendEvent('click', "Footer", 'ir para tour');
     this.navCtrl.push(TourComponent, {args: {msg: "sua caderneta, a do seu filho", chave: "meu-filho"}}); // duplicado de tour-home.component.ts
   }
 

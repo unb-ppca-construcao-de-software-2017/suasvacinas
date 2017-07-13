@@ -9,6 +9,7 @@ import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
 import {Caderneta} from "../caderneta/caderneta.model";
 import {CadernetaRepository} from "../caderneta/caderneta.repository";
 import {MarcarVacinaModalComponent} from "./dose-data.modal";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-dose',
@@ -104,12 +105,14 @@ export class DoseComponent {
               private loadingCtrl: LoadingController, public toastCtrl: ToastController, public modalCtrl: ModalController) {
   }
 
-  openModal(characterNum) {
-    let modal = this.modalCtrl.create(MarcarVacinaModalComponent, characterNum);
+  openModal(cadernetaDose) {
+    GoogleAnalytics.sendEvent('click', "Doses:AbrirModal", JSON.stringify({dentroDeDescricao: this.dentroDeDescricaoVacina, dose: cadernetaDose.dose}));
+    let modal = this.modalCtrl.create(MarcarVacinaModalComponent, cadernetaDose);
     modal.present();
   }
 
   abrirVacina(nomevacina: string) {
+    GoogleAnalytics.sendEvent('click', "Doses:AbrirDetalhesVacina", nomevacina);
     this.navCtrl.push(DescricaoVacinaComponent, { nomevacina: nomevacina, caderneta: this.caderneta });
   }
 

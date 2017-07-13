@@ -7,6 +7,7 @@ import {Caderneta, cadernetaDosesTomadas, idadeEmMesesPorExtenso} from "./cadern
 import {Observable} from "rxjs/Observable";
 import {DosesComponent} from "../doses/doses.component";
 import {CadernetaService, DosesAtrasadasEProximas} from "./caderneta.service";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-caderneta',
@@ -96,10 +97,12 @@ export class CadernetaComponent {
   }
 
   novaCaderneta(): void {
+    GoogleAnalytics.sendEvent('click', "Caderneta:Nova:AbrirForm");
     this.navCtrl.push(CadernetaNovaComponent);
   }
 
   abrirCaderneta(caderneta): void {
+    GoogleAnalytics.sendEvent('click', "Caderneta:Abrir");
     this.navCtrl.push(DosesComponent, {caderneta: caderneta});
   }
 

@@ -4,6 +4,7 @@ import {CadernetaRepository} from "./caderneta.repository";
 import {Caderneta} from "./caderneta.model";
 import {App, LoadingController, ToastController} from "ionic-angular";
 import {HomeComponent} from "../home/home.component";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-caderneta-nova',
@@ -83,6 +84,7 @@ export class CadernetaNovaComponent {
   }
 
   criarNovaCaderneta(): void {
+    GoogleAnalytics.sendEvent('click', "Caderneta:Nova:CriarEfetivamente");
     let salvando = this.loadingCtrl.create({
       content: "Salvando..."
     });

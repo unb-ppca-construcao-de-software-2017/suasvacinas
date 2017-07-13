@@ -114,12 +114,12 @@ export class TourComponent {
   }
 
   abrirIdadeEspecifica() {
-    GoogleAnalytics.sendEvent('click', "Tour-Sair", this.args.chave);
+    GoogleAnalytics.sendEvent('click', "Tour:Sair", this.args.chave);
     this.navCtrl.push(OpcoesComponent, {chave: this.args.chave});
   }
 
   irParaLogin(): void {
-    GoogleAnalytics.sendEvent('click', "Tour-Sair", 'VacinasLogInComponent');
+    GoogleAnalytics.sendEvent('click', "Tour:Sair", 'LogIn');
     this.navCtrl.push(VacinasLogInComponent, { ocultarTextoCuriosidade: true });
   }
 

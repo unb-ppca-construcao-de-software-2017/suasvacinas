@@ -5,6 +5,7 @@ import {ContatoComponent} from "../contato/contato.component";
 import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Observable} from "rxjs/Observable";
 import {VacinasExtraSUSComponent} from "../extra-sus/extra-sus";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-menu',
@@ -62,6 +63,7 @@ export class VacinasMenuComponent {
   }
 
   openPage(page) {
+    GoogleAnalytics.sendEvent('click', "Menu", page.title);
     this.appCtrl.getRootNav().setRoot(page.component);
   }
 
