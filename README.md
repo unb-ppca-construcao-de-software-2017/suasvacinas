@@ -8,7 +8,7 @@ App de [Vacine.org](https://vacine.org).
 
 ---
 
-# Público alvo e do problema a ser resolvido
+# Público alvo e problema a ser resolvido
 Nosso público são pais e mães de crianças interessados em obter informações consistentes sobre imunização, ampliar os benefício na vacinação de seus filhos, ter uma forma eficiente de controle das doses tomadas e das próximas vacinas a serem aplicadas. 
 
 O problema a ser resolvido é o controle de vacinação de crianças disponibilizando indicações da rede pública (SUS - Sistema Único de Saúde) e da rede privada (SBIm - Sociedade Brasileira de Imunizações e SBP - Sociedade Brasileira de Pediatria).
