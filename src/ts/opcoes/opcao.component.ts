@@ -4,6 +4,7 @@ import {SubOpcao, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {OpcoesComponent} from "./opcoes";
 import {DosesComponent} from "../doses/doses.component";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacina-opcao',
@@ -42,8 +43,10 @@ export class OpcaoComponent implements AfterViewInit {
 
   abrirOpcao(subOpcao: SubOpcao) {
     if (subOpcao.tipo === "dose") {
+      GoogleAnalytics.sendEvent('click', "Doses-Abrir", this.chave + "-" + subOpcao.titulo);
       this.navCtrl.push(DosesComponent, {meses: subOpcao.meses, origem: this.chave, idadeEscolhida: subOpcao.titulo});
     } else {
+      GoogleAnalytics.sendEvent('click', "Opcoes", subOpcao.chave);
       this.navCtrl.push(OpcoesComponent, {chave: subOpcao.chave});
     }
   }

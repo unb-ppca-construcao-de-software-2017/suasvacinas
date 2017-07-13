@@ -6,7 +6,6 @@ import {
 import {Dose, VacinasRepository} from "../firebase/vacinas.repository";
 import {Observable} from "rxjs/Observable";
 import {DescricaoVacinaComponent} from "../detalhes/descricao-vacina.component";
-import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {Caderneta} from "../caderneta/caderneta.model";
 import {CadernetaRepository} from "../caderneta/caderneta.repository";
 import {MarcarVacinaModalComponent} from "./dose-data.modal";

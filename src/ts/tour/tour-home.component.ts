@@ -7,6 +7,7 @@ import {AutenticacaoService} from "../firebase/autenticacao.service";
 import {VacinasLogInComponent} from "../login/vacinas-login.component";
 import {NavController} from "ionic-angular";
 import {TourComponent} from "./tour.component";
+import {GoogleAnalytics} from "../../app/google-analytics";
 
 @Component({
   selector: 'vacinas-tour-home',
@@ -65,6 +66,7 @@ export class TourHomeComponent {
   }
 
   abrirOpcao(tour: any) {
+    GoogleAnalytics.sendEvent('click', "Tour-Entrar", tour.titulo);
     this.navCtrl.push(TourComponent, {args: tour.args});
         // this.navCtrl.push(OpcoesComponent, {chave: tour.chave});
   }
