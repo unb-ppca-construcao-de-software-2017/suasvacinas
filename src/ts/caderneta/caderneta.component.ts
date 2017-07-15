@@ -88,7 +88,7 @@ export class CadernetaComponent {
 
   private cadernetas: Observable<Caderneta[]>;
 
-  private dosesAtrasadasEProximas: any = {};
+  private cacheDosesAtrasadasEProximas: any = {};
 
   constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController,
               public cadernetaRepository: CadernetaRepository, private cadernetaService: CadernetaService) {
@@ -121,10 +121,18 @@ export class CadernetaComponent {
   }
 
   cadernetaDosesAtrasadasEProximas(caderneta: Caderneta): Observable<DosesAtrasadasEProximas> {
-    if (!this.dosesAtrasadasEProximas[caderneta.nome]) {
-      this.dosesAtrasadasEProximas[caderneta.nome] = this.cadernetaService.cadernetaDosesAtrasadasEProximas(caderneta);
+    let valorNaoCacheadoOuDesatualizado = !this.cacheDosesAtrasadasEProximas[caderneta.nome] || this.cacheDosesAtrasadasEProximas[caderneta.nome].desatualizado;
+    if (valorNaoCacheadoOuDesatualizado) {
+      this.cacheDosesAtrasadasEProximas[caderneta.nome] = {
+        caderneta: this.cadernetaService.cadernetaDosesAtrasadasEProximas(caderneta),
+        desatualizado: false
+      };
+      // marca como desatualizado apos 4s
+      setTimeout(() => {
+        this.cacheDosesAtrasadasEProximas[caderneta.nome].desatualizado = true;
+      }, 4000);
     }
-    return this.dosesAtrasadasEProximas[caderneta.nome];
+    return this.cacheDosesAtrasadasEProximas[caderneta.nome].caderneta;
   }
 
 }
