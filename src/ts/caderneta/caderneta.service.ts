@@ -40,11 +40,11 @@ export class DosesAtrasadasEProximas {
       return dosesProximas + ' nos três primeiros meses';
     }
     if (dosesProximas === 0) {
-      return 'Nenhuma nos próximos três meses';
+      return 'Nenhuma nova nos próximos três meses';
     } else if (dosesProximas === 1) {
-      return 'Uma nos próximos três meses';
+      return 'Uma nova nos próximos três meses';
     } else {
-      return dosesProximas + ' nos próximos três meses';
+      return dosesProximas + ' novas nos próximos três meses';
     }
   }
 }

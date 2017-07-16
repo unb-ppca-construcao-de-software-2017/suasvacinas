@@ -36,6 +36,12 @@ import {GoogleAnalytics} from "../../app/google-analytics";
     }
     .abrir-caderneta {
       margin-left: -10px;
+      width: 35px;
+    }
+    @media (min-width:450px) {
+      .abrir-caderneta {
+        margin-left: auto;
+      }
     }
   `],
   template: `
@@ -58,17 +64,20 @@ import {GoogleAnalytics} from "../../app/google-analytics";
         <p><span *ngIf="caderneta.datanascimento">{{ _idadeEmMesesPorExtenso(caderneta.datanascimento) }}</span>
           <img item-end class="imagem-genero" [src]="_imagemGenero(caderneta)" [alt]="caderneta.sexo"></p>
         <ion-row>
-          <ion-col col-10 text-left class="coluna-avisos">
+          <ion-col col-sm-9 col-10 text-left class="coluna-avisos">
             <span class="doses-aviso aviso-tomadas"   clear small icon-start><ion-icon name="md-done-all">               </ion-icon>{{ _cadernetaDosesTomadas(caderneta) }}</span>
             <span *ngIf="caderneta?.datanascimento" class="doses-aviso aviso-atrasadas" clear small icon-start><ion-icon name="clock-outline">             </ion-icon>{{ (cadernetaDosesAtrasadasEProximas(caderneta) | async)?.atrasadas }}</span>
             <span *ngIf="caderneta?.datanascimento" class="doses-aviso aviso-proximos"  clear small icon-start><ion-icon name="information-circle-outline"></ion-icon>{{ (cadernetaDosesAtrasadasEProximas(caderneta) | async)?.proximas }}</span>
           </ion-col>
-          <ion-col col-1 align-self-center text-right>
+          <ion-col col-sm-2 col-1 align-self-center text-right>
             <ion-note>
-              <ion-buttons item-end>
+              <ion-buttons>
+                <button ion-button outline small icon-only (click)="editarCaderneta(caderneta)" class="abrir-caderneta">
+                  <ion-icon name="md-create"></ion-icon>
+                </button>
                 <button ion-button outline small icon-only (click)="abrirCaderneta(caderneta)" class="abrir-caderneta">
                   <ion-icon name="folder-open-outline"></ion-icon>
-                </button>&nbsp;
+                </button>
               </ion-buttons>
             </ion-note>
           </ion-col>
@@ -88,7 +97,7 @@ export class CadernetaComponent {
 
   private cadernetas: Observable<Caderneta[]>;
 
-  private dosesAtrasadasEProximas: any = {};
+  private cacheDosesAtrasadasEProximas: any = {};
 
   constructor(private autenticacaoService: AutenticacaoService, private navCtrl: NavController,
               public cadernetaRepository: CadernetaRepository, private cadernetaService: CadernetaService) {
@@ -106,6 +115,11 @@ export class CadernetaComponent {
     this.navCtrl.push(DosesComponent, {caderneta: caderneta});
   }
 
+  editarCaderneta(caderneta): void {
+    GoogleAnalytics.sendEvent('click', "Caderneta:Editar");
+    this.navCtrl.push(CadernetaNovaComponent, {caderneta: caderneta});
+  }
+
   //noinspection JSMethodCanBeStatic
   _idadeEmMesesPorExtenso(yyyymmdd) {
     return idadeEmMesesPorExtenso(yyyymmdd); // duplicado em doses.component.ts
@@ -116,15 +130,26 @@ export class CadernetaComponent {
     return `assets/icon/sexo-${caderneta.sexo}.png`; // duplicado em doses.component.ts
   }
 
+  //noinspection JSMethodCanBeStatic
   _cadernetaDosesTomadas(caderneta: Caderneta) {
     return cadernetaDosesTomadas(caderneta);
   }
 
   cadernetaDosesAtrasadasEProximas(caderneta: Caderneta): Observable<DosesAtrasadasEProximas> {
-    if (!this.dosesAtrasadasEProximas[caderneta.nome]) {
-      this.dosesAtrasadasEProximas[caderneta.nome] = this.cadernetaService.cadernetaDosesAtrasadasEProximas(caderneta);
+    let valorNaoCacheadoOuDesatualizado = !this.cacheDosesAtrasadasEProximas[caderneta.nome] || this.cacheDosesAtrasadasEProximas[caderneta.nome].desatualizado;
+    if (valorNaoCacheadoOuDesatualizado) {
+      this.cacheDosesAtrasadasEProximas[caderneta.nome] = {
+        caderneta: this.cadernetaService.cadernetaDosesAtrasadasEProximas(caderneta),
+        desatualizado: false
+      };
+      // marca como desatualizado apos 4s
+      setTimeout(() => {
+        if (this.cacheDosesAtrasadasEProximas[caderneta.nome]) {
+          this.cacheDosesAtrasadasEProximas[caderneta.nome].desatualizado = true;
+        }
+      }, 4000);
     }
-    return this.dosesAtrasadasEProximas[caderneta.nome];
+    return this.cacheDosesAtrasadasEProximas[caderneta.nome].caderneta;
   }
 
 }
